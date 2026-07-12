@@ -1,0 +1,304 @@
+---
+import Base from '../layouts/Base.astro';
+import talks from '../data/talks.json';
+
+const recentTalks = talks.slice(0, 4);
+---
+
+<Base title="Sean Davis — Cancer Data Science">
+  <div class="page">
+    <header class="masthead">
+      <a class="mark" href="/">Sean Davis</a>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#software">Software</a>
+        <a href="#writing">Writing</a>
+        <a href="/talks">Talks</a>
+        <a href="/blog">Notes</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
+
+    <div class="hero fade">
+      <div class="place">University of Colorado Anschutz Medical Campus</div>
+      <h1>Sean Davis</h1>
+      <p class="role">Physician-scientist — open software and data for cancer research.</p>
+      <p class="lede">
+        For over a decade I've built open tools, curated the public biomedical record, and now build
+        AI agents that help researchers find and use it. The resources I maintain are used widely across
+        genomics, and core Bioconductor packages I steward bridge the field's largest data archives.
+      </p>
+      <div class="actions">
+        <a href="#work">See the work</a>
+        <a href="https://github.com/seandavi">GitHub</a>
+        <a href="#about">About &amp; contact</a>
+      </div>
+    </div>
+
+    <section id="work">
+      <div class="sec-head">
+        <h2>Selected work</h2>
+        <div class="note">Community resources, core software, and data infrastructure.</div>
+      </div>
+      <div class="catalog">
+        <article class="entry">
+          <div>
+            <h3 class="name">awesome-single-cell</h3>
+            <div class="meta">3,789 stars · <span class="home">GitHub</span></div>
+          </div>
+          <p class="desc">
+            The field's reference list of software and data resources for single-cell analysis — one of
+            the most-starred curated resources in computational biology.
+            <a class="go" href="https://github.com/seandavi/awesome-single-cell">GitHub</a>
+          </p>
+        </article>
+
+        <article class="entry">
+          <div>
+            <h3 class="name">GEOquery</h3>
+            <div class="meta">115 stars · <span class="home">Bioconductor</span></div>
+          </div>
+          <p class="desc">
+            The bridge between the NCBI Gene Expression Omnibus and Bioconductor — a foundational R package
+            I've maintained for years, used across the genomics community.
+            <a class="go" href="https://seandavi.github.io/GEOquery/">Docs</a>
+          </p>
+        </article>
+
+        <article class="entry">
+          <div>
+            <h3 class="name">OmicIDX</h3>
+            <div class="meta"><span class="home">cancerdatasci.org</span> · open Parquet &amp; API</div>
+          </div>
+          <p class="desc">
+            A continuously refreshed index of the world's public sequencing metadata — SRA, GEO, and
+            BioProject — served as open columnar snapshots and a query API.
+            <a class="go" href="https://docs.omicidx.cancerdatasci.org">Docs</a>
+          </p>
+        </article>
+
+        <article class="entry">
+          <div>
+            <h3 class="name">CFDE Atlas</h3>
+            <div class="meta"><span class="home">cancerdatasci.org</span> · NIH Common Fund</div>
+          </div>
+          <p class="desc">
+            A knowledge base and conversational agent over the NIH Common Fund Data Ecosystem — ask across
+            programs, grants, and datasets in plain language.
+            <a class="go" href="https://cfde-atlas.cancerdatasci.org">Open</a>
+          </p>
+        </article>
+
+        <article class="entry">
+          <div>
+            <h3 class="name">curatedMetagenomicData</h3>
+            <div class="meta"><span class="home">Bioconductor</span> · uniformly processed</div>
+          </div>
+          <p class="desc">
+            Uniformly processed human microbiome data with curated, standardized metadata — a widely used
+            resource in the Bioconductor ecosystem.
+            <a class="go" href="https://cmgd.cancerdatasci.org">Open</a>
+          </p>
+        </article>
+
+        <article class="entry">
+          <div>
+            <h3 class="name">Orchestra</h3>
+            <div class="meta"><span class="home">orchestraplatform.org</span> · training platform</div>
+          </div>
+          <p class="desc">
+            Hosted, reproducible training environments for hands-on bioinformatics education — one-click
+            workspaces the community can teach and learn in.
+            <a class="go" href="https://orchestraplatform.org">Open</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="software">
+      <div class="sec-head">
+        <h2>More software</h2>
+        <div class="note">A selection — the full list lives on GitHub.</div>
+      </div>
+
+      <div class="group">
+        <h3>AI &amp; agentic tooling</h3>
+        <div class="grid">
+          <a class="card" href="https://seandavi.github.io/quartobot/">
+            <h4>quartobot <span class="s">5★</span></h4>
+            <p>Manuscript-as-software: the manubot pattern, ergonomically, on Quarto.</p>
+          </a>
+          <a class="card" href="https://seandavi.github.io/scriptorium/">
+            <h4>scriptorium <span class="s">3★</span></h4>
+            <p>Coordinated AI capabilities for manuscripts, grants, and review.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/ols-mcp-server">
+            <h4>ols-mcp-server <span class="s">26★</span></h4>
+            <p>An MCP server for the EBI Ontology Lookup Service.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/agentic-coding-intro">
+            <h4>agentic-coding-intro <span class="s">46★</span></h4>
+            <p>A brief introduction to agentic coding principles and practice.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/agentic-writing-patterns">
+            <h4>agentic-writing-patterns <span class="s">2★</span></h4>
+            <p>Design patterns of agentic AI in scholarly writing.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/lifeos-template">
+            <h4>lifeos-template <span class="s">24★</span></h4>
+            <p>An opinionated, agentic life-OS for Claude Code.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Bioconductor &amp; data tools</h3>
+        <div class="grid">
+          <a class="card" href="https://seandavi.github.io/BiocPkgTools/">
+            <h4>BiocPkgTools <span class="s">22★</span></h4>
+            <p>Build reports, package metadata, and download stats for Bioconductor.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/awesome-cancer-variant-resources">
+            <h4>awesome-cancer-variant-resources <span class="s">335★</span></h4>
+            <p>A community list of cancer clinical knowledge bases and databases.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/nextflow_telemetry">
+            <h4>nextflow_telemetry <span class="s">5★</span></h4>
+            <p>Observability and web callbacks for Nextflow workflows.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/state-cancer-profile-scraper">
+            <h4>state-cancer-profile-scraper <span class="s">5★</span></h4>
+            <p>Bulk access to NCI State Cancer Profiles data.</p>
+          </a>
+          <a class="card" href="https://github.com/seandavi/metacurator">
+            <h4>metacurator</h4>
+            <p>Spec-first, ontology-grounded reproduction of sample-level metadata.</p>
+          </a>
+          <a class="card" href="https://biomed-agents.cancerdatasci.org">
+            <h4>biomedical-agent-kg <span class="s">9★</span></h4>
+            <p>A knowledge graph of biomedical LLM agent systems.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Apps</h3>
+        <div class="grid">
+          <a class="card" href="https://pubmed-grader.cancerdatasci.org/">
+            <h4>PubMed Grader <span class="s">2★</span></h4>
+            <p>Append NIH iCite metrics to a set of PubMed IDs.</p>
+          </a>
+          <a class="card" href="https://fda-approvals.cancerdatasci.org">
+            <h4>FDA Approvals <span class="s">2★</span></h4>
+            <p>Robustly check whether a drug is FDA approved.</p>
+          </a>
+          <a class="card" href="https://store.cancerdatasci.org">
+            <h4>Data store</h4>
+            <p>Public datasets and derived files, served from R2.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="sec-head">
+        <h2>Writing</h2>
+        <div class="note">Books, manuscripts, and methods.</div>
+      </div>
+      <div class="writing">
+        <div class="wrow">
+          <span class="wkind">Book</span>
+          <div>
+            <p class="wtitle"><a href="https://seandavi.github.io/RBiocBook/">Data Science for Biologists: A Hands-On Introduction with R and Bioconductor</a></p>
+            <p>An instructional book grown from ~100 trainees across four course offerings.</p>
+          </div>
+        </div>
+        <div class="wrow">
+          <span class="wkind">Book</span>
+          <div>
+            <p class="wtitle"><a href="https://seandavi.github.io/amc-ai-governance/">Implementing AI at an Academic Medical Center</a></p>
+            <p>A working book on AI governance and adoption in academic medicine.</p>
+          </div>
+        </div>
+        <div class="wrow">
+          <span class="wkind">Publications</span>
+          <div>
+            <p class="wtitle"><a href="https://orcid.org/0000-0002-8991-6458">Full record on ORCID</a></p>
+            <p>Peer-reviewed publications across genomics, informatics, and cancer data science.</p>
+          </div>
+        </div>
+      </div>
+      <p class="notes-slot">
+        <a href="/blog">Notes</a> — release notes, build logs, and short technical pieces on the tools,
+        data, and methods behind this work.
+      </p>
+    </section>
+
+    <section id="talks">
+      <div class="sec-head">
+        <h2>Talks &amp; teaching</h2>
+        <div class="note">Recent lectures from the Frontiers of AI in Medicine course and invited talks.</div>
+      </div>
+      <div class="writing">
+        {recentTalks.map((t) => (
+          <div class="wrow">
+            <span class="wkind">{t.dateLabel}</span>
+            <div>
+              <p class="wtitle"><a href={t.url}>{t.title}</a></p>
+              <p>{t.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="notes-slot"><a href="/talks">All talks &amp; teaching</a> — a 2022–2025 archive, mostly AI/ML in medicine and data science.</p>
+    </section>
+
+    <section id="cdsci" style="border-bottom: none;">
+      <div class="band">
+        <p>
+          Much of the data-infrastructure work above lives under an open program,
+          <strong style="font-weight:600;color:var(--ink)">Cancer Data Science</strong> — OmicIDX,
+          CFDE Atlas, curated datasets, and more.
+        </p>
+        <a href="https://cancerdatasci.org">cancerdatasci.org</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="about" id="about">
+    <div class="page">
+      <div class="inner">
+        <h2>About</h2>
+        <p>
+          I'm a physician-scientist and Professor of Medicine at the University of Colorado Anschutz
+          Medical Campus, where I'm Associate Director for Informatics and Data Science in the
+          Comprehensive Cancer Center and Deputy Director of the Center for Health AI.
+        </p>
+        <p class="qual">
+          I build open data infrastructure and AI tooling for cancer research, maintain long-standing
+          software in the Bioconductor project, and help lead community open-science efforts. Reach me
+          through any of the channels below.
+        </p>
+        <div class="links">
+          <a href="https://github.com/seandavi">GitHub</a>
+          <a href="https://scholar.google.co.uk/citations?user=hLFc29kAAAAJ">Google Scholar</a>
+          <a href="https://orcid.org/0000-0002-8991-6458">ORCID</a>
+          <a href="/files/CV.pdf">CV</a>
+          <a href="https://twitter.com/seandavis12">X / @seandavis12</a>
+          <a href="mailto:seandavi@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <footer>
+      <div class="colophon">
+        <strong style="color:var(--muted);font-weight:600">seandavi.net</strong> — open tools and data for
+        cancer research, by Sean Davis. Data-infrastructure work lives at
+        <a href="https://cancerdatasci.org">cancerdatasci.org</a>.
+      </div>
+      <div>© 2026 Sean Davis · Built in the open</div>
+    </footer>
+  </div>
+</Base>
