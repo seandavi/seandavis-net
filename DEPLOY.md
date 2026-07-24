@@ -14,14 +14,14 @@ distinct *property* → own repo + own Worker + apex domain.
 ## Deliverables (what to build, in order)
 
 ### 1. `wrangler.jsonc` (repo root)
-Crib from `talks/wrangler.jsonc`, with three differences: `name` = `seandavi-site`
-(or `seandavis-net`), assets `directory` = `./dist` (Astro's output, **not**
+Crib from `talks/wrangler.jsonc`, with three differences: `name` = `seandavis-net`,
+assets `directory` = `./dist` (Astro's output, **not**
 `_site`), and the route is the **apex + www**, not a subdomain:
 
 ```jsonc
 {
   "$schema": "https://developers.cloudflare.com/workers/wrangler/configuration/schema.json",
-  "name": "seandavi-site",
+  "name": "seandavis-net",
   "compatibility_date": "2026-07-24",
   "assets": {
     "directory": "./dist",
