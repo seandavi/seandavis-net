@@ -9,7 +9,7 @@ import rehypeKatex from 'rehype-katex';
 // our academic plugins work: rehype-citation (Pandoc-style [@key] + bibliography)
 // and remark-math/rehype-katex (equations). See README for the rationale.
 export default defineConfig({
-  site: 'https://seandavi.net',
+  site: 'https://seandavis.net',
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath],
