@@ -1,4 +1,4 @@
-# seandavi.net
+# seandavis.net
 
 Personal portfolio hub for Sean Davis — physician-scientist, open software and data for
 cancer research. This site is the **superset front door** for the whole body of work;
@@ -7,7 +7,8 @@ cancer research. This site is the **superset front door** for the whole body of 
 
 ## Stack
 
-- **Astro 7** (static output), deployed to **Cloudflare Pages** (planned; domain not yet registered).
+- **Astro 7** (static output), deployed to **Cloudflare Pages** (domain `seandavis.net` registered
+  2026-07-22; Pages wiring for this site still pending).
 - **Markdown pipeline pinned to `unified()`** via `@astrojs/markdown-remark`, *not* the default
   Rust "Sätteri" engine — because Sätteri does not run remark/rehype plugins and we need them.
 - **Citations:** `rehype-citation` (Pandoc-style `[@key]`, BibTeX, APA CSL, auto-bibliography).
@@ -56,13 +57,16 @@ public/
 
 ## TODO before / at launch
 
-- Register **seandavi.net** (Cloudflare Registrar); add zone; wire Cloudflare Pages.
+- ~~Register the domain~~ **Done 2026-07-22: registered `seandavis.net`** — note the final S:
+  `seandavi` stays the username/handle; `seandavis` is the personal identity the site represents.
+  Still to do: wire Cloudflare Pages for this site.
 - Add the Cloudflare adapter/deploy config and `301`s from `seandavi.github.io` and the
   `cancerdatasci.org` apex.
 - **Self-host a display serif** (Source Serif 4 / Newsreader / Charter) instead of the system stack.
 - **ORCID publications sync:** build-time fetch of `pub.orcid.org/v3.0/0000-0002-8991-6458/works`
   → generated publications page (keeps pubs current without hand-editing).
 - Add `public/files/CV.pdf`.
-- Consider moving the talks site to `talks.seandavi.net` (needs the talk sources committed upstream).
+- ~~Consider moving the talks site~~ **Done 2026-07-22: talks live at `talks.seandavis.net`**
+  (Cloudflare Pages; talk sources committed upstream).
 
 Decision record and rationale: vault note `notes/seandavi-net-personal-hub.md`.
