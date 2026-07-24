@@ -1,12 +1,20 @@
 # Deploy plan — seandavis.net (hub)
 
-**Status:** not yet wired. Domain `seandavis.net` is registered on Cloudflare
-(DNS lives there); `talks.seandavis.net` is already live as a sibling Worker.
-This site deploys the **same way**: build in GitHub Actions, serve the static
-`dist/` from **Cloudflare Workers Static Assets** (assets-only, no Worker
-script). Pattern and rationale mirror the talks repo's ADR-0009 and `deploy`
-skill — read those first; this is the simpler cousin (no Quarto, no Chrome,
-just Astro/npm).
+**Status:** LIVE as of 2026-07-24 — deployed via `npx wrangler deploy`, both
+custom domains attached (apex canonical, www → 301 apex). Remaining: GitHub
+secrets for CI (see manual setup below) and the cross-origin retirements.
+Domain `seandavis.net` is registered on Cloudflare (DNS lives there);
+`talks.seandavis.net` is already live as a sibling Worker. This site deploys
+the **same way**: build in GitHub Actions, serve the static `dist/` from
+**Cloudflare Workers Static Assets**. Pattern and rationale mirror the talks
+repo's ADR-0009 and `deploy` skill — read those first; this is the simpler
+cousin (no Quarto, no Chrome, just Astro/npm).
+
+**Deviation from the original plan:** Workers Static Assets `_redirects`
+rejects host-based rules ("Only relative URLs are allowed" — that syntax is
+Pages-only), so the www → apex 301 lives in a minimal `worker.js` fronting
+the assets (`run_worker_first: true` in `wrangler.jsonc`), not in
+`public/_redirects`.
 
 Architecture context: [[site-family-placement-rule]] in the vault. This is a
 distinct *property* → own repo + own Worker + apex domain.
