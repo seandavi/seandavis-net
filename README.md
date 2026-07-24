@@ -7,8 +7,9 @@ cancer research. This site is the **superset front door** for the whole body of 
 
 ## Stack
 
-- **Astro 7** (static output), deployed to **Cloudflare Pages** (domain `seandavis.net` registered
-  2026-07-22; Pages wiring for this site still pending).
+- **Astro 7** (static output), deployed as a **Cloudflare Worker with static assets** via
+  wrangler — same pattern as the talks site (domain `seandavis.net` registered 2026-07-22;
+  Worker wiring for this site still pending).
 - **Markdown pipeline pinned to `unified()`** via `@astrojs/markdown-remark`, *not* the default
   Rust "Sätteri" engine — because Sätteri does not run remark/rehype plugins and we need them.
 - **Citations:** `rehype-citation` (Pandoc-style `[@key]`, BibTeX, APA CSL, auto-bibliography).
@@ -59,7 +60,7 @@ public/
 
 - ~~Register the domain~~ **Done 2026-07-22: registered `seandavis.net`** — note the final S:
   `seandavi` stays the username/handle; `seandavis` is the personal identity the site represents.
-  Still to do: wire Cloudflare Pages for this site.
+  Still to do: wire the Worker-with-assets deploy (wrangler) for this site.
 - Add the Cloudflare adapter/deploy config and `301`s from `seandavi.github.io` and the
   `cancerdatasci.org` apex.
 - **Self-host a display serif** (Source Serif 4 / Newsreader / Charter) instead of the system stack.
