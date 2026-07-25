@@ -33,26 +33,27 @@ npm run preview    # preview the build
 src/
   pages/
     index.astro          # the portfolio hub (one page)
-    talks/index.astro    # talks LISTING (data-driven); talks themselves live at linked sites
+    404.astro            # not-found page (wrangler serves the built 404.html)
     blog/index.astro     # notes listing
     blog/[...slug].astro # note rendering (citations + math work here)
   content/
     blog/                # markdown posts (agent-drafted posts drop in here)
     references.bib       # bibliography for citations
   content.config.ts      # blog collection schema
-  data/talks.json        # curated/deduped talk listing (seed; keep current here)
   layouts/Base.astro
   styles/global.css      # design tokens + styles
 public/
   favicon.svg
-  files/CV.pdf           # TODO: add the hosted CV
+  files/CV.pdf           # hosted CV (typst build from the curriculumvitae repo)
+worker.js                # www → apex 301; serves dist/ assets otherwise
+wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 ```
 
 ## Content model
 
-- **Talks:** the *listing* is native (`src/data/talks.json`); each entry links out to its rendered
-  Quarto page. Seeded from the `seandavi/talks` archive and deduped (the archive repeats the same
-  course lectures each semester). Append new talks here as they happen.
+- **Talks:** live entirely at [talks.seandavis.net](https://talks.seandavis.net) (the sibling
+  talks Worker); this site just links there. The old native listing (`src/data/talks.json` +
+  `/talks` page) was removed 2026-07-24 — it pointed at stale `seandavi.github.io/talks/` URLs.
 - **Blog / notes:** markdown files in `src/content/blog/`. Citations and math render natively — see
   `rendering-citations-in-astro.md` for the proof-of-concept.
 

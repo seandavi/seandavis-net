@@ -1,8 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import talks from '../data/talks.json';
-
-const recentTalks = talks.slice(0, 4);
 ---
 
 <Base title="Sean Davis — Cancer Data Science">
@@ -13,7 +10,7 @@ const recentTalks = talks.slice(0, 4);
         <a href="#work">Work</a>
         <a href="#software">Software</a>
         <a href="#writing">Writing</a>
-        <a href="/talks">Talks</a>
+        <a href="https://talks.seandavis.net">Talks</a>
         <a href="/blog">Notes</a>
         <a href="#about">About</a>
       </nav>
@@ -237,20 +234,12 @@ const recentTalks = talks.slice(0, 4);
     <section id="talks">
       <div class="sec-head">
         <h2>Talks &amp; teaching</h2>
-        <div class="note">Recent lectures from the Frontiers of AI in Medicine course and invited talks.</div>
+        <div class="note">Lectures from the Frontiers of AI in Medicine course and invited talks.</div>
       </div>
-      <div class="writing">
-        {recentTalks.map((t) => (
-          <div class="wrow">
-            <span class="wkind">{t.dateLabel}</span>
-            <div>
-              <p class="wtitle"><a href={t.url}>{t.title}</a></p>
-              <p>{t.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <p class="notes-slot"><a href="/talks">All talks &amp; teaching</a> — a 2022–2025 archive, mostly AI/ML in medicine and data science.</p>
+      <p class="notes-slot">
+        <a href="https://talks.seandavis.net">talks.seandavis.net</a> — the full archive, 2022–present,
+        mostly AI/ML in medicine and data science.
+      </p>
     </section>
 
     <section id="cdsci" style="border-bottom: none;">
