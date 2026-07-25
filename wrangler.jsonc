@@ -9,6 +9,8 @@
   "name": "seandavis-net",
   "compatibility_date": "2026-07-24",
   "main": "worker.js",
+  // Per-version preview URLs on workers.dev (used by the pr-preview workflow).
+  "preview_urls": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
