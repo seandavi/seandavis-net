@@ -33,19 +33,22 @@ npm run preview    # preview the build
 src/
   pages/
     index.astro          # the portfolio hub (one page)
+    projects.astro       # the full project directory (cancerdatasci.org apex 301s here)
     404.astro            # not-found page (wrangler serves the built 404.html)
     blog/index.astro     # notes listing
     blog/[...slug].astro # note rendering (citations + math work here)
   content/
     blog/                # markdown posts (agent-drafted posts drop in here)
+    projects/            # one YAML file per project — source of truth for / and /projects
     references.bib       # bibliography for citations
-  content.config.ts      # blog collection schema
+  content.config.ts      # blog + projects collection schemas
+  lib/projects.ts        # shared sorting/grouping for the projects collection
   layouts/Base.astro
   styles/global.css      # design tokens + styles
 public/
   favicon.svg
   files/CV.pdf           # hosted CV (typst build from the curriculumvitae repo)
-worker.js                # www → apex 301; serves dist/ assets otherwise
+worker.js                # www → apex 301, cancerdatasci.org → /projects 301; serves dist/ otherwise
 wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 ```
 
@@ -56,18 +59,25 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   `/talks` page) was removed 2026-07-24 — it pointed at stale `seandavi.github.io/talks/` URLs.
 - **Blog / notes:** markdown files in `src/content/blog/`. Citations and math render natively — see
   `rendering-citations-in-astro.md` for the proof-of-concept.
+- **Projects:** one YAML file per project in `src/content/projects/`. `/projects` renders every
+  entry grouped by `group`; the homepage renders `featured: true` from the *same* collection, so the
+  two can't drift. `status: offline` keeps an entry on record without rendering it anywhere — used
+  for `curatedMetagenomicData`, whose host (`cmgd.cancerdatasci.org`) returns HTTP 526 as of
+  2026-08-17. Adding a project is one new file; no page edits.
 
 ## TODO before / at launch
 
 - ~~Register the domain~~ **Done 2026-07-22: registered `seandavis.net`** — note the final S:
   `seandavi` stays the username/handle; `seandavis` is the personal identity the site represents.
   Still to do: wire the Worker-with-assets deploy (wrangler) for this site.
-- Add the Cloudflare adapter/deploy config and `301`s from `seandavi.github.io` and the
-  `cancerdatasci.org` apex.
+- ~~Add the Cloudflare adapter/deploy config~~ **Done.** The `cancerdatasci.org` apex `301` is
+  wired (apex + www attached to this Worker, redirecting to `/projects`) but **not yet deployed** —
+  that zone had no apex record at all. `seandavi.github.io` retirement still pending.
+- **Fix `cmgd.cancerdatasci.org`** (HTTP 526, invalid origin cert), then flip
+  `src/content/projects/curated-metagenomic-data.yaml` back to `status: live`.
 - **Self-host a display serif** (Source Serif 4 / Newsreader / Charter) instead of the system stack.
 - **ORCID publications sync:** build-time fetch of `pub.orcid.org/v3.0/0000-0002-8991-6458/works`
   → generated publications page (keeps pubs current without hand-editing).
-- Add `public/files/CV.pdf`.
 - ~~Consider moving the talks site~~ **Done 2026-07-22: talks live at `talks.seandavis.net`**
   (Cloudflare Pages; talk sources committed upstream).
 

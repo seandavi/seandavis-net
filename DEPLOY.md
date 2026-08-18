@@ -3,6 +3,8 @@
 **Status:** LIVE as of 2026-07-24 — deployed via `npx wrangler deploy`, both
 custom domains attached (apex canonical, www → 301 apex). Remaining: GitHub
 secrets for CI (see manual setup below) and the cross-origin retirements.
+The next deploy also claims `cancerdatasci.org` + `www` (301 → `/projects`);
+see item 2 below.
 Domain `seandavis.net` is registered on Cloudflare (DNS lives there);
 `talks.seandavis.net` is already live as a sibling Worker. This site deploys
 the **same way**: build in GitHub Actions, serve the static `dist/` from
@@ -59,10 +61,17 @@ per origin:
   redirect stub (meta-refresh + canonical), OR point the GitHub Pages custom
   domain elsewhere. NOTE: it hosts `/files/CV.pdf`, cited on the new About page
   — either keep that path alive or move the CV here first (see TODO below).
-- **cancerdatasci.org apex** → that apex's DNS/Worker (separate property). Add
-  a redirect there to `https://seandavis.net`. Do **not** touch the tool
-  subdomains (omicidx, cfde-atlas, cmgd, store, pubmed-grader, fda-approvals) —
-  those URLs are cited and must keep resolving.
+- **cancerdatasci.org apex** → **wired 2026-08-17, not yet deployed.** The zone
+  had *no apex record at all* (checked against the exported zone file), so the
+  domain did not resolve and the homepage's two links to it were dead. Rather
+  than stand up a separate property, the apex + `www` are attached to *this*
+  Worker as custom domains (`wrangler.jsonc` routes) and `worker.js` 301s them
+  to `https://seandavis.net/projects` — the directory that lists what actually
+  runs on that domain. **Deploying creates the proxied DNS records in the
+  cancerdatasci.org zone**; that's the only externally visible change.
+  The tool subdomains (omicidx, cfde-atlas, cmgd, store, pubmed-grader,
+  fda-approvals) keep their own records and are untouched — those URLs are
+  cited and must keep resolving.
 
 ### 3. `.github/workflows/deploy.yml`
 Much simpler than talks (no Quarto/uv/Chrome). Skeleton:
