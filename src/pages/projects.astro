@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import { liveProjects, inGroup, metaLine, GROUP_LABELS, type Group } from '../lib/projects';
+
+const projects = await liveProjects();
+
+// Order the directory runs in. Flagship first, then the hosted apps (most of
+// which live on cancerdatasci.org), then the two software groups.
+const sections: { group: Group; note: string }[] = [
+  { group: 'flagship', note: 'The resources the rest of the work hangs off.' },
+  { group: 'apps', note: 'Hosted tools you can open and use right now.' },
+  { group: 'ai', note: 'Agentic tooling for research writing, coding, and ontologies.' },
+  { group: 'bioc', note: 'Packages, pipelines, and curated data resources.' },
+];
+
+const hosted = projects.filter((p) => p.data.home === 'cancerdatasci.org').length;
+---
+
+<Base
+  title="Projects — Sean Davis"
+  description="A directory of open software, data infrastructure, and hosted tools built by Sean Davis."
+>
+  <div class="page">
+    <header class="masthead">
+      <a class="mark" href="/">Sean Davis</a>
+      <nav>
+        <a href="/projects">Projects</a>
+        <a href="/#writing">Writing</a>
+        <a href="https://talks.seandavis.net">Talks</a>
+        <a href="/blog">Notes</a>
+        <a href="/#about">About</a>
+      </nav>
+    </header>
+
+    <section>
+      <div class="sec-head">
+        <h2>Projects</h2>
+        <div class="note">
+          {projects.length} open projects — software, data infrastructure, and hosted tools.{' '}
+          {hosted} of them run on cancerdatasci.org, the operational home
+          for the data-infrastructure work.
+        </div>
+      </div>
+    </section>
+
+    {sections.map(({ group, note }) => {
+      const entries = inGroup(projects, group);
+      if (entries.length === 0) return null;
+      return (
+        <section>
+          <div class="sec-head">
+            <h2>{GROUP_LABELS[group]}</h2>
+            <div class="note">{note}</div>
+          </div>
+          <div class="catalog">
+            {entries.map((p) => (
+              <article class="entry">
+                <div>
+                  <h3 class="name">{p.data.name}</h3>
+                  <div class="meta">
+                    {metaLine(p.data).map((bit, i) => (
+                      <>
+                        {i > 0 && ' · '}
+                        <span class={bit === p.data.home ? 'home' : undefined}>{bit}</span>
+                      </>
+                    ))}
+                  </div>
+                </div>
+                <p class="desc">
+                  {p.data.description}{' '}
+                  <a class="go" href={p.data.url}>{p.data.linkLabel}</a>
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    <section style="border-bottom: none;">
+      <div class="band">
+        <p>
+          The full source for most of this lives on GitHub — including work not listed here.
+        </p>
+        <a href="https://github.com/seandavi">github.com/seandavi</a>
+      </div>
+      <p class="back"><a href="/">← Back to home</a></p>
+    </section>
+  </div>
+</Base>
