@@ -19,7 +19,7 @@ export default {
     }
 
     if (CDSCI_HOSTS.has(url.hostname)) {
-      return Response.redirect('https://seandavis.net/projects', 301);
+      return Response.redirect('https://seandavis.net/projects/', 301);
     }
 
     return env.ASSETS.fetch(request);
