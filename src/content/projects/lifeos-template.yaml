@@ -1,0 +1,8 @@
+name: lifeos-template
+description: An opinionated, agentic life-OS for Claude Code.
+url: https://github.com/seandavi/lifeos-template
+linkLabel: GitHub
+home: GitHub
+stars: 24
+group: ai
+order: 60

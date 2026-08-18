@@ -1,0 +1,11 @@
+name: OmicIDX
+description: >-
+  A continuously refreshed index of the world's public sequencing metadata — SRA, GEO, and
+  BioProject — served as open columnar snapshots and a query API.
+url: https://docs.omicidx.cancerdatasci.org
+linkLabel: Docs
+home: cancerdatasci.org
+meta: open Parquet & API
+group: flagship
+featured: true
+order: 30

@@ -1,0 +1,8 @@
+name: BiocPkgTools
+description: Build reports, package metadata, and download stats for Bioconductor.
+url: https://seandavi.github.io/BiocPkgTools/
+linkLabel: Docs
+home: Bioconductor
+stars: 22
+group: bioc
+order: 10

@@ -1,0 +1,11 @@
+name: GEOquery
+description: >-
+  The bridge between the NCBI Gene Expression Omnibus and Bioconductor — a foundational R package
+  I've maintained for years, used across the genomics community.
+url: https://seandavi.github.io/GEOquery/
+linkLabel: Docs
+home: Bioconductor
+stars: 115
+group: flagship
+featured: true
+order: 20

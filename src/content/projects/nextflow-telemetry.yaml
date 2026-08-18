@@ -1,0 +1,8 @@
+name: nextflow_telemetry
+description: Observability and web callbacks for Nextflow workflows.
+url: https://github.com/seandavi/nextflow_telemetry
+linkLabel: GitHub
+home: GitHub
+stars: 5
+group: bioc
+order: 30

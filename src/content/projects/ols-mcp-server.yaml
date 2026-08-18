@@ -1,0 +1,8 @@
+name: ols-mcp-server
+description: An MCP server for the EBI Ontology Lookup Service.
+url: https://github.com/seandavi/ols-mcp-server
+linkLabel: GitHub
+home: GitHub
+stars: 26
+group: ai
+order: 30

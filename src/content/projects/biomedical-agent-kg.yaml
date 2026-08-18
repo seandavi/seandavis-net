@@ -1,0 +1,8 @@
+name: biomedical-agent-kg
+description: A knowledge graph of biomedical LLM agent systems.
+url: https://biomed-agents.cancerdatasci.org
+linkLabel: Open
+home: cancerdatasci.org
+stars: 9
+group: bioc
+order: 60

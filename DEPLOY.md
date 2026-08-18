@@ -1,12 +1,22 @@
 # Deploy plan — seandavis.net (hub)
 
-**Status:** not yet wired. Domain `seandavis.net` is registered on Cloudflare
-(DNS lives there); `talks.seandavis.net` is already live as a sibling Worker.
-This site deploys the **same way**: build in GitHub Actions, serve the static
-`dist/` from **Cloudflare Workers Static Assets** (assets-only, no Worker
-script). Pattern and rationale mirror the talks repo's ADR-0009 and `deploy`
-skill — read those first; this is the simpler cousin (no Quarto, no Chrome,
-just Astro/npm).
+**Status:** LIVE as of 2026-07-24 — deployed via `npx wrangler deploy`, both
+custom domains attached (apex canonical, www → 301 apex). Remaining: GitHub
+secrets for CI (see manual setup below) and the cross-origin retirements.
+The next deploy also claims `cancerdatasci.org` + `www` (301 → `/projects`);
+see item 2 below.
+Domain `seandavis.net` is registered on Cloudflare (DNS lives there);
+`talks.seandavis.net` is already live as a sibling Worker. This site deploys
+the **same way**: build in GitHub Actions, serve the static `dist/` from
+**Cloudflare Workers Static Assets**. Pattern and rationale mirror the talks
+repo's ADR-0009 and `deploy` skill — read those first; this is the simpler
+cousin (no Quarto, no Chrome, just Astro/npm).
+
+**Deviation from the original plan:** Workers Static Assets `_redirects`
+rejects host-based rules ("Only relative URLs are allowed" — that syntax is
+Pages-only), so the www → apex 301 lives in a minimal `worker.js` fronting
+the assets (`run_worker_first: true` in `wrangler.jsonc`), not in
+`public/_redirects`.
 
 Architecture context: [[site-family-placement-rule]] in the vault. This is a
 distinct *property* → own repo + own Worker + apex domain.
@@ -51,10 +61,17 @@ per origin:
   redirect stub (meta-refresh + canonical), OR point the GitHub Pages custom
   domain elsewhere. NOTE: it hosts `/files/CV.pdf`, cited on the new About page
   — either keep that path alive or move the CV here first (see TODO below).
-- **cancerdatasci.org apex** → that apex's DNS/Worker (separate property). Add
-  a redirect there to `https://seandavis.net`. Do **not** touch the tool
-  subdomains (omicidx, cfde-atlas, cmgd, store, pubmed-grader, fda-approvals) —
-  those URLs are cited and must keep resolving.
+- **cancerdatasci.org apex** → **wired 2026-08-17, not yet deployed.** The zone
+  had *no apex record at all* (checked against the exported zone file), so the
+  domain did not resolve and the homepage's two links to it were dead. Rather
+  than stand up a separate property, the apex + `www` are attached to *this*
+  Worker as custom domains (`wrangler.jsonc` routes) and `worker.js` 301s them
+  to `https://seandavis.net/projects` — the directory that lists what actually
+  runs on that domain. **Deploying creates the proxied DNS records in the
+  cancerdatasci.org zone**; that's the only externally visible change.
+  The tool subdomains (omicidx, cfde-atlas, cmgd, store, pubmed-grader,
+  fda-approvals) keep their own records and are untouched — those URLs are
+  cited and must keep resolving.
 
 ### 3. `.github/workflows/deploy.yml`
 Much simpler than talks (no Quarto/uv/Chrome). Skeleton:

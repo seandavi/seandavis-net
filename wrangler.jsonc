@@ -1,0 +1,37 @@
+{
+  // Cloudflare Workers Static Assets deployment for seandavis.net (the hub).
+  // Astro's dist/ is served from Cloudflare's edge; a minimal Worker script
+  // (worker.js) fronts it only to 301 www → apex, since `_redirects` in
+  // Workers assets can't express host-based rules (that's Pages-only).
+  // Deploy with `npx wrangler deploy` after `npm run build`.
+  // Same pattern as the talks repo (its ADR-0009); see DEPLOY.md here.
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/configuration/schema.json",
+  "name": "seandavis-net",
+  "compatibility_date": "2026-07-24",
+  "main": "worker.js",
+  // Per-version preview URLs on workers.dev (used by the pr-preview workflow).
+  "preview_urls": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Required so the www redirect runs before asset matching (asset
+    // matching is host-agnostic and would otherwise serve www directly).
+    "run_worker_first": true
+  },
+  // Apex is canonical; www is attached too and 301s to apex in worker.js.
+  // DNS for seandavis.net lives on Cloudflare, so custom domains
+  // auto-provision on deploy.
+  //
+  // cancerdatasci.org is attached to the same Worker so its apex 301s to
+  // /projects here (worker.js). That zone previously had NO apex record at all,
+  // so the domain did not resolve; deploying creates the proxied record.
+  // Only the apex and www are claimed — every other cancerdatasci.org
+  // subdomain keeps its existing DNS and is untouched.
+  "routes": [
+    { "pattern": "seandavis.net", "custom_domain": true },
+    { "pattern": "www.seandavis.net", "custom_domain": true },
+    { "pattern": "cancerdatasci.org", "custom_domain": true },
+    { "pattern": "www.cancerdatasci.org", "custom_domain": true }
+  ]
+}

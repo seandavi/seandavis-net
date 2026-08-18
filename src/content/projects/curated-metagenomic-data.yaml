@@ -1,0 +1,15 @@
+name: curatedMetagenomicData
+description: >-
+  Uniformly processed human microbiome data with curated, standardized metadata — a widely used
+  resource in the Bioconductor ecosystem.
+url: https://cmgd.cancerdatasci.org
+linkLabel: Open
+home: Bioconductor
+meta: uniformly processed
+group: flagship
+featured: true
+order: 50
+# cmgd.cancerdatasci.org returns HTTP 526 (origin certificate invalid) as of
+# 2026-08-17, so the entry is held back rather than linking somewhere broken.
+# Fix the origin cert, then set status back to `live`.
+status: offline

@@ -1,0 +1,62 @@
+name: pr-preview
+
+# Build the PR's version of the site and upload it as a Worker *version*
+# (no production deploy). Cloudflare gives each version a preview URL on
+# workers.dev; we comment it on the PR so changes can be reviewed live.
+# Note: the preview host isn't www.seandavis.net, so worker.js's canonical
+# redirect stays inert there.
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Upload preview version
+        id: upload
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: versions upload
+
+      - name: Comment preview URL on the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CMD_OUTPUT: ${{ steps.upload.outputs.command-output }}
+        run: |
+          URL=$(printf '%s\n' "$CMD_OUTPUT" | grep -oE 'https://[a-z0-9-]+\.[a-z0-9-]+\.workers\.dev' | head -1)
+          if [ -z "$URL" ]; then
+            echo "No preview URL found in wrangler output" >&2
+            exit 1
+          fi
+          BODY="🔍 Preview this PR: $URL (built from ${{ github.event.pull_request.head.sha }})"
+          # One evolving comment per PR rather than one per push.
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --edit-last --create-if-none \
+            --body "$BODY"
