@@ -1,0 +1,7 @@
+name: Data store
+description: Public datasets and derived files, served from R2.
+url: https://store.cancerdatasci.org
+linkLabel: Open
+home: cancerdatasci.org
+group: apps
+order: 30

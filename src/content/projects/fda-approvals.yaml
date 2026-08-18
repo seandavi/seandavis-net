@@ -1,0 +1,8 @@
+name: FDA Approvals
+description: Robustly check whether a drug is FDA approved.
+url: https://fda-approvals.cancerdatasci.org
+linkLabel: Open
+home: cancerdatasci.org
+stars: 2
+group: apps
+order: 20

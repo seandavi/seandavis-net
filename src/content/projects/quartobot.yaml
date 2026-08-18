@@ -1,0 +1,8 @@
+name: quartobot
+description: 'Manuscript-as-software: the manubot pattern, ergonomically, on Quarto.'
+url: https://seandavi.github.io/quartobot/
+linkLabel: Docs
+home: GitHub
+stars: 5
+group: ai
+order: 10

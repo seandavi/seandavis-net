@@ -1,0 +1,11 @@
+name: Orchestra
+description: >-
+  Hosted, reproducible training environments for hands-on bioinformatics education — one-click
+  workspaces the community can teach and learn in.
+url: https://orchestraplatform.org
+linkLabel: Open
+home: orchestraplatform.org
+meta: training platform
+group: flagship
+featured: true
+order: 60

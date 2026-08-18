@@ -1,0 +1,8 @@
+name: PubMed Grader
+description: Append NIH iCite metrics to a set of PubMed IDs.
+url: https://pubmed-grader.cancerdatasci.org/
+linkLabel: Open
+home: cancerdatasci.org
+stars: 2
+group: apps
+order: 10

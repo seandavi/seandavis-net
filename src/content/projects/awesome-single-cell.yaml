@@ -1,0 +1,11 @@
+name: awesome-single-cell
+description: >-
+  The field's reference list of software and data resources for single-cell analysis — one of
+  the most-starred curated resources in computational biology.
+url: https://github.com/seandavi/awesome-single-cell
+linkLabel: GitHub
+home: GitHub
+stars: 3789
+group: flagship
+featured: true
+order: 10

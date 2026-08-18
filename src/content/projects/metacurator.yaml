@@ -1,0 +1,7 @@
+name: metacurator
+description: Spec-first, ontology-grounded reproduction of sample-level metadata.
+url: https://github.com/seandavi/metacurator
+linkLabel: GitHub
+home: GitHub
+group: bioc
+order: 50

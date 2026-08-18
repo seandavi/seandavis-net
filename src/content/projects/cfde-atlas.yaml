@@ -1,0 +1,11 @@
+name: CFDE Atlas
+description: >-
+  A knowledge base and conversational agent over the NIH Common Fund Data Ecosystem — ask across
+  programs, grants, and datasets in plain language.
+url: https://cfde-atlas.cancerdatasci.org
+linkLabel: Open
+home: cancerdatasci.org
+meta: NIH Common Fund
+group: flagship
+featured: true
+order: 40
