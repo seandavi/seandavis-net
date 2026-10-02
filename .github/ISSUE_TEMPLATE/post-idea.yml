@@ -1,0 +1,38 @@
+name: Post idea
+description: Add a blog post topic to the backlog.
+title: "Post idea: "
+labels: [post-idea]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Working title
+    validations:
+      required: true
+  - type: textarea
+    id: point
+    attributes:
+      label: The point
+      description: One or two sentences. What should a reader take away?
+    validations:
+      required: true
+  - type: input
+    id: readers
+    attributes:
+      label: Intended readers
+      placeholder: e.g. Bioconductor developers, lab members new to the cloud
+  - type: textarea
+    id: prompt
+    attributes:
+      label: What prompted it
+      description: The question, project, conversation, or release behind the idea.
+  - type: textarea
+    id: material
+    attributes:
+      label: Material
+      description: Links, repos, notebooks, talk slides, notes.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Sean's notes
+      description: Optional. Anything else, in your own words.
