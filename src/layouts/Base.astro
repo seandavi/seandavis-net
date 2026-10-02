@@ -23,6 +23,8 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <!-- Per-page head tags, e.g. <Fragment slot="head"><meta … /></Fragment>. -->
+    <slot name="head" />
   </head>
   <body>
     <slot />
