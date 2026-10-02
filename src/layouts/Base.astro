@@ -23,6 +23,21 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <!-- GA4 per monode infrastructure/ANALYTICS.md: one property, hard-coded public ID,
+         content_group = site key. Allow-listed to the production host so localhost,
+         workers.dev previews, and tailnet hosts never load or report. -->
+    <script is:inline>
+      if (location.hostname === 'seandavis.net') {
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KLLV1GCF4E';
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', 'G-KLLV1GCF4E', { content_group: 'seandavis-net' });
+      }
+    </script>
     <!-- Per-page head tags, e.g. <Fragment slot="head"><meta … /></Fragment>. -->
     <slot name="head" />
   </head>

@@ -14,6 +14,8 @@ cancer research. This site is the **superset front door** for the whole body of 
   Rust "Sätteri" engine — because Sätteri does not run remark/rehype plugins and we need them.
 - **Citations:** `rehype-citation` (Pandoc-style `[@key]`, BibTeX, APA CSL, auto-bibliography).
 - **Math:** `remark-math` + `rehype-katex`.
+- **Analytics:** GA4 `G-KLLV1GCF4E`, `content_group: 'seandavis-net'`, hand-written gtag in
+  `Base.astro` that loads only when the host is exactly `seandavis.net` (no previews/localhost).
 
 Heavy academic documents (papers, books, crossref-numbered Quarto docs) stay in **Quarto**,
 published standalone and *linked* — not reproduced here. See the Writing/Talks sections.
