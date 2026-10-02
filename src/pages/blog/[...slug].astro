@@ -1,23 +1,27 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getVisiblePosts, formatDate, type Post } from '../../lib/blog';
 
+// Only visible posts get a route, so production builds emit no draft URLs.
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getVisiblePosts();
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as { post: Post };
 const { Content } = await render(post);
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const { title, date, description, draft, archived, aiAssistance } = post.data;
 ---
 
-<Base title={`${post.data.title} — Sean Davis`} description={post.data.description}>
+<Base title={`${title} — Sean Davis`} description={description}>
+  <Fragment slot="head">
+    {draft && <meta name="robots" content="noindex" />}
+    {aiAssistance && <meta name="ai-assistance" content={aiAssistance} />}
+  </Fragment>
   <div class="page">
     <header class="masthead">
       <a class="mark" href="/">Sean Davis</a>
@@ -32,8 +36,14 @@ const fmt = (d: Date) =>
     </header>
 
     <article class="prose">
-      <h1>{post.data.title}</h1>
-      <div class="post-date">{fmt(post.data.date)}</div>
+      {draft && <p class="draft-banner">Draft — not published</p>}
+      <h1>{title}</h1>
+      <div class="post-date">
+        {formatDate(date)}
+        {archived && (
+          <span class="archive-note"> · Written in {date.getUTCFullYear()}; some details may be dated.</span>
+        )}
+      </div>
       <Content />
       <p class="back" style="margin-top:2.5rem;"><a href="/blog">← All notes</a></p>
     </article>
