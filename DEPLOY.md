@@ -1,10 +1,11 @@
 # Deploy plan — seandavis.net (hub)
 
-**Status:** LIVE as of 2026-07-24 — deployed via `npx wrangler deploy`, both
-custom domains attached (apex canonical, www → 301 apex). Remaining: GitHub
-secrets for CI (see manual setup below) and the cross-origin retirements.
-The next deploy also claims `cancerdatasci.org` + `www` (301 → `/projects`);
-see item 2 below.
+**Status:** LIVE as of 2026-07-24 — first deployed via `npx wrangler deploy`, both
+custom domains attached (apex canonical, www → 301 apex). GitHub secrets for CI
+set 2026-07-25; pushes to `main` deploy via `deploy.yml`, PRs get a
+`workers.dev` preview via `pr-preview.yml`. `cancerdatasci.org` + `www`
+(301 → `/projects`) deployed 2026-08-18; see item 2 below. Remaining:
+`seandavi.github.io` retirement.
 Domain `seandavis.net` is registered on Cloudflare (DNS lives there);
 `talks.seandavis.net` is already live as a sibling Worker. This site deploys
 the **same way**: build in GitHub Actions, serve the static `dist/` from
@@ -61,7 +62,8 @@ per origin:
   redirect stub (meta-refresh + canonical), OR point the GitHub Pages custom
   domain elsewhere. NOTE: it hosts `/files/CV.pdf`, cited on the new About page
   — either keep that path alive or move the CV here first (see TODO below).
-- **cancerdatasci.org apex** → **wired 2026-08-17, not yet deployed.** The zone
+- **cancerdatasci.org apex** → **wired 2026-08-17, deployed 2026-08-18** (verified
+  301 → `https://seandavis.net/projects/` on 2026-10-02). The zone
   had *no apex record at all* (checked against the exported zone file), so the
   domain did not resolve and the homepage's two links to it were dead. Rather
   than stand up a separate property, the apex + `www` are attached to *this*
@@ -107,5 +109,5 @@ Identical to the talks `deploy` skill, reused token is fine:
 3. **Only then** the cross-origin 301s (item 2) — retiring github.io is the
    irreversible-feeling step; do it once the hub genuinely supersedes it.
 
-Open question for Sean: apex-canonical vs. www-canonical, and timing of the
-github.io retirement relative to the July 31 workshop.
+Resolved: apex canonical (www → 301 apex). Still open: `seandavi.github.io`
+retirement — waits on porting the old blog posts here so their URLs can redirect.
