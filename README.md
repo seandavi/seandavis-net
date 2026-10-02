@@ -2,14 +2,14 @@
 
 Personal portfolio hub for Sean Davis — physician-scientist, open software and data for
 cancer research. This site is the **superset front door** for the whole body of work;
-`cancerdatasci.org` is the operational home for the data-infrastructure subset and will
-`301`-redirect its apex here. Replaces the dormant `seandavi.github.io` (Hugo/HugoBlox).
+`cancerdatasci.org` is the operational home for the data-infrastructure subset and its apex
+`301`-redirects here (to `/projects`). Replaces the dormant `seandavi.github.io` (Hugo/HugoBlox).
 
 ## Stack
 
 - **Astro 7** (static output), deployed as a **Cloudflare Worker with static assets** via
   wrangler — same pattern as the talks site (domain `seandavis.net` registered 2026-07-22;
-  Worker wiring for this site still pending).
+  live since 2026-07-24; CI deploys on push to `main`, PRs get a `workers.dev` preview).
 - **Markdown pipeline pinned to `unified()`** via `@astrojs/markdown-remark`, *not* the default
   Rust "Sätteri" engine — because Sätteri does not run remark/rehype plugins and we need them.
 - **Citations:** `rehype-citation` (Pandoc-style `[@key]`, BibTeX, APA CSL, auto-bibliography).
@@ -69,10 +69,11 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 
 - ~~Register the domain~~ **Done 2026-07-22: registered `seandavis.net`** — note the final S:
   `seandavi` stays the username/handle; `seandavis` is the personal identity the site represents.
-  Still to do: wire the Worker-with-assets deploy (wrangler) for this site.
-- ~~Add the Cloudflare adapter/deploy config~~ **Done.** The `cancerdatasci.org` apex `301` is
-  wired (apex + www attached to this Worker, redirecting to `/projects`) but **not yet deployed** —
-  that zone had no apex record at all. `seandavi.github.io` retirement still pending.
+- ~~Wire the Worker-with-assets deploy~~ **Done 2026-07-24** (wrangler; see DEPLOY.md).
+- ~~`cancerdatasci.org` apex 301~~ **Deployed 2026-08-18** (apex + www attached to this Worker,
+  redirecting to `/projects`; verified 301 → `https://seandavis.net/projects/` 2026-10-02).
+- **Retire `seandavi.github.io`** — waits on porting the old blog posts here so their URLs can
+  redirect.
 - **Fix `cmgd.cancerdatasci.org`** (HTTP 526, invalid origin cert), then flip
   `src/content/projects/curated-metagenomic-data.yaml` back to `status: live`.
 - **Self-host a display serif** (Source Serif 4 / Newsreader / Charter) instead of the system stack.
