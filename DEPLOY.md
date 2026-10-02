@@ -60,8 +60,8 @@ per origin:
 - **seandavi.github.io** → its Pages serving is in the `seandavi.github.io`
   repo (currently `master`). Retire by replacing that repo's content with a
   redirect stub (meta-refresh + canonical), OR point the GitHub Pages custom
-  domain elsewhere. NOTE: it hosts `/files/CV.pdf`, cited on the new About page
-  — either keep that path alive or move the CV here first (see TODO below).
+  domain elsewhere. The CV it used to host now lives here at `/files/CV.pdf`;
+  what remains is porting the old blog posts so their URLs can redirect.
 - **cancerdatasci.org apex** → **wired 2026-08-17, deployed 2026-08-18** (verified
   301 → `https://seandavis.net/projects/` on 2026-10-02). The zone
   had *no apex record at all* (checked against the exported zone file), so the
@@ -82,8 +82,7 @@ Much simpler than talks (no Quarto/uv/Chrome). Skeleton:
 same `concurrency` guard talks uses.
 
 ### 4. Content TODOs that gate a real launch (pre-existing, from README)
-- **`public/files/CV.pdf`** — add it here; it's linked from About and currently
-  only exists at `seandavi.github.io/files/CV.pdf`. Blocks retiring github.io.
+- ~~**`public/files/CV.pdf`**~~ **Done** — served at `seandavis.net/files/CV.pdf`.
 - **ORCID publications sync** — build-time fetch of
   `pub.orcid.org/v3.0/0000-0002-8991-6458/works` → generated publications page.
   Today Writing just links to ORCID; fine for a soft launch, but this is the
