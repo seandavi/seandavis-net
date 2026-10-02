@@ -43,6 +43,7 @@ src/
     references.bib       # bibliography for citations
   content.config.ts      # blog + projects collection schemas
   lib/projects.ts        # shared sorting/grouping for the projects collection
+  lib/blog.ts            # which posts are built/listed (drafts), newest first
   layouts/Base.astro
   styles/global.css      # design tokens + styles
 public/
@@ -57,13 +58,31 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 - **Talks:** live entirely at [talks.seandavis.net](https://talks.seandavis.net) (the sibling
   talks Worker); this site just links there. The old native listing (`src/data/talks.json` +
   `/talks` page) was removed 2026-07-24 — it pointed at stale `seandavi.github.io/talks/` URLs.
-- **Blog / notes:** markdown files in `src/content/blog/`. Citations and math render natively — see
-  `rendering-citations-in-astro.md` for the proof-of-concept.
+- **Blog / notes:** `src/content/blog/<slug>.md`, or `<slug>/index.md` with co-located images
+  referenced relatively; both publish at `/blog/<slug>/`. Frontmatter: `title`, `date` (original
+  publication date), optional `description`, and:
+  - `draft` (default `false`): drafts render under `npm run dev` and in PR previews (built with
+    `SHOW_DRAFTS=1`) with a banner and `noindex`; production builds give them no URL.
+  - `archived` (default `false`): listed under "Archive" with a "written in <year>" note.
+  - `aliases` (default `[]`): old URL paths (e.g. on `seandavi.github.io`), kept for future redirects.
+  - `aiAssistance` (optional): rendered only as `<meta name="ai-assistance">`, never in the prose.
+
+  Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering
+  fixture. Fenced code is highlighted by Shiki.
 - **Projects:** one YAML file per project in `src/content/projects/`. `/projects` renders every
   entry grouped by `group`; the homepage renders `featured: true` from the *same* collection, so the
   two can't drift. `status: offline` keeps an entry on record without rendering it anywhere — used
   for `curatedMetagenomicData`, whose host (`cmgd.cancerdatasci.org`) returns HTTP 526 as of
   2026-08-17. Adding a project is one new file; no page edits.
+
+## Writing
+
+- **Backlog:** post topics are GitHub issues labelled
+  [`post-idea`](https://github.com/seandavi/seandavis-net/issues?q=is%3Aopen+label%3Apost-idea);
+  add one with the "Post idea" issue form.
+- **Process:** the `blog-post` skill (`.claude/skills/blog-post/SKILL.md`) walks a topic from
+  backlog through brief, outline, draft PR (`post/<slug>`), voice pass, review, and publish.
+- **Voice:** `docs/voice.md` is the style guide every draft is checked against.
 
 ## TODO before / at launch
 
