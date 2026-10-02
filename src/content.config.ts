@@ -1,14 +1,24 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Blog / notes — agent-drafted posts drop in as markdown files here.
+// Blog / notes. A post is `<slug>.md`, or `<slug>/index.md` with co-located
+// images referenced relatively; both route to /blog/<slug>/. Visibility
+// (drafts) and ordering live in src/lib/blog.ts.
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
+    // Original publication (or draft) date.
     date: z.coerce.date(),
     description: z.string().optional(),
+    // Drafts render only under `astro dev` and SHOW_DRAFTS=1 builds (PR previews).
     draft: z.boolean().default(false),
+    // Old post kept for the record: listed under "Archive" with a dated-content note.
+    archived: z.boolean().default(false),
+    // Former URL paths (e.g. on seandavi.github.io); data for future redirects.
+    aliases: z.array(z.string()).default([]),
+    // Disclosure rendered only as <meta name="ai-assistance">, never in the prose.
+    aiAssistance: z.string().optional(),
   }),
 });
 

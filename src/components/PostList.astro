@@ -1,0 +1,23 @@
+---
+import { formatDate, type Post } from '../lib/blog';
+
+interface Props {
+  posts: Post[];
+}
+const { posts } = Astro.props;
+---
+
+<div class="writing">
+  {posts.map((p) => (
+    <div class="wrow">
+      <span class="wkind">
+        {formatDate(p.data.date)}
+        {p.data.draft && <span class="draft-label">Draft</span>}
+      </span>
+      <div>
+        <p class="wtitle"><a href={`/blog/${p.id}/`}>{p.data.title}</a></p>
+        {p.data.description && <p>{p.data.description}</p>}
+      </div>
+    </div>
+  ))}
+</div>

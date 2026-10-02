@@ -34,6 +34,9 @@ jobs:
         run: npm ci
 
       - name: Build the site
+        # Previews include draft posts (with a banner + noindex); production doesn't.
+        env:
+          SHOW_DRAFTS: "1"
         run: npm run build
 
       - name: Upload preview version

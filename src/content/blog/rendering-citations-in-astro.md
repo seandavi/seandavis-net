@@ -2,6 +2,8 @@
 title: Rendering citations in Astro
 date: 2026-07-11
 description: A proof that Pandoc-style citations, a formatted bibliography, and math all render natively on this site.
+# Rendering fixture for citations and math, not a post: kept as a draft so it shows only in dev and PR previews.
+draft: true
 ---
 
 This post exists to prove the academic pieces of the site work end to end — no Quarto in the loop for lightweight content.
