@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
 import { liveProjects, inGroup, metaLine, GROUP_LABELS, type Group } from '../lib/projects';
 
 // Same data the /projects directory renders — the homepage just shows the
@@ -11,17 +12,7 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
 
 <Base title="Sean Davis — Cancer Data Science">
   <div class="page">
-    <header class="masthead">
-      <a class="mark" href="/">Sean Davis</a>
-      <nav>
-        <a href="#work">Work</a>
-        <a href="/projects">Projects</a>
-        <a href="#writing">Writing</a>
-        <a href="https://talks.seandavis.net">Talks</a>
-        <a href="/blog">Notes</a>
-        <a href="#about">About</a>
-      </nav>
-    </header>
+    <Masthead />
 
     <div class="hero fade">
       <div class="place">University of Colorado Anschutz Medical Campus</div>
