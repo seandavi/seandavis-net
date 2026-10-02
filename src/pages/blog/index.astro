@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
 import PostList from '../../components/PostList.astro';
 import { getVisiblePosts } from '../../lib/blog';
 
@@ -11,17 +12,7 @@ const archived = posts.filter((p) => p.data.archived);
 
 <Base title="Notes — Sean Davis" description="Notes from Sean Davis on tools, data, and methods.">
   <div class="page">
-    <header class="masthead">
-      <a class="mark" href="/">Sean Davis</a>
-      <nav>
-        <a href="/#work">Work</a>
-        <a href="/projects">Projects</a>
-        <a href="/#writing">Writing</a>
-        <a href="https://talks.seandavis.net">Talks</a>
-        <a href="/blog">Notes</a>
-        <a href="/#about">About</a>
-      </nav>
-    </header>
+    <Masthead />
 
     <section style="border-bottom: none;">
       <div class="sec-head">
