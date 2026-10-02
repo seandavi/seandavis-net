@@ -1,13 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import PostList from '../../components/PostList.astro';
+import { getVisiblePosts } from '../../lib/blog';
 
-const posts = (await getCollection('blog'))
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+// Newest first; archived posts get their own section below the current ones.
+const posts = await getVisiblePosts();
+const current = posts.filter((p) => !p.data.archived);
+const archived = posts.filter((p) => p.data.archived);
 ---
 
 <Base title="Notes — Sean Davis" description="Notes from Sean Davis on tools, data, and methods.">
@@ -29,19 +28,18 @@ const fmt = (d: Date) =>
         <h2>Notes</h2>
         <div class="note">Release notes, build logs, and short technical pieces.</div>
       </div>
-      {posts.length === 0 ? (
+      {current.length === 0 ? (
         <p style="color:var(--muted)">No posts yet.</p>
       ) : (
-        <div class="writing">
-          {posts.map((p) => (
-            <div class="wrow">
-              <span class="wkind">{fmt(p.data.date)}</span>
-              <div>
-                <p class="wtitle"><a href={`/blog/${p.id}/`}>{p.data.title}</a></p>
-                {p.data.description && <p>{p.data.description}</p>}
-              </div>
-            </div>
-          ))}
+        <PostList posts={current} />
+      )}
+      {archived.length > 0 && (
+        <div class="archive">
+          <div class="sec-head">
+            <h2>Archive</h2>
+            <div class="note">Older posts, kept for the record. Some details may be dated.</div>
+          </div>
+          <PostList posts={archived} />
         </div>
       )}
       <p class="back" style="margin-top:2rem;"><a href="/">← Back to home</a></p>
