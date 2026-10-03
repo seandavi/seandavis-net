@@ -1,16 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
 ---
 
 <Base title="Not found — Sean Davis">
   <div class="page">
-    <header class="masthead">
-      <a class="mark" href="/">Sean Davis</a>
-      <nav>
-        <a href="https://talks.seandavis.net">Talks</a>
-        <a href="/blog">Notes</a>
-      </nav>
-    </header>
+    <Masthead only={['talks', 'notes']} />
 
     <div class="hero fade">
       <h1>Page not found</h1>

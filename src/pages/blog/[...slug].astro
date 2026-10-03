@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
 import { render } from 'astro:content';
 import { getVisiblePosts, formatDate, type Post } from '../../lib/blog';
 
@@ -23,17 +24,7 @@ const { title, date, description, draft, archived, aiAssistance } = post.data;
     {aiAssistance && <meta name="ai-assistance" content={aiAssistance} />}
   </Fragment>
   <div class="page">
-    <header class="masthead">
-      <a class="mark" href="/">Sean Davis</a>
-      <nav>
-        <a href="/#work">Work</a>
-        <a href="/#software">Software</a>
-        <a href="/#writing">Writing</a>
-        <a href="/talks">Talks</a>
-        <a href="/blog">Notes</a>
-        <a href="/#about">About</a>
-      </nav>
-    </header>
+    <Masthead />
 
     <article class="prose">
       {draft && <p class="draft-banner">Draft — not published</p>}

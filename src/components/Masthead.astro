@@ -1,0 +1,31 @@
+---
+// The one site masthead. Pages pick a subset of the nav via `only`
+// (e.g. /projects drops Work, 404 keeps just Talks + Notes); the order and
+// targets live here so they can't drift between pages.
+const LINKS = {
+  work: { href: '/#work', label: 'Work' },
+  projects: { href: '/projects', label: 'Projects' },
+  writing: { href: '/#writing', label: 'Writing' },
+  talks: { href: 'https://talks.seandavis.net', label: 'Talks' },
+  notes: { href: '/blog', label: 'Notes' },
+  about: { href: '/#about', label: 'About' },
+} as const;
+
+type Key = keyof typeof LINKS;
+
+interface Props {
+  only?: Key[];
+}
+
+const { only } = Astro.props;
+const links = (Object.keys(LINKS) as Key[])
+  .filter((k) => !only || only.includes(k))
+  .map((k) => LINKS[k]);
+---
+
+<header class="masthead">
+  <a class="mark" href="/">Sean Davis</a>
+  <nav>
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+  </nav>
+</header>
