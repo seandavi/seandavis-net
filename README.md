@@ -14,6 +14,9 @@ cancer research. This site is the **superset front door** for the whole body of 
   Rust "Sätteri" engine — because Sätteri does not run remark/rehype plugins and we need them.
 - **Citations:** `rehype-citation` (Pandoc-style `[@key]`, BibTeX, APA CSL, auto-bibliography).
 - **Math:** `remark-math` + `rehype-katex`.
+- **Type:** Source Serif 4 (SIL OFL), self-hosted from `@fontsource-variable/source-serif-4`
+  (variable `opsz` + `wght`, upright and italic, `font-display: swap`); the old system serif
+  stack stays as fallback in `--serif`. Unicode-range subsets mean browsers fetch only Latin.
 - **Analytics:** GA4 `G-KLLV1GCF4E`, `content_group: 'seandavis-net'`, hand-written gtag in
   `Base.astro` that loads only when the host is exactly `seandavis.net` (no previews/localhost).
 
@@ -97,7 +100,7 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   redirect.
 - **Fix `cmgd.cancerdatasci.org`** (HTTP 526, invalid origin cert), then flip
   `src/content/projects/curated-metagenomic-data.yaml` back to `status: live`.
-- **Self-host a display serif** (Source Serif 4 / Newsreader / Charter) instead of the system stack.
+- ~~Self-host a display serif~~ **Done 2026-10-03:** Source Serif 4 via `@fontsource-variable/source-serif-4`.
 - **ORCID publications sync:** build-time fetch of `pub.orcid.org/v3.0/0000-0002-8991-6458/works`
   → generated publications page (keeps pubs current without hand-editing).
 - ~~Consider moving the talks site~~ **Done 2026-07-22: talks live at `talks.seandavis.net`**
