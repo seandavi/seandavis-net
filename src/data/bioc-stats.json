@@ -1,0 +1,42 @@
+{
+  "year": 2025,
+  "fetched": "2026-10-03",
+  "packages": {
+    "ACME": {
+      "downloads": 8209,
+      "distinctIPs": 3902
+    },
+    "BiocPkgTools": {
+      "downloads": 9100,
+      "distinctIPs": 3338
+    },
+    "curatedMetagenomicData": {
+      "downloads": 13626,
+      "distinctIPs": 4980
+    },
+    "GenomicDataCommons": {
+      "downloads": 119726,
+      "distinctIPs": 10447
+    },
+    "GenomicSuperSignature": {
+      "downloads": 4076,
+      "distinctIPs": 2172
+    },
+    "GEOmetadb": {
+      "downloads": 12696,
+      "distinctIPs": 4484
+    },
+    "GEOquery": {
+      "downloads": 314396,
+      "distinctIPs": 112736
+    },
+    "methylumi": {
+      "downloads": 68510,
+      "distinctIPs": 15744
+    },
+    "SRAdb": {
+      "downloads": 10463,
+      "distinctIPs": 5360
+    }
+  }
+}

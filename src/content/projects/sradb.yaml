@@ -1,0 +1,14 @@
+name: SRAdb
+description: Query NCBI Sequence Read Archive metadata from R through a SQLite database.
+url: https://bioconductor.org/packages/SRAdb
+linkLabel: Bioconductor
+home: Bioconductor
+bioc: SRAdb
+# DESCRIPTION: Author "Jack Zhu and Sean Davis"; Maintainer Jack Zhu.
+role: contributed
+# Bioconductor CITATION; DOI from Crossref.
+paper:
+  title: 'SRAdb: query and use public next-generation sequencing data from within R'
+  url: https://doi.org/10.1186/1471-2105-14-19
+group: bioc
+order: 13

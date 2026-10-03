@@ -6,3 +6,10 @@ home: GitHub
 stars: 5
 group: bioc
 order: 40
+role: created
+# Citation from the repository README.
+paper:
+  title: >-
+    A versioned, analysis-ready archive of United States State Cancer Profiles county- and
+    state-level estimates
+  url: https://doi.org/10.64898/2026.08.24.26361254

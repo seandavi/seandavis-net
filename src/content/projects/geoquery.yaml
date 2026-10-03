@@ -5,10 +5,14 @@ description: >-
 url: https://seandavi.github.io/GEOquery/
 linkLabel: Docs
 home: Bioconductor
-# Bioconductor download stats, 2025: 314,396 downloads from 112,736 distinct IPs
-# (bioconductor.org/packages/stats/bioc/GEOquery/GEOquery_2025_stats.tab). Stars (115)
+# Usage comes from src/data/bioc-stats.json (npm run update:bioc-stats). Stars
 # understate a Bioconductor package by orders of magnitude, so usage replaces them.
-meta: 314,396 downloads in 2025
+bioc: GEOquery
+# DESCRIPTION: Sean Davis [aut, cre], sole author.
+role: created
+paper:
+  title: 'GEOquery: a bridge between the Gene Expression Omnibus (GEO) and BioConductor'
+  url: https://doi.org/10.1093/bioinformatics/btm254
 group: flagship
 featured: true
 order: 10
