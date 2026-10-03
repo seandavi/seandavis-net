@@ -1,0 +1,85 @@
+{
+  "grants": [
+    {
+      "number": "R01 Supplement",
+      "title": "Comprehensive genetic ancestry annotation of existing human molecular data",
+      "role": "Co-Investigator",
+      "funding_source": "NIH",
+      "start": "2025-12-01",
+      "end": "2030-11-30",
+      "url": null
+    },
+    {
+      "number": "R25 CA233429",
+      "title": "Big Data Training for Cancer Research",
+      "role": "Co-Investigator",
+      "funding_source": "NIH",
+      "start": "2024-09-01",
+      "end": "2029-08-31",
+      "url": "https://reporter.nih.gov/project-details/11168754"
+    },
+    {
+      "number": "R01 CA230551",
+      "title": "Exploiting Public Metagenomic Data to Uncover Cancer-Microbiome Relationships",
+      "role": "Co-Investigator",
+      "funding_source": "NCI",
+      "start": "2024-09-01",
+      "end": "2029-08-31",
+      "url": "https://reporter.nih.gov/project-details/11415653"
+    },
+    {
+      "number": "U54 HG012513",
+      "title": "Integration, Dissemination, and Evaluation (BRIDGE) Center for the NIH Bridge to Artificial Intelligence (BRIDGE2AI) Program",
+      "role": "Co-Investigator",
+      "funding_source": "NIH",
+      "start": "2022-07-01",
+      "end": "2026-04-30",
+      "url": "https://reporter.nih.gov/project-details/11173575"
+    },
+    {
+      "number": "U24 CA289073",
+      "title": "Cancer Genomics: Integrative and Scalable Solutions in R/Bioconductor",
+      "role": "MPI",
+      "funding_source": "NIH",
+      "start": "2024-07-01",
+      "end": "2029-06-30",
+      "url": "https://reporter.nih.gov/project-details/11395169"
+    },
+    {
+      "number": "AWD-AAI2401",
+      "title": "Oculomics as a Biomarker for Comprehensive and Non-Invasive Patient Health Assessment",
+      "role": "Co-Investigator",
+      "funding_source": "Anschutz Acceleration Initiative, Anschutz Foundation",
+      "start": "2024-07-01",
+      "end": "2029-02-28",
+      "url": null
+    },
+    {
+      "number": "U54 OD036472",
+      "title": "CONNECT: Collaborative Network for Nurturing Ecosystems of Common Fund Team Science",
+      "role": "MPI",
+      "funding_source": "NIH",
+      "start": "2024-04-01",
+      "end": "2029-03-31",
+      "url": "https://reporter.nih.gov/project-details/11330430"
+    },
+    {
+      "number": "R01 CA276826",
+      "title": "Leveraging whole-exome sequence data from diverse biobanks and cohorts to study rare coding variation in prostate cancer",
+      "role": "Co-Investigator",
+      "funding_source": "NCI",
+      "start": "2023-09-01",
+      "end": "2028-08-31",
+      "url": "https://reporter.nih.gov/project-details/11401389"
+    },
+    {
+      "number": "P30 CA046934",
+      "title": "University of Colorado Cancer Center Support Grant",
+      "role": "Co-Investigator",
+      "funding_source": "NCI",
+      "start": "2023-02-01",
+      "end": "2027-01-31",
+      "url": "https://reporter.nih.gov/project-details/11317012"
+    }
+  ]
+}

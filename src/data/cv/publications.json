@@ -1,0 +1,293 @@
+{
+  "metrics": {
+    "source": "Google Scholar",
+    "updated": "2026-08-01",
+    "total_citations": 48656,
+    "h_index": 66,
+    "i10_index": 99
+  },
+  "categories": [
+    {
+      "id": "methodology",
+      "label": "Data infrastructure and Bioconductor"
+    },
+    {
+      "id": "translational",
+      "label": "Translational research: cancer genomics and oncology"
+    },
+    {
+      "id": "policy",
+      "label": "Policy, governance, and data ethics"
+    },
+    {
+      "id": "education",
+      "label": "Community building and training"
+    }
+  ],
+  "publications": [
+    {
+      "key": "huber_orchestrating_2015_1",
+      "title": "Orchestrating high-throughput genomic analysis with Bioconductor",
+      "authors": "Huber W, Carey VJ, Gentleman R, Anders S, Carlson M, Carvalho BS, …, Davis S, et al.",
+      "journal": "Nature Methods",
+      "year": 2015,
+      "category": "methodology",
+      "url": "https://doi.org/10.1038/nmeth.3252",
+      "doi": "10.1038/nmeth.3252",
+      "citations": 4313
+    },
+    {
+      "key": "ramos_bioconductors_2025_1",
+      "title": "Bioconductor's Computational Ecosystem for Genomic Data Science in Cancer",
+      "authors": "Ramos M, Shepherd L, Sheffield NC, Mahmoud A, Pages H, Wokaty A, …, Davis S, et al.",
+      "journal": "Methods in Molecular Biology",
+      "year": 2025,
+      "category": "methodology",
+      "url": "https://doi.org/10.1007/978-1-0716-4566-6_1",
+      "doi": "10.1007/978-1-0716-4566-6_1",
+      "citations": 0
+    },
+    {
+      "key": "ramos_software_2017_1",
+      "title": "MultiAssayExperiment: Software for the Integration of Multi-Omics Experiments in Bioconductor",
+      "authors": "Ramos M, Schiffer L, Re A, Azhar R, Basunia A, Rodriguez C, …, Davis SR, et al.",
+      "journal": "Cancer Research",
+      "year": 2017,
+      "category": "methodology",
+      "url": "https://doi.org/10.1158/0008-5472.CAN-17-0344",
+      "doi": "10.1158/0008-5472.CAN-17-0344",
+      "citations": 148
+    },
+    {
+      "key": "morgan_genomicdatacommons_2017_1",
+      "title": "GenomicDataCommons: a Bioconductor Interface to the NCI Genomic Data Commons",
+      "authors": "Morgan MT, Davis SR",
+      "journal": "Bioinformatics",
+      "year": 2017,
+      "category": "methodology",
+      "url": null,
+      "doi": null,
+      "citations": 11
+    },
+    {
+      "key": "oh_genomicsupersignature_2022_1",
+      "title": "GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust, efficient comparison to public databases",
+      "authors": "Oh S, Geistlinger L, Ramos M, Blankenberg D, van den Beek M, Taroni JN, …, Davis S, et al.",
+      "journal": "Nature Communications",
+      "year": 2022,
+      "category": "methodology",
+      "url": "https://doi.org/10.1038/s41467-022-31411-3",
+      "doi": "10.1038/s41467-022-31411-3",
+      "citations": 14
+    },
+    {
+      "key": "geistlinger_bugsigdb_2024_1",
+      "title": "BugSigDB captures patterns of differential abundance across a broad range of host-associated microbial signatures",
+      "authors": "Geistlinger L, Mirzayi C, Zohra F, Azhar R, Elsafoury S, Grieve C, …, Davis S, et al.",
+      "journal": "Nature Biotechnology",
+      "year": 2024,
+      "category": "methodology",
+      "url": "https://doi.org/10.1038/s41587-023-01872-y",
+      "doi": "10.1038/s41587-023-01872-y",
+      "citations": 23
+    },
+    {
+      "key": "davis_geoquery_2007_1",
+      "title": "GEOquery: a bridge between the Gene Expression Omnibus (GEO) and BioConductor",
+      "authors": "Davis S, Meltzer PS",
+      "journal": "Bioinformatics",
+      "year": 2007,
+      "category": "methodology",
+      "url": "https://doi.org/10.1093/bioinformatics/btm254",
+      "doi": "10.1093/bioinformatics/btm254",
+      "citations": 3505
+    },
+    {
+      "key": "zhang_rcircos_2013_1",
+      "title": "RCircos: an R package for Circos 2D track plots",
+      "authors": "Zhang H, Meltzer P, Davis S",
+      "journal": "BMC Bioinformatics",
+      "year": 2013,
+      "category": "methodology",
+      "url": "https://doi.org/10.1186/1471-2105-14-244",
+      "doi": "10.1186/1471-2105-14-244",
+      "citations": 1013
+    },
+    {
+      "key": "ma_pan-cancer_2018_1",
+      "title": "Pan-cancer genome and transcriptome analyses of 1,699 paediatric leukaemias and solid tumours",
+      "authors": "Ma X, Liu Y, Liu Y, Alexandrov LB, Edmonson MN, Gawad C, …, Davis S, et al.",
+      "journal": "Nature",
+      "year": 2018,
+      "category": "translational",
+      "url": "https://doi.org/10.1038/nature25795",
+      "doi": "10.1038/nature25795",
+      "citations": 1016
+    },
+    {
+      "key": "vahedi_super-enhancers_2015_1",
+      "title": "Super-enhancers delineate disease-associated regulatory nodes in T cells",
+      "authors": "Vahedi G, Kanno Y, Furumoto Y, Jiang K, Parker SCJ, Erdos MR, …, Davis SR, et al.",
+      "journal": "Nature",
+      "year": 2015,
+      "category": "translational",
+      "url": "https://doi.org/10.1038/nature14154",
+      "doi": "10.1038/nature14154",
+      "citations": 424
+    },
+    {
+      "key": "manghi_meta-analysis_2025_1",
+      "title": "Meta-analysis of 22,710 human microbiome metagenomes defines an oral-to-gut microbial enrichment score and associations with host health and disease",
+      "authors": "Manghi P, Antonello G, Schiffer L, Golzato D, Wokaty A, Beghini F, …, Davis S, et al.",
+      "journal": "Nature Communications",
+      "year": 2025,
+      "category": "translational",
+      "url": "https://doi.org/10.1038/s41467-025-66888-1",
+      "doi": "10.1038/s41467-025-66888-1",
+      "citations": 23
+    },
+    {
+      "key": "abdill_integration_2025_1",
+      "title": "Integration of 168,000 samples reveals global patterns of the human gut microbiome",
+      "authors": "Abdill RJ, Graham SP, Rubinetti V, Ahmadian M, Hicks P, Chetty A, …, Davis S, et al.",
+      "journal": "Cell",
+      "year": 2025,
+      "category": "translational",
+      "url": "https://doi.org/10.1016/j.cell.2024.12.017",
+      "doi": "10.1016/j.cell.2024.12.017",
+      "citations": 133
+    },
+    {
+      "key": "huang_pivotal_2025_1",
+      "title": "A pivotal role for Wnt antagonists in constraining Wnt activity to promote digit joint specification",
+      "authors": "Huang BL, Davis S, Koyama E, Pacifici M, Mackem S",
+      "journal": "bioRxiv (preprint)",
+      "year": 2025,
+      "category": "translational",
+      "url": "https://doi.org/10.1101/2025.07.17.665381",
+      "doi": "10.1101/2025.07.17.665381",
+      "citations": 0
+    },
+    {
+      "key": "shukla_asxl3_2017_1",
+      "title": "ASXL3 Is a Novel Pluripotency Factor in Human Respiratory Epithelial Cells and a Potential Therapeutic Target in Small Cell Lung Cancer",
+      "authors": "Shukla V, Rao M, Zhang H, Beers J, Wangsa D, Wangsa D, …, Davis S, et al.",
+      "journal": "Cancer Research",
+      "year": 2017,
+      "category": "translational",
+      "url": "https://doi.org/10.1158/0008-5472.CAN-17-0570",
+      "doi": "10.1158/0008-5472.CAN-17-0570",
+      "citations": 35
+    },
+    {
+      "key": "abraham_lineage_2014_1",
+      "title": "Lineage of origin in rhabdomyosarcoma informs pharmacological response",
+      "authors": "Abraham J, Nunez-Alvarez Y, Hettmer S, Carrio E, Chen HIH, Nishijo K, …, Davis S, et al.",
+      "journal": "Genes & Development",
+      "year": 2014,
+      "category": "translational",
+      "url": "https://doi.org/10.1101/gad.238733.114",
+      "doi": "10.1101/gad.238733.114",
+      "citations": 130
+    },
+    {
+      "key": "ping_common_2026_1",
+      "title": "The Common Fund Data Ecosystem (CFDE)",
+      "authors": "",
+      "journal": "bioRxiv (preprint)",
+      "year": 2026,
+      "category": "policy",
+      "url": null,
+      "doi": null,
+      "citations": 1
+    },
+    {
+      "key": "lange_lifecycle-aware_2026_1",
+      "title": "Lifecycle-aware evaluation of biomedical data ecosystems",
+      "authors": "",
+      "journal": "Zenodo (preprint; submitted to Cell Trends Open)",
+      "year": 2026,
+      "category": "policy",
+      "url": null,
+      "doi": null,
+      "citations": 0
+    },
+    {
+      "key": "griffin_patient_2020_1",
+      "title": "From Patient Engagement to Precision Oncology: Leveraging Informatics to Advance Cancer Care",
+      "authors": "Griffin AC, Topaloglu U, Davis S, Chung AE",
+      "journal": "Yearbook of Medical Informatics",
+      "year": 2020,
+      "category": "policy",
+      "url": "https://doi.org/10.1055/s-0040-1701983",
+      "doi": "10.1055/s-0040-1701983",
+      "citations": 20
+    },
+    {
+      "key": "tsang_resources_2017_1",
+      "title": "Resources for Interpreting Variants in Precision Genomic Oncology Applications",
+      "authors": "Tsang H, Addepalli K, Davis SR",
+      "journal": "Frontiers in Oncology",
+      "year": 2017,
+      "category": "policy",
+      "url": "https://doi.org/10.3389/fonc.2017.00214",
+      "doi": "10.3389/fonc.2017.00214",
+      "citations": 24
+    },
+    {
+      "key": "kannan_public_2016_1",
+      "title": "Public data and open source tools for multi-assay genomic investigation of disease",
+      "authors": "Kannan L, Ramos M, Re A, El-Hachem N, Safikhani Z, Gendoo DMA, …, Davis S, et al.",
+      "journal": "Briefings in Bioinformatics",
+      "year": 2016,
+      "category": "policy",
+      "url": "https://doi.org/10.1093/bib/bbv080",
+      "doi": "10.1093/bib/bbv080",
+      "citations": 65
+    },
+    {
+      "key": "fungtammasan_ten_2022_1",
+      "title": "Ten simple rules for large-scale data processing",
+      "authors": "Fungtammasan A, Lee A, Taroni J, Wheeler K, Chin CS, Davis S, et al.",
+      "journal": "PLOS Computational Biology",
+      "year": 2022,
+      "category": "policy",
+      "url": "https://doi.org/10.1371/journal.pcbi.1009757",
+      "doi": "10.1371/journal.pcbi.1009757",
+      "citations": 5
+    },
+    {
+      "key": "drnevich_learning_2025_1",
+      "title": "Learning and teaching biological data science in the Bioconductor community",
+      "authors": "Drnevich J, Tan FJ, Almeida-Silva F, Castelo R, Culhane AC, Davis S, et al.",
+      "journal": "PLOS Computational Biology",
+      "year": 2025,
+      "category": "education",
+      "url": "https://doi.org/10.1371/journal.pcbi.1012925",
+      "doi": "10.1371/journal.pcbi.1012925",
+      "citations": 7
+    },
+    {
+      "key": "davis_orchestrating_2018_1",
+      "title": "Orchestrating a community-developed computational workshop and accompanying training materials",
+      "authors": "Davis S, Ramos M, Shepherd L, Turaga N, Geistlinger L, Morgan MT, et al.",
+      "journal": "F1000Research",
+      "year": 2018,
+      "category": "education",
+      "url": "https://doi.org/10.12688/f1000research.16516.1",
+      "doi": "10.12688/f1000research.16516.1",
+      "citations": null
+    },
+    {
+      "key": "lowery_exploring_2026_1",
+      "title": "Exploring Cancer in Colorado using a novel data platform: the ECCO experience",
+      "authors": "Lowery JT, Alquaddoomi F, Rubinetti V, Burus T, Jardine C, Warren AC, …, Davis S, et al.",
+      "journal": "medRxiv",
+      "year": 2026,
+      "category": "education",
+      "url": "https://doi.org/10.64898/2026.02.03.26345489",
+      "doi": "10.64898/2026.02.03.26345489",
+      "citations": 0
+    }
+  ]
+}
