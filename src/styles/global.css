@@ -137,6 +137,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .prose code { font-family: var(--mono); font-size: 0.86em; background: var(--paper-2); border-radius: 3px; padding: 0.1em 0.3em; }
 .prose pre { font-family: var(--mono); font-size: 0.84rem; line-height: 1.5; background-color: var(--paper-2) !important; border: 1px solid var(--rule); border-radius: 4px; padding: 0.85rem 1rem; margin: 0 0 1.2rem; overflow-x: auto; tab-size: 2; }
 .prose pre code { font-size: inherit; background: none; padding: 0; border-radius: 0; }
+/* Tables: ported posts carry wide data frames; scroll rather than overflow the column. */
+.prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-family: var(--sans); font-size: 0.82rem; margin: 0 0 1.2rem; }
+.prose th, .prose td { padding: 0.35rem 0.65rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; white-space: nowrap; }
+.prose th { font-weight: 600; border-bottom-color: var(--rule-strong); }
 .back { font-family: var(--sans); font-size: 0.85rem; }
 
 @media (max-width: 40rem) {
