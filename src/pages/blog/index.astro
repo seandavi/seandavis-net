@@ -17,7 +17,7 @@ const archived = posts.filter((p) => p.data.archived);
     <section style="border-bottom: none;">
       <div class="sec-head">
         <h2>Notes</h2>
-        <div class="note">Release notes, build logs, and short technical pieces.</div>
+        <div class="note">Release notes, build logs, and short technical pieces. <a href="/rss.xml">RSS</a></div>
       </div>
       {posts.length === 0 && <p style="color:var(--muted)">No posts yet.</p>}
       {current.length > 0 && <PostList posts={current} />}

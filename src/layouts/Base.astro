@@ -1,5 +1,8 @@
 ---
 import { getImage } from 'astro:assets';
+// Self-hosted Source Serif 4 (SIL OFL), optical-size axis, upright + italic.
+import '@fontsource-variable/source-serif-4/opsz.css';
+import '@fontsource-variable/source-serif-4/opsz-italic.css';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 import headshot from '../assets/sean-davis.png';
@@ -47,6 +50,7 @@ const ogImageUrl = new URL(ogImage.src, Astro.site).href;
         gtag('config', 'G-KLLV1GCF4E', { content_group: 'seandavis-net' });
       }
     </script>
+    <link rel="alternate" type="application/rss+xml" title="Sean Davis — Notes" href="/rss.xml" />
     <!-- Per-page head tags, e.g. <Fragment slot="head"><meta … /></Fragment>. -->
     <slot name="head" />
   </head>
