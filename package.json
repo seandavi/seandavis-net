@@ -8,7 +8,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sync": "astro sync"
+    "sync": "astro sync",
+    "update:bioc-stats": "node scripts/update-bioc-stats.mjs"
   },
   "keywords": [],
   "author": "",
