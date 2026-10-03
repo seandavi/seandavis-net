@@ -90,6 +90,17 @@ section { padding: clamp(2.5rem, 5.5vw, 3.75rem) 0; border-bottom: 1px solid var
 .card p { margin: 0; font-size: 0.94rem; color: var(--muted); }
 .card:hover h4 { color: var(--accent); }
 
+/* Publications and funding lists (/publications) */
+.publist { list-style: none; padding: 0; margin: 0; max-width: var(--readw); }
+.publist li { padding: 0.85rem 0; border-top: 1px solid var(--rule); }
+.publist li:first-child { border-top: none; padding-top: 0; }
+.publist p { margin: 0; }
+.publist .ptitle { font-size: 1.04rem; }
+.publist .ptitle a { text-decoration: none; }
+.publist .pauthors, .publist .pvenue { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+.pubs + .pubs { margin-top: 2.25rem; }
+.about .support { font-family: var(--sans); font-size: 0.86rem; color: var(--muted); }
+
 /* Writing / talks list */
 .writing { display: flex; flex-direction: column; }
 .wrow { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 0.4rem 1.5rem; padding: 1.05rem 0; border-top: 1px solid var(--rule); align-items: baseline; }

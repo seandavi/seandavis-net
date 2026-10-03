@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
 import headshot from '../assets/sean-davis.png';
+import { cvDate, grants, ORCID_URL } from '../lib/cv';
 import { liveProjects, inGroup, metaLine, GROUP_LABELS, type Group } from '../lib/projects';
 
 // Same data the /projects directory renders — the homepage just shows the
@@ -32,7 +33,7 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
           from 112,736 distinct IP addresses.
         </p>
         <div class="actions">
-          <a href="/files/CV.pdf">CV (Jul 2026)</a>
+          <a href="/files/CV.pdf">CV ({cvDate})</a>
           <a href="https://scholar.google.co.uk/citations?user=hLFc29kAAAAJ">Google Scholar</a>
           <a href="https://orcid.org/0000-0002-8991-6458">ORCID</a>
           <a href="https://github.com/seandavi">GitHub</a>
@@ -122,8 +123,8 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
         <div class="wrow">
           <span class="wkind">Publications</span>
           <div>
-            <p class="wtitle"><a href="https://orcid.org/0000-0002-8991-6458">Full record on ORCID</a></p>
-            <p>Peer-reviewed publications across genomics, informatics, and cancer data science.</p>
+            <p class="wtitle"><a href="/publications">Selected publications</a></p>
+            <p>Peer-reviewed publications across genomics, informatics, and cancer data science. Full record on <a href={ORCID_URL}>ORCID</a>.</p>
           </div>
         </div>
       </div>
@@ -160,6 +161,19 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
           I build open data infrastructure and AI tooling for cancer research, maintain long-standing
           software in the Bioconductor project, and help lead community open-science efforts. Reach me
           through any of the channels below.
+        </p>
+        <p class="support">
+          Current support:{' '}
+          {grants.map((g, i) => {
+            const role = g.role === 'Co-Investigator' ? 'Co-I' : g.role;
+            return (
+              <>
+                {i > 0 && '; '}
+                {g.url ? <a href={g.url}>{g.number}</a> : g.number} ({role})
+              </>
+            );
+          })}
+          . <a href="/publications#funding">Details</a>
         </p>
         <div class="links">
           <a href="/bio">Bio &amp; press kit</a>
