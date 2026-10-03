@@ -1,17 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
-import { liveProjects, inGroup, metaLine, GROUP_LABELS, type Group } from '../lib/projects';
+import {
+  liveProjects,
+  inGroup,
+  metaLine,
+  GROUP_LABELS,
+  LIFECYCLE_LABELS,
+  ROLE_LABELS,
+  type Group,
+  type Project,
+} from '../lib/projects';
 
 const projects = await liveProjects();
 
 // Order the directory runs in. Flagship first, then the hosted apps (most of
-// which live on cancerdatasci.org), then the two software groups.
+// which live on cancerdatasci.org), then the two software groups, then
+// anything retired, whatever group it came from.
 const sections: { group: Group; note: string }[] = [
   { group: 'flagship', note: 'The resources the rest of the work hangs off.' },
   { group: 'apps', note: 'Hosted tools you can open and use right now.' },
   { group: 'ai', note: 'Agentic tooling for research writing, coding, and ontologies.' },
   { group: 'bioc', note: 'Packages, pipelines, and curated data resources.' },
+];
+const blocks: { label: string; note: string; entries: Project[] }[] = [
+  ...sections.map(({ group, note }) => ({
+    label: GROUP_LABELS[group],
+    note,
+    entries: inGroup(projects, group),
+  })),
+  {
+    label: 'Retired',
+    note: 'No longer developed. Kept here for the record.',
+    entries: projects.filter((p) => p.data.lifecycle === 'retired'),
+  },
 ];
 
 const hosted = projects.filter((p) => p.data.home === 'cancerdatasci.org').length;
@@ -35,32 +57,48 @@ const hosted = projects.filter((p) => p.data.home === 'cancerdatasci.org').lengt
       </div>
     </section>
 
-    {sections.map(({ group, note }) => {
-      const entries = inGroup(projects, group);
+    {blocks.map(({ label, note, entries }) => {
       if (entries.length === 0) return null;
       return (
         <section>
           <div class="sec-head">
-            <h2>{GROUP_LABELS[group]}</h2>
+            <h2>{label}</h2>
             <div class="note">{note}</div>
           </div>
           <div class="catalog">
-            {entries.map((p) => (
+            {entries.map(({ data: p }) => (
               <article class="entry">
                 <div>
-                  <h3 class="name">{p.data.name}</h3>
+                  <h3 class="name">{p.name}</h3>
                   <div class="meta">
-                    {metaLine(p.data).map((bit, i) => (
+                    {[...(p.role ? [ROLE_LABELS[p.role]] : []), ...metaLine(p)].map((bit, i) => (
                       <>
                         {i > 0 && ' · '}
-                        <span class={bit === p.data.home ? 'home' : undefined}>{bit}</span>
+                        <span class={bit === p.home ? 'home' : undefined}>{bit}</span>
                       </>
                     ))}
                   </div>
+                  {p.lifecycle !== 'active' && (
+                    <div class="meta lifecycle">
+                      <span class="badge">{LIFECYCLE_LABELS[p.lifecycle]}</span>
+                      {p.successor && (
+                        <>
+                          {' '}
+                          <a href={p.successor.url}>{p.successor.name}</a>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <p class="desc">
-                  {p.data.description}{' '}
-                  <a class="go" href={p.data.url}>{p.data.linkLabel}</a>
+                  {p.description}{' '}
+                  <a class="go" href={p.url}>{p.linkLabel}</a>
+                  {p.paper && (
+                    <>
+                      {' '}
+                      <a class="go" href={p.paper.url} title={p.paper.title}>Paper</a>
+                    </>
+                  )}
                 </p>
               </article>
             ))}
@@ -80,3 +118,14 @@ const hosted = projects.filter((p) => p.data.home === 'cancerdatasci.org').lengt
     </section>
   </div>
 </Base>
+
+<style>
+  .lifecycle .badge {
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0 0.35em;
+  }
+  .lifecycle a { color: var(--accent); text-decoration: none; }
+  .lifecycle a::after { content: " \2192"; color: var(--faint); }
+</style>

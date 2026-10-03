@@ -27,6 +27,7 @@ npm install       # install dependencies (first run)
 npm run dev        # local dev server
 npm run build      # static build -> dist/
 npm run preview    # preview the build
+npm run update:bioc-stats  # refresh src/data/bioc-stats.json (last complete year); commit it
 ```
 
 ## Structure
@@ -44,13 +45,16 @@ src/
     projects/            # one YAML file per project — source of truth for / and /projects
     references.bib       # bibliography for citations
   content.config.ts      # blog + projects collection schemas
-  lib/projects.ts        # shared sorting/grouping for the projects collection
+  lib/projects.ts        # shared sorting/grouping/meta line for the projects collection
+  data/bioc-stats.json   # generated Bioconductor download stats (npm run update:bioc-stats)
   lib/blog.ts            # which posts are built/listed (drafts), newest first
   layouts/Base.astro
   styles/global.css      # design tokens + styles
 public/
   favicon.svg
   files/CV.pdf           # hosted CV (typst build from the curriculumvitae repo)
+scripts/
+  update-bioc-stats.mjs  # writes src/data/bioc-stats.json from bioconductor.org stats files
 worker.js                # www → apex 301, cancerdatasci.org → /projects 301; serves dist/ otherwise
 wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 ```
@@ -73,9 +77,25 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   fixture. Fenced code is highlighted by Shiki.
 - **Projects:** one YAML file per project in `src/content/projects/`. `/projects` renders every
   entry grouped by `group`; the homepage renders `featured: true` from the *same* collection, so the
-  two can't drift. `status: offline` keeps an entry on record without rendering it anywhere — used
-  for `curatedMetagenomicData`, whose host (`cmgd.cancerdatasci.org`) returns HTTP 526 as of
-  2026-08-17. Adding a project is one new file; no page edits.
+  two can't drift. `status: offline` keeps an entry on record without rendering it anywhere.
+  Adding a project is one new file; no page edits. Optional fields, all from public data:
+  - `bioc: <Package>`: Bioconductor package name. The meta line shows its downloads for the year
+    in `src/data/bioc-stats.json` in place of stars. `npm run update:bioc-stats` (optionally
+    `-- <year>`, default the last complete calendar year) fetches
+    `bioconductor.org/packages/stats/{bioc,data-experiment}/<pkg>/<pkg>_<year>_stats.tab` for
+    every `bioc` entry and rewrites the JSON; commit the result. The build only reads it and fails
+    if a `bioc` package is missing from it.
+  - `role`: `created | maintains | co-maintains | contributed`, from the package's DESCRIPTION
+    Author/Maintainer, GitHub ownership and commit history, or the CV. Leave it out when the
+    record doesn't settle it. Shown on `/projects` as Creator / Maintainer / Co-maintainer /
+    Contributor.
+  - `lifecycle`: `active` (default) `| maintained-elsewhere | retired`, plus optional
+    `successor: { name, url }`. Set only on hard evidence: Bioconductor deprecation or removal, an
+    archived repo, or an explicit README statement; never from inactivity. Non-active entries get
+    a badge on `/projects`; `retired` ones move to a "Retired" group at the bottom and drop out of
+    the homepage lists.
+  - `paper: { title, url }`: the paper to cite (DOI link), from the package CITATION or the CV.
+    Rendered as a "Paper" link on `/projects` and in homepage Selected work.
 
 ## Writing
 
@@ -95,8 +115,6 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   redirecting to `/projects`; verified 301 → `https://seandavis.net/projects/` 2026-10-02).
 - **Retire `seandavi.github.io`** — waits on porting the old blog posts here so their URLs can
   redirect.
-- **Fix `cmgd.cancerdatasci.org`** (HTTP 526, invalid origin cert), then flip
-  `src/content/projects/curated-metagenomic-data.yaml` back to `status: live`.
 - **Self-host a display serif** (Source Serif 4 / Newsreader / Charter) instead of the system stack.
 - **ORCID publications sync:** build-time fetch of `pub.orcid.org/v3.0/0000-0002-8991-6458/works`
   → generated publications page (keeps pubs current without hand-editing).

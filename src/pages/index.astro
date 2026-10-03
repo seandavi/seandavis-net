@@ -63,6 +63,12 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
             <p class="desc">
               {p.data.description}{' '}
               <a class="go" href={p.data.url}>{p.data.linkLabel}</a>
+              {p.data.paper && (
+                <>
+                  {' '}
+                  <a class="go" href={p.data.paper.url} title={p.data.paper.title}>Paper</a>
+                </>
+              )}
             </p>
           </article>
         ))}
