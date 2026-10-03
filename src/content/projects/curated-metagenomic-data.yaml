@@ -2,14 +2,16 @@ name: curatedMetagenomicData
 description: >-
   Uniformly processed human microbiome data with curated, standardized metadata — a widely used
   resource in the Bioconductor ecosystem.
-url: https://cmgd.cancerdatasci.org
-linkLabel: Open
+url: https://bioconductor.org/packages/curatedMetagenomicData
+linkLabel: Bioconductor
 home: Bioconductor
 meta: uniformly processed
+bioc: curatedMetagenomicData
+# DESCRIPTION: Lucas Schiffer [aut, cre], Levi Waldron [aut], Sean Davis [ctb].
+role: contributed
+paper:
+  title: Accessible, curated metagenomic data through ExperimentHub
+  url: https://doi.org/10.1038/nmeth.4468
 group: flagship
 featured: true
 order: 50
-# cmgd.cancerdatasci.org returns HTTP 526 (origin certificate invalid) as of
-# 2026-08-17, so the entry is held back rather than linking somewhere broken.
-# Fix the origin cert, then set status back to `live`.
-status: offline

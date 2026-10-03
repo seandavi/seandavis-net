@@ -3,6 +3,13 @@ description: Build reports, package metadata, and download stats for Bioconducto
 url: https://seandavi.github.io/BiocPkgTools/
 linkLabel: Docs
 home: Bioconductor
+bioc: BiocPkgTools
+# DESCRIPTION: Sean Davis [aut, cre]; first commit in seandavi/BiocPkgTools is his.
+role: created
+# Paper from the CV publication list.
+paper:
+  title: 'BiocPkgTools: Toolkit for mining the Bioconductor package ecosystem'
+  url: https://doi.org/10.12688/f1000research.19410.1
 stars: 22
 group: bioc
 order: 10

@@ -1,0 +1,13 @@
+name: GEOmetadb
+description: Query NCBI GEO sample metadata from R through a SQLite database.
+url: https://bioconductor.org/packages/GEOmetadb
+linkLabel: Bioconductor
+home: Bioconductor
+bioc: GEOmetadb
+# DESCRIPTION: Author "Jack Zhu and Sean Davis"; Maintainer Jack Zhu.
+role: contributed
+paper:
+  title: 'GEOmetadb: powerful alternative search engine for the Gene Expression Omnibus'
+  url: https://doi.org/10.1093/bioinformatics/btn520
+group: bioc
+order: 14

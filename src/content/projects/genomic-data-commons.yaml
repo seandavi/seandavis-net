@@ -1,0 +1,15 @@
+name: GenomicDataCommons
+description: Query and download data and metadata from the NCI Genomic Data Commons in R.
+url: https://bioconductor.github.io/GenomicDataCommons/
+linkLabel: Docs
+home: Bioconductor
+bioc: GenomicDataCommons
+# DESCRIPTION: Martin Morgan [aut], Sean Davis [aut, cre]. The first commit in
+# Bioconductor/GenomicDataCommons is Martin's, so "maintains" rather than "created".
+role: maintains
+# Paper from the CV publication list; DOI from Crossref (bioRxiv).
+paper:
+  title: 'GenomicDataCommons: a Bioconductor Interface to the NCI Genomic Data Commons'
+  url: https://doi.org/10.1101/117200
+group: bioc
+order: 11

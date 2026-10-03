@@ -1,0 +1,15 @@
+name: GenomicSuperSignature
+description: Interpret RNA-seq experiments by comparing them to models built from public data.
+url: https://bioconductor.org/packages/GenomicSuperSignature
+linkLabel: Bioconductor
+home: Bioconductor
+bioc: GenomicSuperSignature
+# DESCRIPTION: Sehyun Oh [aut, cre], Levi Waldron [aut], Sean Davis [aut].
+role: contributed
+paper:
+  title: >-
+    GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust,
+    efficient comparison to public databases
+  url: https://doi.org/10.1038/s41467-022-31411-3
+group: bioc
+order: 12

@@ -1,0 +1,10 @@
+name: methylumi
+description: Data structures and tools for Illumina methylation arrays in R.
+url: https://bioconductor.org/packages/methylumi
+linkLabel: Bioconductor
+home: Bioconductor
+bioc: methylumi
+# DESCRIPTION: Sean Davis is first author and Maintainer.
+role: created
+group: bioc
+order: 15

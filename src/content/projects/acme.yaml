@@ -1,0 +1,14 @@
+name: ACME
+description: Enrichment calling for tiling microarrays such as ChIP-chip and DNase-chip.
+url: https://bioconductor.org/packages/ACME
+linkLabel: Bioconductor
+home: Bioconductor
+bioc: ACME
+# DESCRIPTION: Sean Davis [aut, cre], sole author.
+role: created
+# Bioconductor CITATION; DOI from Crossref.
+paper:
+  title: Statistics for ChIP-chip and DNase hypersensitivity experiments on NimbleGen arrays
+  url: https://doi.org/10.1016/S0076-6879(06)11014-9
+group: bioc
+order: 16
