@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
-import headshot from '../assets/sean-davis.png';
+import headshot from '../assets/sean-davis.jpg';
 import { cvDate } from '../lib/cv';
 
 const shortBio =
@@ -36,9 +36,9 @@ const topics = [
       <p class="post-date">For event hosts, editors, and collaborators.</p>
 
       <figure class="bio-photo">
-        <Image src={headshot} alt="Sean Davis" width={400} height={300} loading="eager" />
+        <Image src={headshot} alt="Sean Davis" widths={[300, 600]} sizes="300px" loading="eager" />
         <figcaption>
-          <a href="/files/sean-davis-headshot.png" download>Download headshot (PNG, 400 × 300)</a>
+          <a href="/files/sean-davis-headshot.jpg" download>Download headshot (JPEG, {headshot.width} × {headshot.height})</a>
         </figcaption>
       </figure>
 

@@ -5,7 +5,8 @@ import '@fontsource-variable/source-serif-4/opsz.css';
 import '@fontsource-variable/source-serif-4/opsz-italic.css';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
-import headshot from '../assets/sean-davis.png';
+// 1200×630 landscape crop of the headshot session, the size link previews expect.
+import ogPhoto from '../assets/sean-davis-og.jpg';
 
 interface Props {
   title?: string;
@@ -17,7 +18,7 @@ const {
 } = Astro.props;
 
 // Link previews (Slack, LinkedIn, Mastodon) need an absolute URL to a JPEG/PNG.
-const ogImage = await getImage({ src: headshot, format: 'jpg' });
+const ogImage = await getImage({ src: ogPhoto, format: 'jpg' });
 const ogImageUrl = new URL(ogImage.src, Astro.site).href;
 ---
 
@@ -33,8 +34,10 @@ const ogImageUrl = new URL(ogImage.src, Astro.site).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content={String(ogPhoto.width)} />
+    <meta property="og:image:height" content={String(ogPhoto.height)} />
     <meta property="og:image:alt" content="Sean Davis" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- GA4 per monode infrastructure/ANALYTICS.md: one property, hard-coded public ID,
          content_group = site key. Allow-listed to the production host so localhost,
          workers.dev previews, and tailnet hosts never load or report. -->
