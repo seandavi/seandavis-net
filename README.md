@@ -36,6 +36,7 @@ src/
   pages/
     index.astro          # the portfolio hub (one page)
     projects.astro       # the full project directory (cancerdatasci.org apex 301s here)
+    publications.astro   # selected publications + current funding (from src/data/cv/)
     404.astro            # not-found page (wrangler serves the built 404.html)
     blog/index.astro     # notes listing
     blog/[...slug].astro # note rendering (citations + math work here)
@@ -44,13 +45,15 @@ src/
     projects/            # one YAML file per project — source of truth for / and /projects
     references.bib       # bibliography for citations
   content.config.ts      # blog + projects collection schemas
+  data/cv/               # CV exports (meta, publications, grants); written by `just publish-site`
   lib/projects.ts        # shared sorting/grouping for the projects collection
   lib/blog.ts            # which posts are built/listed (drafts), newest first
+  lib/cv.ts              # reads src/data/cv/ for /publications, the funding line, and CV dates
   layouts/Base.astro
   styles/global.css      # design tokens + styles
 public/
   favicon.svg
-  files/CV.pdf           # hosted CV (typst build from the curriculumvitae repo)
+  files/CV.pdf           # hosted CV, written by `just publish-site` in the curriculumvitae repo
 worker.js                # www → apex 301, cancerdatasci.org → /projects 301; serves dist/ otherwise
 wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 ```
@@ -76,6 +79,14 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   two can't drift. `status: offline` keeps an entry on record without rendering it anywhere — used
   for `curatedMetagenomicData`, whose host (`cmgd.cancerdatasci.org`) returns HTTP 526 as of
   2026-08-17. Adding a project is one new file; no page edits.
+- **CV, publications, funding:** generated from Sean's private `curriculumvitae` repo so the CV
+  and the site can't drift. To update them, edit the CV data there, then run
+  `just publish-site SITE=../seandavis-net` from that repo and commit the results here. It builds
+  the CV PDF, copies it to `public/files/CV.pdf`, and writes `src/data/cv/meta.json` (the CV
+  build date shown on the CV links), `publications.json` (selected publications and Google
+  Scholar totals), and `grants.json` (current grants only, linked to NIH RePORTER). The export is
+  limited to what the public CV PDF already prints: no dollar amounts, no pending or completed
+  grants, no other-support data. Don't edit these files by hand.
 
 ## Writing
 
