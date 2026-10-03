@@ -1,7 +1,7 @@
 ---
 title: "Experimenting with Github Actions"
 date: 2019-10-11
-description: "GitHub actions allow flexible and potentially complicated `actions` that comprise `workflows` that respond to events on Github. Continuous integration, messaging Slack, greeting new contributors, deploying applications, and many other templates are ready for customization and integration into any repo."
+description: "GitHub actions allow flexible and potentially complicated actions that comprise workflows that respond to events on Github. Continuous integration, messaging Slack, greeting new contributors, deploying applications, and many other templates are ready for customization and integration into any repo."
 archived: true
 aliases:
   - /post/learning-github-actions/
