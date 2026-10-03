@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+import headshot from '../assets/sean-davis.png';
+
+const shortBio =
+  'Sean Davis, MD, PhD, is Professor of Medicine at the University of Colorado Anschutz Medical Campus and Associate Director for Informatics and Data Science at the University of Colorado Cancer Center. A board-certified pediatrician, he has spent almost two decades building open software and data infrastructure for genomics and cancer research.';
+
+const longBio = [
+  'Sean Davis, MD, PhD, is Professor of Medicine and Rifkin Chair of Cancer Informatics at the University of Colorado Anschutz Medical Campus, where he is Associate Director for Informatics and Data Science at the University of Colorado Cancer Center and a founding faculty member of the Department of Biomedical Informatics. He is board certified in pediatrics and holds an active medical license.',
+  'For almost two decades he has built open tools that make public genomic data easier to use. He wrote GEOquery, the Bioconductor package that connects R to the NCBI Gene Expression Omnibus; in 2025 it was downloaded 314,396 times from 112,736 distinct IP addresses, according to Bioconductor download statistics. He served on the Bioconductor Technical Advisory Board from 2008 to 2020. His current projects include OmicIDX, an open index of public sequencing metadata; CFDE Atlas, a knowledge base over the NIH Common Fund Data Ecosystem; and Orchestra, a platform for hosted bioinformatics training.',
+  "From 2005 to 2020 he worked at the National Institutes of Health, first as a research fellow at the National Human Genome Research Institute and the National Cancer Institute, then as a staff scientist and senior associate scientist in NCI's Center for Cancer Research. He completed a pediatrics residency at the University of Washington and the combined Johns Hopkins and NCI pediatric hematology/oncology fellowship. He earned his MD and a PhD in human genetics at the University of Pittsburgh and a B.S.E. in mechanical and aerospace engineering at Princeton University.",
+];
+
+const topics = [
+  'Bringing AI and machine learning into academic medicine and a learning health system',
+  'Agentic coding and large language models as everyday research tools',
+  'Bioconductor and open software for cancer genomics',
+  'Finding and reusing public genomic data',
+  'Cloud data ecosystems for biomedical research',
+  'Teaching data science with hosted, reproducible training environments',
+];
+---
+
+<Base
+  title="Bio & press kit — Sean Davis"
+  description="Short and long bios, a headshot, talk topics, and contact details for Sean Davis, MD, PhD."
+>
+  <div class="page">
+    <Masthead only={['projects', 'writing', 'talks', 'notes', 'about']} />
+
+    <article class="prose bio">
+      <h1>Bio &amp; press kit</h1>
+      <p class="post-date">For event hosts, editors, and collaborators.</p>
+
+      <figure class="bio-photo">
+        <Image src={headshot} alt="Sean Davis" width={400} height={300} loading="eager" />
+        <figcaption>
+          <a href="/files/sean-davis-headshot.png" download>Download headshot (PNG, 400 × 300)</a>
+        </figcaption>
+      </figure>
+
+      <h2>Short bio</h2>
+      <blockquote class="bio-copy">
+        <p>{shortBio}</p>
+      </blockquote>
+
+      <h2>Long bio</h2>
+      <blockquote class="bio-copy">
+        {longBio.map((p) => <p>{p}</p>)}
+      </blockquote>
+
+      <h2>Talk topics</h2>
+      <ul>
+        {topics.map((t) => <li>{t}</li>)}
+      </ul>
+      <p>
+        Slides and materials from past talks are at
+        <a href="https://talks.seandavis.net">talks.seandavis.net</a>.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For speaking invitations and collaboration, email
+        <a href="mailto:seandavi@gmail.com">seandavi@gmail.com</a>.
+      </p>
+      <p class="bio-links">
+        <a href="/files/CV.pdf">CV (PDF)</a>
+        <a href="https://scholar.google.co.uk/citations?user=hLFc29kAAAAJ">Google Scholar</a>
+        <a href="https://orcid.org/0000-0002-8991-6458">ORCID</a>
+        <a href="https://github.com/seandavi">GitHub</a>
+      </p>
+
+      <p class="back"><a href="/">← Back to home</a></p>
+    </article>
+  </div>
+</Base>

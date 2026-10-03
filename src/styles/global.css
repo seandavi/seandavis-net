@@ -153,3 +153,11 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .fade { opacity: 0; animation: fade 0.7s ease 0.05s forwards; }
   @keyframes fade { to { opacity: 1; } }
 }
+
+/* Bio / press kit */
+.bio-photo { margin: 0 0 2rem; }
+.bio-photo img { display: block; width: 100%; max-width: 400px; height: auto; border-radius: 4px; }
+.bio-photo figcaption { font-family: var(--sans); font-size: 0.85rem; margin-top: 0.5rem; }
+.bio-copy { margin: 0 0 1.5rem; padding: 1rem 1.2rem; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 4px; user-select: all; }
+.bio-copy p:last-child { margin-bottom: 0; }
+.bio-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-family: var(--sans); font-size: 0.9rem; }
