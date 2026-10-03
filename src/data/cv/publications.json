@@ -204,12 +204,12 @@
     {
       "key": "lange_lifecycle-aware_2026_1",
       "title": "Lifecycle-aware evaluation of biomedical data ecosystems",
-      "authors": "",
+      "authors": "Lange EM, Ganesh VA, Ivich A, Rubinetti V, Greene C, Davis S",
       "journal": "Zenodo (preprint; submitted to Cell Trends Open)",
       "year": 2026,
       "category": "policy",
-      "url": null,
-      "doi": null,
+      "url": "https://doi.org/10.5281/zenodo.20314128",
+      "doi": "10.5281/zenodo.20314128",
       "citations": 0
     },
     {
