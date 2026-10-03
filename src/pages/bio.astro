@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
 import headshot from '../assets/sean-davis.png';
+import { cvDate } from '../lib/cv';
 
 const shortBio =
   'Sean Davis, MD, PhD, is Professor of Medicine at the University of Colorado Anschutz Medical Campus and Associate Director for Informatics and Data Science at the University of Colorado Cancer Center. A board-certified pediatrician, he has spent almost two decades building open software and data infrastructure for genomics and cancer research.';
@@ -66,7 +67,7 @@ const topics = [
         <a href="mailto:seandavi@gmail.com">seandavi@gmail.com</a>.
       </p>
       <p class="bio-links">
-        <a href="/files/CV.pdf">CV (PDF)</a>
+        <a href="/files/CV.pdf">CV (PDF, {cvDate})</a>
         <a href="https://scholar.google.co.uk/citations?user=hLFc29kAAAAJ">Google Scholar</a>
         <a href="https://orcid.org/0000-0002-8991-6458">ORCID</a>
         <a href="https://github.com/seandavi">GitHub</a>

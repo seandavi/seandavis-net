@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+import { ORCID_URL, SCHOLAR_URL, metricsLine, pubGroups, grants } from '../lib/cv';
+---
+
+<Base
+  title="Publications — Sean Davis"
+  description="Selected publications and current research funding for Sean Davis, MD, PhD."
+>
+  <div class="page">
+    <Masthead only={['projects', 'writing', 'talks', 'notes', 'about']} />
+
+    <section>
+      <div class="sec-head">
+        <h2>Selected publications</h2>
+        <div class="note">
+          Full record: <a href={ORCID_URL}>ORCID</a> · <a href={SCHOLAR_URL}>Google Scholar</a>
+        </div>
+        <div class="note">{metricsLine}</div>
+      </div>
+
+      {pubGroups.map((g) => (
+        <div class="group pubs">
+          <h3>{g.label}</h3>
+          <ol class="publist">
+            {g.pubs.map((p) => (
+              <li>
+                <p class="ptitle">{p.url ? <a href={p.url}>{p.title}</a> : p.title}</p>
+                {p.authors && <p class="pauthors">{p.authors}</p>}
+                <p class="pvenue"><em>{p.journal}</em>, {p.year}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </section>
+
+    <section id="funding" style="border-bottom: none;">
+      <div class="sec-head">
+        <h2>Current funding</h2>
+        <div class="note">Awards on which I currently hold a role, as listed in my CV.</div>
+      </div>
+      <ol class="publist">
+        {grants.map((g) => (
+          <li>
+            <p class="ptitle">{g.title}</p>
+            <p class="pvenue">
+              {g.url ? <a href={g.url}>{g.number}</a> : g.number} · {g.funding_source} · {g.role} ·{' '}
+              {g.start.slice(0, 4)}–{g.end.slice(0, 4)}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <p class="back"><a href="/">← Back to home</a></p>
+  </div>
+</Base>
