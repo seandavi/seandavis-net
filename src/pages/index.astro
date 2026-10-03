@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
+import headshot from '../assets/sean-davis.png';
 import { liveProjects, inGroup, metaLine, GROUP_LABELS, type Group } from '../lib/projects';
 
 // Same data the /projects directory renders — the homepage just shows the
@@ -15,20 +17,28 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
     <Masthead />
 
     <div class="hero fade">
-      <div class="place">University of Colorado Anschutz Medical Campus</div>
-      <h1>Sean Davis</h1>
-      <p class="role">Physician-scientist — open software and data for cancer research.</p>
-      <p class="lede">
-        For over a decade I've built open tools, curated the public biomedical record, and now build
-        AI agents that help researchers find and use it. The resources I maintain are used widely across
-        genomics, and core Bioconductor packages I steward bridge the field's largest data archives.
-      </p>
-      <div class="actions">
-        <a href="#work">See the work</a>
-        <a href="/projects">All projects</a>
-        <a href="https://github.com/seandavi">GitHub</a>
-        <a href="#about">About &amp; contact</a>
+      <div class="hero-text">
+        <h1>Sean Davis</h1>
+        <p class="role">Physician-scientist — open software and data for cancer research.</p>
+        <ul class="titles">
+          <li>MD, PhD · Professor of Medicine and Rifkin Bennis Chair of Cancer Informatics, University of Colorado Anschutz Medical Campus</li>
+          <li>Associate Director for Informatics and Data Science, University of Colorado Cancer Center</li>
+        </ul>
+        <p class="lede">
+          For almost two decades I've built open tools, curated the public biomedical record, and now
+          build AI agents that help researchers find and use it. Core Bioconductor packages I steward
+          bridge the field's largest data archives: in 2025, GEOquery alone was downloaded 314,396 times
+          from 112,736 distinct IP addresses.
+        </p>
+        <div class="actions">
+          <a href="/files/CV.pdf">CV (Jul 2026)</a>
+          <a href="https://scholar.google.co.uk/citations?user=hLFc29kAAAAJ">Google Scholar</a>
+          <a href="https://orcid.org/0000-0002-8991-6458">ORCID</a>
+          <a href="https://github.com/seandavi">GitHub</a>
+          <a href="mailto:seandavi@gmail.com">Email</a>
+        </div>
       </div>
+      <Image class="headshot" src={headshot} alt="Sean Davis" widths={[200, 400]} sizes="200px" loading="eager" />
     </div>
 
     <section id="work">
@@ -122,7 +132,7 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
       </p>
     </section>
 
-    <section id="talks">
+    <section id="talks" style="border-bottom: none;">
       <div class="sec-head">
         <h2>Talks &amp; teaching</h2>
         <div class="note">Lectures from the Frontiers of AI in Medicine course and invited talks.</div>
@@ -133,16 +143,6 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
       </p>
     </section>
 
-    <section id="cdsci" style="border-bottom: none;">
-      <div class="band">
-        <p>
-          Much of the data-infrastructure work above lives under an open program,{' '}
-          <strong style="font-weight:600;color:var(--ink)">Cancer Data Science</strong> — OmicIDX,
-          CFDE Atlas, curated datasets, and more.
-        </p>
-        <a href="https://cancerdatasci.org">cancerdatasci.org</a>
-      </div>
-    </section>
   </div>
 
   <div class="about" id="about">
@@ -152,7 +152,8 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
         <p>
           I'm a physician-scientist and Professor of Medicine at the University of Colorado Anschutz
           Medical Campus, where I'm Associate Director for Informatics and Data Science in the
-          Comprehensive Cancer Center and Deputy Director of the Center for Health AI.
+          Comprehensive Cancer Center. I'm board certified in pediatrics and hold an active medical
+          license.
         </p>
         <p class="qual">
           I build open data infrastructure and AI tooling for cancer research, maintain long-standing
@@ -160,6 +161,7 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
           through any of the channels below.
         </p>
         <div class="links">
+          <a href="/bio">Bio &amp; press kit</a>
           <a href="https://github.com/seandavi">GitHub</a>
           <a href="https://scholar.google.co.uk/citations?user=hLFc29kAAAAJ">Google Scholar</a>
           <a href="https://orcid.org/0000-0002-8991-6458">ORCID</a>
@@ -175,8 +177,7 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
     <footer>
       <div class="colophon">
         <strong style="color:var(--muted);font-weight:600">seandavis.net</strong> — open tools and data for
-        cancer research, by Sean Davis. Data-infrastructure work lives at{' '}
-        <a href="https://cancerdatasci.org">cancerdatasci.org</a>.
+        cancer research, by Sean Davis.
       </div>
       <div>© 2026 Sean Davis · Built in the open</div>
     </footer>

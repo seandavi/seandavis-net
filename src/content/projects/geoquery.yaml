@@ -5,7 +5,10 @@ description: >-
 url: https://seandavi.github.io/GEOquery/
 linkLabel: Docs
 home: Bioconductor
-stars: 115
+# Bioconductor download stats, 2025: 314,396 downloads from 112,736 distinct IPs
+# (bioconductor.org/packages/stats/bioc/GEOquery/GEOquery_2025_stats.tab). Stars (115)
+# understate a Bioconductor package by orders of magnitude, so usage replaces them.
+meta: 314,396 downloads in 2025
 group: flagship
 featured: true
-order: 20
+order: 10
