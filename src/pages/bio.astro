@@ -13,20 +13,11 @@ const longBio = [
   'For almost two decades he has built open tools that make public genomic data easier to use. He wrote GEOquery, the Bioconductor package that connects R to the NCBI Gene Expression Omnibus; in 2025 it was downloaded 314,396 times from 112,736 distinct IP addresses, according to Bioconductor download statistics. He served on the Bioconductor Technical Advisory Board from 2008 to 2020. His current projects include OmicIDX, an open index of public sequencing metadata; CFDE Atlas, a knowledge base over the NIH Common Fund Data Ecosystem; and Orchestra, a platform for hosted bioinformatics training.',
   "From 2005 to 2020 he worked at the National Institutes of Health, first as a research fellow at the National Human Genome Research Institute and the National Cancer Institute, then as a staff scientist and senior associate scientist in NCI's Center for Cancer Research. He completed a pediatrics residency at the University of Washington and the combined Johns Hopkins and NCI pediatric hematology/oncology fellowship. He earned his MD and a PhD in human genetics at the University of Pittsburgh and a B.S.E. in mechanical and aerospace engineering at Princeton University.",
 ];
-
-const topics = [
-  'Bringing AI and machine learning into academic medicine and a learning health system',
-  'Agentic coding and large language models as everyday research tools',
-  'Bioconductor and open software for cancer genomics',
-  'Finding and reusing public genomic data',
-  'Cloud data ecosystems for biomedical research',
-  'Teaching data science with hosted, reproducible training environments',
-];
 ---
 
 <Base
   title="Bio & press kit — Sean Davis"
-  description="Short and long bios, a headshot, talk topics, and contact details for Sean Davis, MD, PhD."
+  description="Short and long bios, a headshot, talks, and contact details for Sean Davis, MD, PhD."
 >
   <div class="page">
     <Masthead only={['projects', 'writing', 'talks', 'notes', 'about']} />
@@ -52,13 +43,12 @@ const topics = [
         {longBio.map((p) => <p>{p}</p>)}
       </blockquote>
 
-      <h2>Talk topics</h2>
-      <ul>
-        {topics.map((t) => <li>{t}</li>)}
-      </ul>
+      <h2>Talks</h2>
       <p>
-        Slides and materials from past talks are at{' '}
-        <a href="https://talks.seandavis.net">talks.seandavis.net</a>.
+        Slides and materials from recent talks are at{' '}
+        <a href="https://talks.seandavis.net">talks.seandavis.net</a>, and the{' '}
+        <a href="/files/CV.pdf">CV</a> lists selected invited presentations. If you have a topic in
+        mind, include it in your invitation.
       </p>
 
       <h2>Contact</h2>
