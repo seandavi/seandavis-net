@@ -129,6 +129,49 @@ version rather than overwriting. `forget` soft-deletes rather than erasing.
 `history` shows every version and who wrote it, which starts to matter once
 more than one agent writes to the same store.
 
+## For the curious: schema and search
+
+The store is one SQLite table. A memory is never overwritten in place: an
+`update` inserts a new row and points the old one at it through
+`superseded_by`, so history is never lost, and a partial unique index picks
+out the one *live* row per `(scope, name)`:
+
+```sql
+CREATE TABLE memories (
+    id TEXT PRIMARY KEY, scope TEXT, name TEXT, type TEXT,
+    description TEXT, body TEXT, author TEXT, created_at TEXT,
+    superseded_by TEXT, deleted_at TEXT, expires_at TEXT
+);
+CREATE UNIQUE INDEX memories_live ON memories (scope, name)
+    WHERE superseded_by IS NULL AND deleted_at IS NULL;
+```
+
+`recall` is full-text search, an FTS5 virtual table with the `porter
+unicode61` tokenizer, not embeddings. Partly that's forced: the SQL stays
+within what Cloudflare D1 speaks (SQLite, FTS5, partial indexes, no
+triggers) on purpose, so the store can move there without a rewrite if
+running my own server ever stops being worth it, and D1 has no vector
+column to lean on. Partly it's that a memory is a short, deliberately
+written fact, not a long document, so there's less for embeddings to buy
+you, and BM25 ranking over a few hundred memories needs no embedding model
+to call, pay for, or keep in sync with the data. User text going into a
+search gets every token quoted and OR'd together before it reaches FTS5, so
+punctuation in a query can never be parsed as FTS5 query syntax:
+
+```python
+def fts_query(text: str) -> str:
+    terms = re.findall(r"\w+", text.lower())
+    return " OR ".join(f'"{t}"' for t in dict.fromkeys(terms))
+```
+
+The same ranking catches near-duplicates before they're written. `remember`
+scores a new memory's name and description against its scope's existing
+ones. A neighbor whose BM25 score comes in at 45% or more of the new
+memory's own score gets flagged back to the caller as a warning, rather
+than filed alongside silently. That threshold isn't a guess: known duplicates in my own store score
+between 47% and 61%, and 45% is calibrated against the live store to flag
+about 18% of memories.
+
 ## What I tried first
 
 Before commonplace, I tried the extraction approach above as a memory
