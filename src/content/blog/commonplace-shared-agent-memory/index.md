@@ -35,11 +35,22 @@ search when a new session starts.
 
 Most of that work is solving a different problem than mine: one agent, one
 long-running conversation, needing to remember *more* than fits in context.
-My sessions are usually short enough to fit already. What I was missing was
-a way for a fact learned in one session, by one agent, to reach a different
-agent on a different machine next week. commonplace doesn't extract
-anything. An agent, or I, writes a fact down on purpose, the way you'd write
-a line in a notebook.
+There's a related but separate line of tools for keeping that one
+conversation alive in the first place: [pi-blackhole](https://github.com/k0valik/pi-blackhole)
+replaces an agent's LLM-based compaction with a deterministic structural
+summary plus background Observer and Reflector workers;
+[billion-context](https://github.com/ranxianglei/billion-context) sits as a
+proxy between an agent and its model API, compressing older turns into
+layered summaries; Mastra's [Observational Memory](https://mastra.ai/docs/memory/observational-memory)
+does the same job for its own framework. All three keep a single thread
+from blowing its context window. None of them carry a fact to a different
+agent or a different machine, which is the part I needed.
+
+My sessions are usually short enough to fit in context already. What I was
+missing was a way for a fact learned in one session, by one agent, to reach
+a different agent on a different machine next week. commonplace doesn't
+extract anything. An agent, or I, writes a fact down on purpose, the way
+you'd write a line in a notebook.
 
 ## global, host, project
 
@@ -56,11 +67,19 @@ memory lives in one of three scopes:
   resolves to the same project scope whether it's checked out at
   `~/code/foo` on one machine or `~/Documents/git/foo` on the other.
 
-That last point is what makes two machines and many projects work together.
-If project scope were keyed on a path, the same repo would fragment into two
-unrelated memory stores depending on where it happened to be cloned. Keying
-on the remote means a session on either machine, in either checkout, lands
-in the same scope.
+Project scope is not where a project's own history goes. Issues, PR
+descriptions, commit messages, and markdown docs checked into the repo
+already do that job, searchable by anyone and versioned with the code they
+describe. A memory that duplicates what a doc already says just gives that
+fact a second copy to go stale. Project scope is for what has no other
+home: a convention no doc states, a decision that only lives in my head, a
+host-specific gotcha nobody wrote down.
+
+Keying project scope on the git remote, not the path, is what makes two
+machines and many projects work together. If it were keyed on a path, the
+same repo would fragment into two unrelated memory stores depending on
+where it happened to be cloned. A session on either machine, in either
+checkout, lands in the same scope instead.
 
 A session only sees three scopes in its index: `global`, its own host, and
 its own project. `recall`, the search command, drops that filter, so work in
@@ -68,11 +87,17 @@ one project can still turn up something another project learned.
 
 ![commonplace architecture: Claude Code and Codex call the server's MCP tools over HTTP and load the index through a SessionStart hook; pi and omp use the bundled extension, which runs the commonplace CLI; the CLI and other MCP clients reach the server over HTTP; the server keeps memories in SQLite with FTS5 on the store host, where export and stats read the database directly.](./architecture.png)
 
-*The server itself is one SQLite database with full-text search (FTS5)
-behind an [MCP](https://modelcontextprotocol.io) endpoint, the protocol
-Claude Code and Codex use to call tools. pi and omp don't speak MCP the same
-way, so they go through a small extension that shells out to the
-`commonplace` CLI instead.*
+**Figure 1: commonplace architecture.** [MCP](https://modelcontextprotocol.io)
+is the protocol Claude Code and Codex use to call tools.
+
+- **Clients:** Claude Code and Codex call the server's MCP tools directly,
+  with a `SessionStart` hook loading the index. pi and omp don't speak MCP
+  the same way, so they go through a bundled extension that runs the
+  `commonplace` CLI instead.
+- **Server:** one FastMCP process, one SQLite file. `update` writes a new
+  version; `forget` is a soft delete.
+- **Network:** clients only need to reach the server's host and port,
+  usually over a Tailscale tailnet. There is no app-level authentication.
 
 ## What a session sees
 
@@ -93,7 +118,7 @@ Scopes for this session: global, host:macbook, project:github.com/seandavi/seand
 
 `host:macbook` and the `seandavis-net` project scope are both declared here,
 and both empty. Nothing machine-specific or repo-specific about this blog
-has been worth writing down yet, and that's fine; a scope just needs to
+has been worth writing down yet, and that's fine. A scope just needs to
 exist when a fact needs it, not before.
 
 From there, we fetch full bodies on demand: `get` for a known name, `recall`
