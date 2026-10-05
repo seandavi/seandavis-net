@@ -228,6 +228,14 @@ The list still applies to new prose.
 - Persuasive authority tropes: "at its core", "what really matters", "the real question is"
 - Rule of three: don't force ideas into groups of three
 - Signposting: "let's dive in", "here's what you need to know"
+- Refrain repetition: reusing the same distinctive phrase twice in one post ("guessing
+  at what mattered" showing up twice in a draft) to sound clever. Say it once.
+- Aphoristic closers: a short declarative sentence built to be quotable ("My problem is
+  the opposite shape.", "Each agent, on each host, starts from nothing."). State the
+  fact and move on; don't reach for rhythm.
+- Negative parallelism dressed as contrast: "not X, but Y" or "X rather than Y" used
+  more than once in a post. One is fine if it's the clearest way to say it; a second or
+  third reads like a template.
 
 Two more, added from the corpus's machine-generated drafts (see below):
 
@@ -259,6 +267,42 @@ Counter-example from the corpus: "This article was written with the help of Chat
 8. Ending says where things stand and what's next. No hype, no generic sign-off.
 9. Nothing from the avoid-list or patterns-to-eliminate; no unsourced numbers.
 10. No AI attribution anywhere in the visible post.
+11. For design/explainer posts, section D's structural notes; optionally, an adversarial
+    authorship check per "Checking a draft against this guide".
+
+## D. Design and explainer posts (no direct corpus evidence)
+
+The blog corpus is entirely operational tutorials: a problem, a worked example, a
+walkthrough. It has no design essay, no "here's a tool I built and why it's shaped this
+way" post. For that genre (a project writeup, an architecture explainer), the
+sentence-level habits in sections A and B still apply, prefer plain transitions over
+essayist ones, charitable-before-critical, person shifts by job, italics on one word, and
+"That said," / "At this point," over built-up framing, but the structural habits don't
+transfer directly:
+
+- Headings can be functional labels for the design's own parts (what a tutorial's
+  Background/Walkthrough/Conclusion become here), not a question-and-answer tutorial
+  shape. Avoid literary headings ("The detour", "The honest limit") in favor of plain
+  ones ("What I tried first", "What it doesn't do").
+- Prior art (other tools, other papers) gets named and credited, per the community-
+  framing rule, but don't compress it into a survey paragraph that reads like a related-
+  work section: one sentence per system, five systems in a row, is a tell. Spend more
+  room on fewer of them, or fold the comparison into the design rationale instead of
+  giving it its own section.
+- A failure story (something tried and dropped) should still read like old-3's
+  mistake post: plain and specific about what happened, not a tidy abstract reason
+  followed by a lesson. Keep the shape even if the content is a project decision rather
+  than a personal mistake.
+
+## Checking a draft against this guide
+
+A useful check beyond re-reading: hand a fresh model or agent, with no context on how
+the draft was produced, three to five real old posts plus the new draft, and ask it to
+judge bluntly whether the draft was written by the same person, quoting specifics. It
+will find real problems (refrains, aphoristic closers, essay-shaped surveys). It will
+also flag the absence of things this guide deliberately excludes, typos, "simply"/"etc."
+padding, double-hyphens as dashes. Fix the first kind. Don't restore the second kind
+just because a critic missed it; section C says why those are excluded on purpose.
 
 ## Excluded from the corpus
 
