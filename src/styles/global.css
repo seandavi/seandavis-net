@@ -148,7 +148,18 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .prose #refs .csl-entry { margin-bottom: 0.6rem; }
 .prose .draft-banner { font-family: var(--sans); font-size: 0.85rem; font-weight: 600; color: var(--accent-deep); background: var(--paper-2); border: 1px solid var(--rule-strong); border-radius: 4px; padding: 0.5rem 0.8rem; margin: 0 0 1.5rem; }
 .prose .archive-note { color: var(--muted); }
-.prose img { max-width: 100%; height: auto; }
+.prose img { max-width: 100%; height: auto; cursor: zoom-in; }
+
+#lightbox {
+  border: none;
+  border-radius: 6px;
+  padding: 0;
+  max-width: 92vw;
+  max-height: 92vh;
+  background: var(--paper);
+}
+#lightbox::backdrop { background: rgba(32, 31, 28, 0.82); }
+#lightbox img { display: block; max-width: 92vw; max-height: 92vh; cursor: zoom-out; }
 /* Code: Shiki inlines its theme background; the paper token replaces it. */
 .prose code { font-family: var(--mono); font-size: 0.86em; background: var(--paper-2); border-radius: 3px; padding: 0.1em 0.3em; }
 .prose pre { font-family: var(--mono); font-size: 0.84rem; line-height: 1.5; background-color: var(--paper-2) !important; border: 1px solid var(--rule); border-radius: 4px; padding: 0.85rem 1rem; margin: 0 0 1.2rem; overflow-x: auto; tab-size: 2; }

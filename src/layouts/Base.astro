@@ -59,5 +59,25 @@ const ogImageUrl = new URL(ogImage.src, Astro.site).href;
   </head>
   <body>
     <slot />
+    <dialog id="lightbox" aria-label="Enlarged image">
+      <img id="lightbox-img" alt="" />
+    </dialog>
+    <script>
+      // Click any image inside post prose to see it full-size; click the
+      // backdrop, the image, or Escape to close.
+      const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+      const img = document.getElementById('lightbox-img') as HTMLImageElement | null;
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (target instanceof HTMLImageElement && target.closest('.prose') && dialog && img) {
+          img.src = target.currentSrc || target.src;
+          img.alt = target.alt;
+          dialog.showModal();
+        }
+      });
+      dialog?.addEventListener('click', (event) => {
+        if (event.target === dialog || event.target === img) dialog.close();
+      });
+    </script>
   </body>
 </html>
