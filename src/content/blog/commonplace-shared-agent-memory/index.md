@@ -2,7 +2,6 @@
 title: "commonplace: one memory for Claude Code, Codex, pi and omp"
 date: 2026-10-05
 description: "A curated, cross-machine memory store for coding agents, and why it beat a transcript-extracting one I tried first."
-draft: true
 aiAssistance: "Drafted and revised agentically (Claude Code) from Sean's brief and outline; exclude from future voice-corpus analysis."
 ---
 
