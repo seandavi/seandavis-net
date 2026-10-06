@@ -67,6 +67,9 @@ Before asking for review, check the draft against `docs/voice.md`, at minimum:
 - Bullets used for argument instead of prose (lists are for steps, prerequisites, outputs, links).
 - Any AI attribution or "written with" phrasing in the title, body, or byline.
 - The drafting checklist at the end of the guide.
+- For a design or explainer post, `docs/voice.md`'s section D, and consider the adversarial
+  authorship check it describes (a fresh model judges the draft against 3-5 real old posts
+  with no context on provenance).
 
 Fix what you find, then ask Sean to review on the PR, listing the open `[confirm: …]` markers.
 
