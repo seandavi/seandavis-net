@@ -45,11 +45,13 @@ does the same job for its own framework. All three keep a single thread
 from blowing its context window. None of them carry a fact to a different
 agent or a different machine, which is the part I needed.
 
-My sessions are usually short enough to fit in context already. What I was
+I use pi-blackhole for project local context management. What I was
 missing was a way for a fact learned in one session, by one agent, to reach
 a different agent on a different machine next week. commonplace doesn't
 extract anything. An agent, or I, writes a fact down on purpose, the way
-you'd write a line in a notebook.
+you'd write a line in a notebook. Nothing too sophisiticated, just a simple
+store that keeps the same fact available to every agent on every machine. 
+No LLM pipeline, no background workers, no compaction, no summarization, etc. 
 
 ## global, host, project
 
