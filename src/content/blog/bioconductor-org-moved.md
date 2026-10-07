@@ -3,6 +3,7 @@ title: "bioconductor.org moved, and the machines are gone"
 date: 2026-10-08
 draft: true
 description: "What bioconductor.org was running on, the incidents that forced a change, the stack that replaced it on 2026-09-28, and what one day of request logs says the site is for."
+aiAssistance: "Drafted with Claude Code from Sean's notes, the TAB deck, and the bioc-infrastructure docs; reviewed and edited by Sean."
 ---
 
 On 2026-09-28, at about 20:09 UTC, bioconductor.org stopped being served by a virtual machine in AWS and started being served by a Cloudflare Worker reading from object storage. `BiocManager::install()` kept working. Most people didn't notice, which was the point. This post is the overview: what the old site was, why it had become hard to keep running, what replaced it, and what the first days of request logs taught us about what bioconductor.org is for. Later posts will take the pieces one at a time.
