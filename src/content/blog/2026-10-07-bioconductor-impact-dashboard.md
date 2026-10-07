@@ -1,13 +1,13 @@
 ---
-title: "What 3,810 packages and 17 years of download logs say about Bioconductor"
+title: "Measuring Bioconductor: usage, publications, funding, and what they say about sustainability"
 date: 2026-10-07
 draft: true
-description: "A dashboard for Bioconductor's usage, publications, grants and growth, built from public data, and what it shows."
+description: "A dashboard for Bioconductor's impact, built from public data, and what 17 years of download logs, a thousand linked papers and 668 NIH awards say about where the project stands."
 ---
 
-A few times a year someone asks me a question about Bioconductor that should be easy to answer and is not. A program officer wants to know which packages an award produced and whether anyone uses them. A package maintainer wants to know how their package compares to its neighbours. A colleague choosing a tool wants to know whether a package is still alive. The answers exist, but they are spread across release manifests, download logs, CITATION files, PubMed, iCite and NIH RePORTER, and nobody has the afternoon it takes to join them. In this post I describe a site that does the joining, [impact.bioconductor.org](https://impact.bioconductor.org), and I go through what the data say about the project once they are in one place.
+Bioconductor is 24 years old, has 3,810 packages, and is used by tens of millions of distinct IP addresses a year. Numbers like that get quoted in grant renewals and keynote slides, but the evidence behind them is scattered across release manifests, download logs, CITATION files, PubMed, iCite and NIH RePORTER, and nobody has the afternoon it takes to join them. So the questions that matter for the project's future go unanswered: which packages carry the ecosystem's usage, how much of the publication record is linked to the software, which funders underwrite the work, where the authors are, and whether the growth is broad or concentrated in a few load-bearing pieces. In this post I describe a site that joins those sources, [impact.bioconductor.org](https://impact.bioconductor.org), and I go through what the data say about Bioconductor's impact and, more tentatively, about its sustainability.
 
-This is not an official Bioconductor product. I maintain it, it runs on a server at my institution, and the definitions on it are mine and open to correction. It is also not a ranking exercise; every number below has a caveat attached, and I have tried to keep the caveats visible on the site rather than in a footnote.
+I maintain the site, the definitions on it are documented, and both are open to correction. The numbers below are from the 2026-10-07 snapshot, and every one carries a caveat that I have tried to keep on the page rather than in a footnote.
 
 ## Where the data come from
 
@@ -17,7 +17,7 @@ The joining is done once a month by a small Python pipeline into a single DuckDB
 
 ![How the site is built: Bioconductor.org and the cdsci-lake feed a monthly Python pipeline into one DuckDB file; Parquet marts on GitHub Pages serve the dashboard, R and Python clients, and static JSON.](/images/bioc-impact/data-flow.svg)
 
-As of this writing the snapshot is dated 2026-10-07, and the figures below are from it. They will drift as the monthly refresh runs.
+The snapshot refreshes monthly, so the figures below will drift.
 
 ## Growth
 
@@ -27,7 +27,7 @@ Usage grew faster than the package count. In 2009 the software repository saw 1.
 
 ![Distinct downloading IP addresses per year for the software repository, 2009 to 2025, with the pre-October-2015 collection era shaded.](/images/bioc-impact/distinct-ips.svg)
 
-Usage is concentrated. Of the 2,418 software packages, 68 account for half of the distinct IP addresses in the last twelve months, and 1,472 account for 90 percent. The top of that list is infrastructure that everything else imports: `BiocVersion`, `BiocGenerics`, `S4Vectors`, `IRanges`, `Biobase`. That is not a criticism of the long tail. A package used by thirty labs that need exactly it is doing its job. But it does mean that any headline usage number for the project is mostly a statement about a few dozen packages, and the site lets you exclude the infrastructure tier to see the rest.
+Usage is concentrated. Of the 2,418 software packages, 68 account for half of the distinct IP addresses in the last twelve months, and 1,472 account for 90 percent. The top of that list is infrastructure that everything else imports: `BiocVersion`, `BiocGenerics`, `S4Vectors`, `IRanges`, `Biobase`. That is not a criticism of the long tail. A package used by thirty labs that need exactly it is doing its job. But it does mean that any headline usage number for the project is mostly a statement about a few dozen packages, and that the project's sustainability depends on a small number of maintainers of infrastructure that everyone else builds on. The site lets you exclude the infrastructure tier to see the rest, and the dependency data now in it make the load-bearing packages visible.
 
 ## Publications
 
@@ -45,7 +45,7 @@ The papers come from everywhere. Using the senior author's affiliation for the 1
 
 ## People
 
-Parsing `Authors@R` without evaluating it gives 4,786 distinct people credited across the packages, 1,171 of them with an ORCID. The identity is the ORCID when there is one and a normalised name otherwise, so homonyms may merge and name variants may split; the site says so on the page. 596 packages list a shared project mailbox as maintainer, which is worth knowing when counting "maintainers" as people.
+Parsing `Authors@R` without evaluating it gives 4,786 distinct people credited across the packages, 1,171 of them with an ORCID. The identity is the ORCID when there is one and a normalised name otherwise, so homonyms may merge and name variants may split; the site says so on the page. 596 packages list a shared project mailbox as maintainer, which is worth knowing when counting "maintainers" as people, and which is itself a sustainability fact: a sixth of the ecosystem is maintained by the core team rather than by the people who wrote it.
 
 ## Using the data yourself
 
@@ -73,5 +73,7 @@ Note the `package_pubs_confident` view. The database encodes the methodology cho
 ## What it does not do yet
 
 The citing-literature side is the big gap. Until the reference scan finishes, "citations" on the site means citations *of* the paper a package asks you to cite, not uses of the package. Full-text mentions of package names in methods sections, which would recover usage from papers that never cite anything, are a larger job still; I have the corpus and a plan for judging name collisions, and nothing running. Download numbers are a proxy with a known seam in 2015. And the pipeline depends on package authors shipping a DOI: if your package has a paper and the site does not show it, the fix is a line in `inst/CITATION`, and there is a correction form on the About page for everything else.
+
+What the data support so far is a project whose usage has grown faster than its package count for 17 years, whose publication record sits well above the NIH average in citation terms, whose funding and authorship are more international than an NIH-centred view suggests, and whose weight rests on a few dozen infrastructure packages and a core team that maintains a sixth of everything. Growth is the easy half of that story. The harder half, who maintains the load-bearing pieces and who pays for it, is where I hope the site becomes useful to the people making those decisions.
 
 The code is at [github.com/seandavi/bioc-intelligence](https://github.com/seandavi/bioc-intelligence). The project owes a debt to the people who have published Bioconductor's download statistics and release manifests in machine-readable form for seventeen years, and to OpenAlex, NIH iCite and RePORTER for making the enrichment possible without a single API key. If you have a question about Bioconductor that the site should answer and does not, I would like to hear it.
