@@ -21,7 +21,7 @@ The joining is done once a month by a little Python pipeline into a single DuckD
 
 <div class="wide">
 
-![How the site is built: Bioconductor.org and the cdsci-lake feed a monthly Python pipeline into one DuckDB file. Parquet marts on GitHub Pages serve the dashboard, R and Python clients, and static JSON.](/images/bioc-impact/data-flow.svg)
+![Flow diagram of how impact.bioconductor.org is built, in four columns. On the left, two sources: Bioconductor.org, supplying VIEWS files per release from 2002, download statistics from 2009 and CITATION files; and cdsci-lake, read-only, supplying OpenAlex works, references and authorships, NIH iCite, NIH RePORTER and patents. Both feed a monthly pipeline in Python and DuckDB that extracts, links and enriches the data into one .duckdb file. The pipeline publishes Parquet marts: 16 tables, a views-only .duckdb file and a datapackage.json, served as static files on GitHub Pages with no server. Three consumers read the marts on the right: the dashboard, which runs DuckDB-WASM in the browser; R and Python, which attach the .duckdb file in one line; and JSON and badges, an api/v1/package endpoint plus a shields endpoint. A legend colours boxes by kind: Bioconductor-native sources and usage, bibliometric enrichment and publications, grants, funding and static exports, and published artifacts. A note says the pipeline runs monthly on one machine and everything to the right of it is a static file.](/images/bioc-impact/data-flow.svg)
 
 Figure: The monthly data flow, from public Bioconductor sources to the static site and the downloadable marts. {#fig-data-flow}
 
@@ -39,7 +39,7 @@ Note that I am *not* summing distinct IPs across packages. One address that inst
 
 <div class="wide">
 
-![Distinct IP addresses installing Bioconductor per year, 2011 to 2025, measured by the installer package, with the pre-October-2015 collection era shaded.](/images/bioc-impact/distinct-ips.svg)
+![Line chart titled Machines installing Bioconductor per year, 2011 to 2025, showing distinct IP addresses downloading the installer package (BiocInstaller to 2018, BiocVersion since), summed over months. The line rises from near zero in 2011 to about 278 thousand in 2015, then about 320 thousand in 2016 and 370 thousand in 2018, dips to about 335 thousand in 2019 beside a label for the BiocInstaller to BiocVersion handover, jumps to about 481 thousand in 2020, and climbs steadily to about 805 thousand in 2025. A grey band covering 2011 to October 2015 is labelled older collection method, not directly comparable. Notes below say an address active in several months counts once per month, a shared gateway is one address, 2011 is a partial year, and the figure is a usage proxy and not a user count.](/images/bioc-impact/distinct-ips.svg)
 
 Figure: Distinct IP addresses installing Bioconductor each year, 2011–2025. The shaded band marks the earlier collection method, which is not strictly comparable. {#fig-distinct-ips}
 
