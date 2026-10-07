@@ -82,6 +82,8 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   - `draft` (default `false`): drafts render under `npm run dev` and in PR previews (built with
     `SHOW_DRAFTS=1`) with a banner and `noindex`; production builds give them no URL.
   - `archived` (default `false`): listed under "Archive" with a "written in <year>" note.
+  - Dollar signs: `remark-math` treats `$…$` as inline math, so write currency as `\$5,000`
+    (also in image alt text). Code spans and fenced code are unaffected.
   - `aliases` (default `[]`): old URL paths (e.g. on `seandavi.github.io`), kept for future redirects.
   - `aiAssistance` (optional): rendered only as `<meta name="ai-assistance">`, never in the prose.
 
