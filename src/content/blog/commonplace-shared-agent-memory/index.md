@@ -86,10 +86,16 @@ A session only sees three scopes in its index: `global`, its own host, and
 its own project. `recall`, the search command, drops that filter, so work in
 one project can still turn up something another project learned.
 
+[](#fig-architecture) shows how the pieces connect.
+
+<div class="wide">
+
 ![commonplace architecture: Claude Code and Codex call the server's MCP tools over HTTP and load the index through a SessionStart hook; pi and omp use the bundled extension, which runs the commonplace CLI; the CLI and other MCP clients reach the server over HTTP; the server keeps memories in SQLite with FTS5 on the store host, where export and stats read the database directly.](./architecture.png)
 
-**Figure 1: commonplace architecture.** [MCP](https://modelcontextprotocol.io)
-is the protocol Claude Code and Codex use to call tools.
+Figure: commonplace architecture. [MCP](https://modelcontextprotocol.io)
+is the protocol Claude Code and Codex use to call tools. {#fig-architecture}
+
+</div>
 
 - **Clients:** Claude Code and Codex call the server's MCP tools directly,
   with a `SessionStart` hook loading the index. pi and omp don't speak MCP
