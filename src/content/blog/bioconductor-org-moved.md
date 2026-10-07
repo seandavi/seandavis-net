@@ -17,7 +17,7 @@ The simplest way to describe bioconductor.org is that it is a package repository
 
 <div class="wide">
 
-![The legacy estate: git.bioconductor.org feeds staging, which rebuilds the site hourly with Nanoc and rsyncs it to master, one EC2 VM running Apache on an EBS volume with Solr and checkResults. BBS build machines push reports directly to master. CloudFront sits in front.](/images/bioc-migration/legacy.svg)
+![Diagram of the legacy bioconductor.org estate, titled by its parts. At the top left, git.bioconductor.org holds the site content repository, which feeds the staging build box. Staging runs Nanoc and Rake as an hourly full rebuild with no incremental step, plus about twenty other cron jobs, on an operating system that is out of support, with SPB daemons that are never restarted. Staging rsyncs the built site to master.bioconductor.org, a single EC2 VM running Apache that serves static files for the whole site and every repository from one EBS volume of 1.35 million files and 447 GB, which is IOPS-bound. The same VM holds checkResults build reports and a Solr search index; /packages/stats goes to a separate webstats host and old releases redirect to an OSN archive. Below, the package builds are separate: BBS build machines (nebbiolo1 and nebbiolo2 on Linux, plus macOS builders) push tarballs, binaries and build reports directly to master, while r-universe supplies Windows and macOS binaries that core-team propagation publishes only if they match BBS. CloudFront sits in front of master as a CDN, and its cache misses go to the VM. Clients are browsers, R and BiocManager, rsync mirrors and crawlers. A footer notes about $5,000 a month in AWS cost, before builders and staff time.](/images/bioc-migration/legacy.svg)
 
 Figure: The legacy estate, as surveyed read-only on 2026-08-03. {#fig-legacy}
 
@@ -39,13 +39,13 @@ What forced the issue was crawlers. The origin ran off an EBS volume, and crawle
 
 <div class="wide">
 
-![Crawlers requesting unique URLs and large files miss the CloudFront cache and reach one VM whose EBS volume runs out of IOPS. That one disk sits behind pages, installs and build reports. The course-materials directory holds 711 MB of video against 2 MB of HTML, about 400 to 1.](/images/bioc-migration/crisis.svg)
+![Diagram of how crawler traffic overloaded one disk. On the left, six bot icons labelled crawlers request unique URLs and large files. Those requests pass through CloudFront, where misses go to origin, and reach one VM running Apache that serves site pages, package repositories and build reports. The VM's EBS volume is marked IOPS exhausted, with a note that raising IOPS is the stopgap and not the fix, because one disk sits behind pages, installs and build reports together. A side panel for /help/course-materials/ compares two years of materials: 711 MB of .mp4 video against 2 MB of HTML, about 400 to 1.](/images/bioc-migration/crisis.svg)
 
 Figure: How crawler traffic reached a single disk. {#fig-crisis}
 
 </div>
 
-The requests that hurt were not page views. They were bots pulling hundred-megabyte lecture videos from `/help/course-materials/`, where two years of materials are 711 MB of `.mp4` against 2 MB of HTML, and bots walking unique URLs that no CDN could ever have cached. All of that went to origin. Because one disk sat behind everything, a crawler pulling videos slowed `BiocManager::install()` for everyone.
+The requests that hurt were not page views. They were bots pulling hundred-megabyte lecture videos from `/help/course-materials/`, where two years of materials are 711 MB of `.mp4` against 2 MB of HTML (the panel on the right of [](#fig-crisis)), and bots walking unique URLs that no CDN could ever have cached. All of that went to origin. Because one disk sat behind everything, a crawler pulling videos slowed `BiocManager::install()` for everyone.
 
 <!-- Sean: dates and user-visible symptoms of the specific incidents. The docs record the mechanism but not the incident dates. -->
 
@@ -57,7 +57,7 @@ The decision was to move serving to object storage plus edge compute, and to rep
 
 <div class="wide">
 
-![Clients reach Cloudflare's WAF and edge cache, then the Worker, which applies the route table, symlink map, redirects and 404 caching and logs every request. It reads R2: the immutable site build first, then the mirror of master. Only /packages/stats is passed through to master. Logpush writes every request to Google Cloud Storage. Daily probes check health and parity with master.](/images/bioc-migration/new-arch.svg)
+![Diagram of how the new bioconductor.org answers a request. Clients (browsers, R and BiocManager, mirror operators, crawlers) reach Cloudflare's WAF and edge cache, which carries one narrow rule for the /talks crawler. Requests then go to the Worker, whose code is in bioc-edge. The Worker applies five steps: a route table that tries the site build first and then the mirror; a symlink map such as release to 3.23; one-to-one redirects (ADR 0013); 404s cached for ten minutes per build; and one log record per request. The Worker reads a private 5.1 TB R2 bucket holding site/<sha>/, the immutable build made by bioc-website, and the mirror, a copy of master containing packages and checkResults. Only /packages/stats/ is passed through, uncached, to master. Every request is also written by Logpush to Google Cloud Storage, with all fields, and gap-checked daily. Daily probes from GitHub Actions check health and parity with master. Footer notes: no servers, no EBS, no egress fees, HTTP/2 and brotli, and four hostnames served by one Worker.](/images/bioc-migration/new-arch.svg)
 
 Figure: How a request is answered now. {#fig-new-arch}
 
@@ -77,7 +77,7 @@ The migration ran for about two months before DNS moved, and the mirror was live
 
 <div class="wide">
 
-![Timeline: July 2026 audits; August 3 recon of both boxes and R2 loaded with 5.1 TB; August 13 hourly sync, weekly reconcile and request logging running; September 4 one propagation gate; September 28 nameservers moved at 17:30 and the site flipped at 20:09 UTC, the crawler loop cut at 20:58 and a firewall rule added at 22:34; September 29 parity probe against master with fixes the same day; October 5 the monitoring week ends; October 12 the Route53 freeze ends.](/images/bioc-migration/timeline.svg)
+![Horizontal timeline of the migration with eight markers. July 2026: audits of findability, performance and accessibility. August 3: reconnaissance of both servers, and R2 loaded with 5.1 TB. August 13: hourly sync and weekly reconcile running, with Logpush on. September 4: ADR 0011 establishes one propagation gate. September 28 has two markers inside a shaded box: the first notes that the nameservers moved at 17:30 and the site flipped to the new stack at 20:09, and the second notes that the crawler redirect loop was cut at 20:58 and a WAF rule was added at 22:34. September 29: a parity probe against master, with fixes made the same day. October 5 and October 12: the monitoring week ends, and the Route53 freeze, which keeps the old DNS zone as the rollback, ends.](/images/bioc-migration/timeline.svg)
 
 Figure: The cutover, July to October 2026. {#fig-timeline}
 
@@ -91,7 +91,7 @@ We also read the request logs within the hour of the flip, which the old setup h
 
 <div class="wide">
 
-![Crawler requests per minute on 2026-09-28 UTC: about 8,300 after the flip, about 3,400 to 3,700 after the redirect loop was removed, and 0 to 15 after a narrow firewall rule. Rates approximate.](/images/bioc-migration/crawler.svg)
+![Bar chart of crawler requests per minute on the evening of the cutover, 2026-09-28 UTC, drawn to a time scale with the vertical axis from 0 to 9,000; rates are approximate. Three vertical markers show the site flip at 20:09, the redirect loop removed at 20:58, and the WAF rule at 22:34. From the flip to 20:58 the crawler ran at about 8,300 requests a minute. Just after the loop was removed the rate was about 3,400, then it held near 3,700 a minute until 22:34 as the crawler worked through URLs it had already queued, which now returned 404s. After the narrow WAF rule the rate fell to between 0 and 15 requests a minute, too small to see as a bar.](/images/bioc-migration/crawler.svg)
 
 Figure: The crawler's request rate on 2026-09-28 UTC, before and after each fix. Rates are approximate, from minutes of logs. {#fig-crawler}
 
@@ -105,15 +105,15 @@ Two days after the cutover, 2026-09-30, was the first full UTC day with clean lo
 
 <div class="wide">
 
-![One day of bioconductor.org traffic, 2026-09-30 UTC: 5.8 million requests, 8.1 TB served, 215 countries, about 21,000 R installations. Requests by client type: R and package clients 33%, other automation 33%, browser-like 21%, search and AI crawlers 8%, mirrors 3%, CI and other 3%. Requests per hour peak at 09:00 UTC. R installations by operating system: Linux 12,347, Windows 6,303, macOS 2,650.](/images/bioc-migration/traffic-day.svg)
+![Dashboard of one day of bioconductor.org traffic, 2026-09-30 UTC. Four headline numbers: 5.8 million requests, 8.1 TB served, 215 countries, and about 21,000 R installations. Below them, a single stacked bar of who is asking, by share of requests: R and package clients 33%, other automation 32%, browser-like 21%, search and AI crawlers 8%, mirrors about 3%, and CI, monitoring and other about 3%. In the lower left, an area chart of requests per hour across the UTC day, rising to a peak at 09:00 of 388 thousand and falling to a lower plateau in the evening. In the lower right, horizontal bars of R installations by operating system: Linux 12,347, Windows 6,303 and macOS 2,650, with a note that R 4.6 accounts for 56% of them.](/images/bioc-migration/traffic-day.svg)
 
 Figure: One full day of bioconductor.org traffic, 2026-09-30 UTC, classified by bioc-traffic v0. {#fig-traffic-day}
 
 </div>
 
-5.8 million requests, 8.1 TB sent, from 215 countries, with the busiest hour at 09:00 UTC when Europe is at work and Asia's afternoon overlaps. About 21,000 distinct addresses sent R's own user agent that day. Addresses are not people (one university behind NAT counts once, one laptop on three networks counts three times), but it is the first time the project has had a number like that measured directly rather than inferred from tarball downloads.
+5.8 million requests, 8.1 TB sent, from 215 countries, with the busiest hour at 09:00 UTC when Europe is at work and Asia's afternoon overlaps. About 21,000 distinct addresses sent R's own user agent that day, split by operating system in the last panel of [](#fig-traffic-day). Addresses are not people (one university behind NAT counts once, one laptop on three networks counts three times), but it is the first time the project has had a number like that measured directly rather than inferred from tarball downloads.
 
-A third of the requests came from R and package clients. Another third came from what our first-pass classifier calls other automation, which is mostly machines in clouds presenting browser user agents: half of that is about 740 Google Cloud addresses whose browser string carries Google's front-end marker, and most of the rest is browser-shaped traffic from hosting networks. A fifth was browser-like, and I would not present even that as a count of humans; the top countries by distinct address in that class look more like crawlers on residential connections than people. Build reports, the pages maintainers check each morning, took 1.27 million requests from 242,000 addresses, about 22% of all traffic. Declared search and AI crawlers were 8%.
+A third of the requests came from R and package clients, the first bar in [](#fig-traffic-day). Another third came from what our first-pass classifier calls other automation, which is mostly machines in clouds presenting browser user agents: half of that is about 740 Google Cloud addresses whose browser string carries Google's front-end marker, and most of the rest is browser-shaped traffic from hosting networks. A fifth was browser-like, and I would not present even that as a count of humans; the top countries by distinct address in that class look more like crawlers on residential connections than people. Build reports, the pages maintainers check each morning, took 1.27 million requests from 242,000 addresses, about 22% of all traffic. Declared search and AI crawlers were 8%.
 
 One machine downloaded 162,163 package files that day, every one of them for Bioconductor 3.19, a release two years old. That was 40% of everything R clients downloaded. It is almost certainly a CI job or a script reinstalling in a loop, and the published download statistics would have counted every one of those as a download. August and September 2025 in the published tables show downloads roughly quadrupling with no change in distinct addresses, for what is almost certainly the same reason. Those months are still inflated, and cannot be corrected, because the pipelines that produced them discarded the user agent before storing anything.
 
