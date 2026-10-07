@@ -2,6 +2,7 @@
 title: Layout and figures fixture
 date: 2026-10-07
 description: A rendering fixture for the dek, the contents list, figure and table captions, cross-references, and wide breakouts.
+aiAssistance: "Written by Claude Code as a rendering fixture; not a published post."
 # Rendering fixture, not a post: a draft shows only in dev and PR previews.
 draft: true
 ---

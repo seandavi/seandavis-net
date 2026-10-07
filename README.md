@@ -85,7 +85,9 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   - Dollar signs: `remark-math` treats `$…$` as inline math, so write currency as `\$5,000`
     (also in image alt text). Code spans and fenced code are unaffected.
   - `aliases` (default `[]`): old URL paths (the former Hugo paths, or a slug before a rename). Each becomes a static redirect page to the post; duplicates fail the build.
-  - `aiAssistance` (optional): rendered only as `<meta name="ai-assistance">`, never in the prose.
+  - `aiAssistance`: rendered only as `<meta name="ai-assistance">`, never in the prose. **Required**
+    on non-archived posts dated 2026-10-08 or later: a sentence describing the AI use, or `none`.
+    The build fails without it. Older posts may omit it.
 
   Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering
   fixture. Fenced code is highlighted by Shiki.
