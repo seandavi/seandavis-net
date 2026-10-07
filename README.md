@@ -21,7 +21,10 @@ cancer research. This site is the **superset front door** for the whole body of 
   `Base.astro` that loads only when the host is exactly `seandavis.net` (no previews/localhost).
 
 Heavy academic documents (papers, books, crossref-numbered Quarto docs) stay in **Quarto**,
-published standalone and *linked* — not reproduced here. See the Writing/Talks sections.
+published standalone and *linked* — not reproduced here. Astro remains the default for notes;
+Quarto is reserved for documents whose computation, cross-references, or multi-format output justify
+its additional build environment. See [Publishing architecture](docs/publishing.md) for the boundary,
+a possible computational-note pipeline, and the decision rules.
 
 ## Commands
 
