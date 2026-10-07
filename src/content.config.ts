@@ -15,7 +15,7 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     // Old post kept for the record: listed under "Archive" with a dated-content note.
     archived: z.boolean().default(false),
-    // Former URL paths (e.g. on seandavi.github.io); data for future redirects.
+    // Former URL paths (Hugo-era paths, or a pre-rename slug); each redirects to the post (src/pages/[...alias].astro).
     aliases: z.array(z.string()).default([]),
     // Disclosure rendered only as <meta name="ai-assistance">, never in the prose.
     aiAssistance: z.string().optional(),

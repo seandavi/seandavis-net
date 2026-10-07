@@ -84,7 +84,7 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   - `archived` (default `false`): listed under "Archive" with a "written in <year>" note.
   - Dollar signs: `remark-math` treats `$…$` as inline math, so write currency as `\$5,000`
     (also in image alt text). Code spans and fenced code are unaffected.
-  - `aliases` (default `[]`): old URL paths (e.g. on `seandavi.github.io`), kept for future redirects.
+  - `aliases` (default `[]`): old URL paths (the former Hugo paths, or a slug before a rename). Each becomes a static redirect page to the post; duplicates fail the build.
   - `aiAssistance` (optional): rendered only as `<meta name="ai-assistance">`, never in the prose.
 
   Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering

@@ -2,6 +2,8 @@
 title: "Measuring Bioconductor: usage, publications, funding, and what they say about sustainability"
 date: 2026-10-07
 description: "A dashboard for Bioconductor's impact, built from public data, and what 17 years of download logs, a thousand linked papers and 668 NIH awards say about where the project stands."
+aliases:
+  - /blog/2026-10-07-bioconductor-impact-dashboard/
 ---
 
 In this post, I want to describe a site I built, [impact.bioconductor.org](https://impact.bioconductor.org), that pulls together Bioconductor's release manifests, download logs, CITATION files, PubMed, iCite, and NIH RePORTER, and then walk through what the data say about the project's impact and (more tentatively) its sustainability.
