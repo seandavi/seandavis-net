@@ -14,9 +14,15 @@ I maintain the site and the definitions on it are documented and open to correct
 
 Everything is public. The package metadata come from the `VIEWS` files that bioconductor.org publishes for every release since 1.8 in 2006 (the release announcements page fills in package counts back to 1.0 in May 2002). Download statistics come from the monthly tables the project has published since January 2009, which report distinct IP addresses and raw downloads per package per month. Each package's own `CITATION` file, read from the package source, says which paper the authors want cited. Those DOIs are joined to OpenAlex for citation counts, to NIH iCite for the Relative Citation Ratio, to NIH RePORTER for the grants a paper acknowledges, and to OpenAlex author affiliations for institutions and countries. Patent citations come from the Reliance on Science dataset.
 
-The joining is done once a month by a little Python pipeline into a single DuckDB file. The site itself has no server. It's a static page that loads a handful of Parquet files and runs SQL in the browser with DuckDB-WASM, so every chart is computed from the same tables you can download.
+The joining is done once a month by a little Python pipeline into a single DuckDB file. The site itself has no server. It's a static page that loads a handful of Parquet files and runs SQL in the browser with DuckDB-WASM, so every chart is computed from the same tables you can download. [](#fig-data-flow) shows the whole path.
+
+<div class="wide">
 
 ![How the site is built: Bioconductor.org and the cdsci-lake feed a monthly Python pipeline into one DuckDB file. Parquet marts on GitHub Pages serve the dashboard, R and Python clients, and static JSON.](/images/bioc-impact/data-flow.svg)
+
+Figure: The monthly data flow, from public Bioconductor sources to the static site and the downloadable marts. {#fig-data-flow}
+
+</div>
 
 The snapshot refreshes monthly, so the figures below will drift.
 
@@ -24,11 +30,17 @@ The snapshot refreshes monthly, so the figures below will drift.
 
 Bioconductor 1.0 shipped with 15 software packages. Release 3.23, in April 2026, has 2,418, plus 928 annotation packages, 436 experiment-data packages and 28 workflows, for 3,810 in all. The growth isn't quite exponential any more, but it hasn't flattened either: the software repository has added between 40 and 120 packages per release for the last decade, and the net count has never gone down between releases in that span. Thirty-six packages in the current release are marked deprecated.
 
-Usage grew faster than the package count. The honest way to count machines installing Bioconductor is the installer package, which every setup downloads: `BiocInstaller` until 2018 and `BiocVersion` since (the `BiocManager` package itself lives on CRAN). By that measure, 278,000 distinct IP addresses installed Bioconductor in 2015, 481,000 in 2020, and 805,000 in 2025. A caveat applies. The collection method changed in October 2015, so the series before and after are not strictly comparable, and the site draws a shaded band at that boundary rather than a continuous line. A distinct IP per month is also a proxy, not a user (a university NAT gateway is one address, and a laptop on three networks is three). I use it because it is the least gameable of the numbers the project publishes.
+Usage grew faster than the package count. The honest way to count machines installing Bioconductor is the installer package, which every setup downloads: `BiocInstaller` until 2018 and `BiocVersion` since (the `BiocManager` package itself lives on CRAN). By that measure, 278,000 distinct IP addresses installed Bioconductor in 2015, 481,000 in 2020, and 805,000 in 2025. A caveat applies. The collection method changed in October 2015, so the series before and after are not strictly comparable, and the site draws a shaded band at that boundary rather than a continuous line ([](#fig-distinct-ips)). A distinct IP per month is also a proxy, not a user (a university NAT gateway is one address, and a laptop on three networks is three). I use it because it is the least gameable of the numbers the project publishes.
 
 Note that I am *not* summing distinct IPs across packages. One address that installs fifty packages would count fifty times in such a sum, which makes it a measure of volume, not of people. The first version of this post did exactly that, and I have corrected it.
 
+<div class="wide">
+
 ![Distinct IP addresses installing Bioconductor per year, 2011 to 2025, measured by the installer package, with the pre-October-2015 collection era shaded.](/images/bioc-impact/distinct-ips.svg)
+
+Figure: Distinct IP addresses installing Bioconductor each year, 2011–2025. The shaded band marks the earlier collection method, which is not strictly comparable. {#fig-distinct-ips}
+
+</div>
 
 Usage is concentrated. Of the 2,418 software packages, 68 account for half of the summed per-package distinct IPs in the last twelve months, and 1,472 account for 90 percent. The top of that list is infrastructure that everything else imports: `BiocVersion`, `BiocGenerics`, `S4Vectors`, `IRanges`, `Biobase`. That is fine for a package that thirty labs need, but it does mean that any headline usage number for the project is mostly a statement about a few dozen packages, and that the project's sustainability depends on a small number of maintainers of infrastructure that everyone else builds on. The site lets you exclude the infrastructure tier to see the rest, and the dependency data now in it make those packages visible.
 

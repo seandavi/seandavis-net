@@ -21,7 +21,10 @@ cancer research. This site is the **superset front door** for the whole body of 
   `Base.astro` that loads only when the host is exactly `seandavis.net` (no previews/localhost).
 
 Heavy academic documents (papers, books, crossref-numbered Quarto docs) stay in **Quarto**,
-published standalone and *linked* — not reproduced here. See the Writing/Talks sections.
+published standalone and *linked* — not reproduced here. Astro remains the default for notes;
+Quarto is reserved for documents whose computation, cross-references, or multi-format output justify
+its additional build environment. See [Publishing architecture](docs/publishing.md) for the boundary,
+a possible computational-note pipeline, and the decision rules.
 
 ## Commands
 
@@ -82,7 +85,7 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering
   fixture. Fenced code is highlighted by Shiki.
 - **Projects:** one YAML file per project in `src/content/projects/`. `/projects` renders every
-  entry grouped by `group`; the homepage renders `featured: true` from the *same* collection, so the
+  entry grouped by `group`; the homepage renders entries with a `homepage` rank (lower first) from the *same* collection, so the
   two can't drift. `status: offline` keeps an entry on record without rendering it anywhere.
   Adding a project is one new file; no page edits. Optional fields, all from public data:
   - `bioc: <Package>`: Bioconductor package name. The meta line shows its downloads for the year
