@@ -15,6 +15,8 @@ Everything is public. The package metadata come from the `VIEWS` files that bioc
 
 The joining is done once a month by a small Python pipeline into a single DuckDB file. The site itself has no server. It is a static page that loads a handful of Parquet files and runs SQL in the browser with DuckDB-WASM, so every chart is computed from the same tables you can download. I will come back to that at the end, because it turns out to be the most useful property of the whole thing.
 
+![How the site is built: Bioconductor.org and the cdsci-lake feed a monthly Python pipeline into one DuckDB file; Parquet marts on GitHub Pages serve the dashboard, R and Python clients, and static JSON.](/images/bioc-impact/data-flow.svg)
+
 As of this writing the snapshot is dated 2026-10-07, and the figures below are from it. They will drift as the monthly refresh runs.
 
 ## Growth
@@ -22,6 +24,8 @@ As of this writing the snapshot is dated 2026-10-07, and the figures below are f
 Bioconductor 1.0 shipped with 15 software packages. Release 3.23, in April 2026, has 2,418, plus 928 annotation packages, 436 experiment-data packages and 28 workflows, for 3,810 in all. The growth is not quite exponential any more, but it has not flattened either: the software repository has added between 40 and 120 packages per release for the last decade, and the net count has never gone down between releases in that span. Thirty-six packages in the current release are marked deprecated, which is the project's orderly way of letting things go.
 
 Usage grew faster than the package count. In 2009 the software repository saw 1.56 million distinct downloading IP addresses, summed over the twelve months. In 2015 it was 5.9 million, in 2020 15.0 million, and in 2025 36.0 million. Two cautions. The collection method changed in October 2015, so the series before and after are not strictly comparable, and the site draws a shaded band at that boundary rather than a continuous line. And a distinct IP per month is a proxy, not a user: a university NAT gateway is one address and a laptop on three networks is three. I use it because it is the least gameable of the numbers the project publishes, and because the shape of the curve is the same under either measure.
+
+![Distinct downloading IP addresses per year for the software repository, 2009 to 2025, with the pre-October-2015 collection era shaded.](/images/bioc-impact/distinct-ips.svg)
 
 Usage is concentrated. Of the 2,418 software packages, 68 account for half of the distinct IP addresses in the last twelve months, and 1,472 account for 90 percent. The top of that list is infrastructure that everything else imports: `BiocVersion`, `BiocGenerics`, `S4Vectors`, `IRanges`, `Biobase`. That is not a criticism of the long tail. A package used by thirty labs that need exactly it is doing its job. But it does mean that any headline usage number for the project is mostly a statement about a few dozen packages, and the site lets you exclude the infrastructure tier to see the rest.
 

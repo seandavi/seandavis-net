@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440" font-family="ui-sans-serif,system-ui,Helvetica,Arial,sans-serif">
+<rect width="960" height="440" fill="white"/>
+<text x="20" y="28" font-size="16" font-weight="700" fill="#070707">Bioconductor software packages: distinct downloading IP addresses per year</text>
+<text x="20" y="46" font-size="12" fill="#5d657c">Sum of monthly distinct IPs, 2009–2025. Source: bioconductor.org download statistics via impact.bioconductor.org (snapshot 2026-10-07).</text>
+<rect x="80.0" y="60" width="358.59375" height="310" fill="#e7e8ea" opacity="0.6"/>
+<text x="88.0" y="76" font-size="11" fill="#5d657c">older collection method (before Oct 2015): not directly comparable</text>
+<line x1="80" y1="370.0" x2="930" y2="370.0" stroke="#e7e8ea"/><text x="72" y="374.0" text-anchor="end" font-size="11" fill="#5d657c">0M</text>
+<line x1="80" y1="292.5" x2="930" y2="292.5" stroke="#e7e8ea"/><text x="72" y="296.5" text-anchor="end" font-size="11" fill="#5d657c">10M</text>
+<line x1="80" y1="215.0" x2="930" y2="215.0" stroke="#e7e8ea"/><text x="72" y="219.0" text-anchor="end" font-size="11" fill="#5d657c">20M</text>
+<line x1="80" y1="137.5" x2="930" y2="137.5" stroke="#e7e8ea"/><text x="72" y="141.5" text-anchor="end" font-size="11" fill="#5d657c">30M</text>
+<line x1="80" y1="60.0" x2="930" y2="60.0" stroke="#e7e8ea"/><text x="72" y="64.0" text-anchor="end" font-size="11" fill="#5d657c">40M</text>
+<text x="80.0" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2009</text>
+<text x="186.25" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2011</text>
+<text x="292.5" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2013</text>
+<text x="398.75" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2015</text>
+<text x="505.0" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2017</text>
+<text x="611.25" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2019</text>
+<text x="717.5" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2021</text>
+<text x="823.75" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2023</text>
+<text x="930.0" y="388" text-anchor="middle" font-size="11" fill="#5d657c">2025</text>
+<polyline points="80.0,357.908512 133.125,357.5456105 186.25,356.7895515 239.375,352.0428625 292.5,344.05486774999997 345.625,330.74742025 398.75,324.33023425 451.875,315.39919625 505.0,305.299001 558.125,291.93067725000003 611.25,276.92828925000003 664.375,253.81340275000002 717.5,228.686128 770.625,204.68066575 823.75,184.234887 876.875,144.463034 930.0,90.777513" fill="none" stroke="#18a603" stroke-width="3"/>
+<circle cx="80.0" cy="357.908512" r="4" fill="#18a603"/>
+<circle cx="133.125" cy="357.5456105" r="4" fill="#18a603"/>
+<circle cx="186.25" cy="356.7895515" r="4" fill="#18a603"/>
+<circle cx="239.375" cy="352.0428625" r="4" fill="#18a603"/>
+<circle cx="292.5" cy="344.05486774999997" r="4" fill="#18a603"/>
+<circle cx="345.625" cy="330.74742025" r="4" fill="#18a603"/>
+<circle cx="398.75" cy="324.33023425" r="4" fill="#18a603"/>
+<circle cx="451.875" cy="315.39919625" r="4" fill="#18a603"/>
+<circle cx="505.0" cy="305.299001" r="4" fill="#18a603"/>
+<circle cx="558.125" cy="291.93067725000003" r="4" fill="#18a603"/>
+<circle cx="611.25" cy="276.92828925000003" r="4" fill="#18a603"/>
+<circle cx="664.375" cy="253.81340275000002" r="4" fill="#18a603"/>
+<circle cx="717.5" cy="228.686128" r="4" fill="#18a603"/>
+<circle cx="770.625" cy="204.68066575" r="4" fill="#18a603"/>
+<circle cx="823.75" cy="184.234887" r="4" fill="#18a603"/>
+<circle cx="876.875" cy="144.463034" r="4" fill="#18a603"/>
+<circle cx="930.0" cy="90.777513" r="4" fill="#18a603"/>
+<text x="80.0" y="347.908512" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">1.6M</text>
+<text x="398.75" y="314.33023425" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">5.9M</text>
+<text x="664.375" y="243.81340275000002" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">15.0M</text>
+<text x="930.0" y="80.777513" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">36.0M</text>
+<text x="72" y="52" text-anchor="end" font-size="11" fill="#5d657c">distinct IPs / year</text>
+<text x="20" y="408" font-size="12" font-weight="700" fill="#070707">Legend</text>
+<line x1="80" y1="403" x2="110" y2="403" stroke="#18a603" stroke-width="3"/><text x="116" y="407" font-size="11" fill="#070707">distinct IPs per year, software repository (2,418 packages in 3.23)</text>
+<rect x="520" y="395" width="16" height="12" fill="#e7e8ea"/><text x="542" y="407" font-size="11" fill="#070707">pre-October-2015 methodology era</text>
+<text x="20" y="428" font-size="10.5" fill="#5d657c">One address active in several months counts once per month; a shared gateway is one address. A usage proxy, not a user count.</text>
+</svg>
