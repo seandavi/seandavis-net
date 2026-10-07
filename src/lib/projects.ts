@@ -35,6 +35,13 @@ export async function liveProjects(): Promise<Project[]> {
   );
 }
 
+/** The projects chosen for the homepage, in `homepage` rank order. */
+export function homepageProjects(projects: Project[]): Project[] {
+  return projects
+    .filter((p) => p.data.homepage !== undefined)
+    .sort((a, b) => a.data.homepage! - b.data.homepage!);
+}
+
 /** Live, non-retired projects in one group. Retired entries are listed on their own. */
 export function inGroup(projects: Project[], group: Group): Project[] {
   return projects.filter((p) => p.data.group === group && p.data.lifecycle !== 'retired');

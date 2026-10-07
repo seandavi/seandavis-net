@@ -85,7 +85,7 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering
   fixture. Fenced code is highlighted by Shiki.
 - **Projects:** one YAML file per project in `src/content/projects/`. `/projects` renders every
-  entry grouped by `group`; the homepage renders `featured: true` from the *same* collection, so the
+  entry grouped by `group`; the homepage renders entries with a `homepage` rank (lower first) from the *same* collection, so the
   two can't drift. `status: offline` keeps an entry on record without rendering it anywhere.
   Adding a project is one new file; no page edits. Optional fields, all from public data:
   - `bioc: <Package>`: Bioconductor package name. The meta line shows its downloads for the year

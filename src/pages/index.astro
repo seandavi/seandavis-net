@@ -5,13 +5,14 @@ import Masthead from '../components/Masthead.astro';
 // Head-and-shoulders crop of the press-kit portrait (src/assets/sean-davis.jpg).
 import headshot from '../assets/sean-davis-hero.jpg';
 import { cvDate, grants, ORCID_URL } from '../lib/cv';
-import { liveProjects, inGroup, metaLine, GROUP_LABELS, type Group } from '../lib/projects';
+import { liveProjects, homepageProjects, metaLine } from '../lib/projects';
 
-// Same data the /projects directory renders — the homepage just shows the
-// featured subset plus the grouped remainder, so the two can never drift.
-const projects = await liveProjects();
-const featured = projects.filter((p) => p.data.featured);
-const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
+// Same data the /projects directory renders; the homepage shows only the
+// entries that carry a `homepage` rank, flagship ones as the list and the rest
+// as a short card grid.
+const onHome = homepageProjects(await liveProjects());
+const featured = onHome.filter((p) => p.data.group === 'flagship');
+const others = onHome.filter((p) => p.data.group !== 'flagship');
 ---
 
 <Base title="Sean Davis — Cancer Data Science">
@@ -81,30 +82,19 @@ const softwareGroups: Group[] = ['ai', 'bioc', 'apps'];
     <section id="software">
       <div class="sec-head">
         <h2>More software</h2>
-        <div class="note">A selection — the full list lives on GitHub.</div>
+        <div class="note">A few representative tools. <a href="/projects">Browse all projects</a> for the complete directory.</div>
       </div>
-
-      {softwareGroups.map((group) => (
-        <div class="group">
-          <h3>{GROUP_LABELS[group]}</h3>
-          <div class="grid">
-            {inGroup(projects, group).map((p) => (
-              <a class="card" href={p.data.url}>
-                <h4>
-                  {p.data.name}
-                  {p.data.stars !== undefined && <span class="s"> {p.data.stars}★</span>}
-                </h4>
-                <p>{p.data.description}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      ))}
-
-      <p class="notes-slot">
-        <a href="/projects">Full project directory</a> — every project in one place, with where each
-        one is hosted.
-      </p>
+      <div class="grid">
+        {others.map((p) => (
+          <a class="card" href={p.data.url}>
+            <h4>
+              {p.data.name}
+              {p.data.stars !== undefined && <span class="s"> {p.data.stars}★</span>}
+            </h4>
+            <p>{p.data.description}</p>
+          </a>
+        ))}
+      </div>
     </section>
 
     <section id="writing">
