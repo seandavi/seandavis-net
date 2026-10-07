@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 420" width="1500" height="420" role="img" aria-label="Timeline from the July 2026 audits through the 2026-09-28 cutover to the end of the monitoring week and DNS freeze in October.">
+<title>Timeline from the July 2026 audits through the 2026-09-28 cutover to the end of the monitoring week and DNS freeze in October.</title>
+<defs><marker id="ah-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a9b8ca"/></marker><marker id="ah-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4aa8e8"/></marker><marker id="ah-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9fd05a"/></marker><marker id="ah-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f2b441"/></marker><marker id="ah-coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ff7a66"/></marker><marker id="ah-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b49cff"/></marker><marker id="ah-text" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8eef6"/></marker></defs>
+<line x1="60" y1="250" x2="1440" y2="250" stroke="#2b3d52" stroke-width="4"/>
+<circle cx="90" cy="250" r="11" fill="#a9b8ca" stroke="#0b1522" stroke-width="3"/>
+<line x1="90" y1="250" x2="90" y2="210" stroke="#a9b8ca" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="90" y="140" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#a9b8ca" font-weight="700" text-anchor="middle" xml:space="preserve">Jul 2026</text>
+<text x="90" y="166" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">audits: findability,</text>
+<text x="90" y="187" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">performance, a11y</text>
+<circle cx="270" cy="250" r="11" fill="#f2b441" stroke="#0b1522" stroke-width="3"/>
+<line x1="270" y1="250" x2="270" y2="288" stroke="#f2b441" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="270" y="310" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#f2b441" font-weight="700" text-anchor="middle" xml:space="preserve">Aug 3</text>
+<text x="270" y="336" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">recon of both boxes;</text>
+<text x="270" y="357" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">R2 loaded: 5.1 TB</text>
+<circle cx="450" cy="250" r="11" fill="#9fd05a" stroke="#0b1522" stroke-width="3"/>
+<line x1="450" y1="250" x2="450" y2="210" stroke="#9fd05a" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="450" y="140" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#9fd05a" font-weight="700" text-anchor="middle" xml:space="preserve">Aug 13</text>
+<text x="450" y="166" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">hourly sync + weekly</text>
+<text x="450" y="187" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">reconcile; Logpush on</text>
+<circle cx="630" cy="250" r="11" fill="#b49cff" stroke="#0b1522" stroke-width="3"/>
+<line x1="630" y1="250" x2="630" y2="288" stroke="#b49cff" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="630" y="310" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#b49cff" font-weight="700" text-anchor="middle" xml:space="preserve">Sep 4</text>
+<text x="630" y="336" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">ADR 0011: one</text>
+<text x="630" y="357" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">propagation gate</text>
+<circle cx="820" cy="250" r="11" fill="#4aa8e8" stroke="#0b1522" stroke-width="3"/>
+<line x1="820" y1="250" x2="820" y2="210" stroke="#4aa8e8" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="820" y="140" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#4aa8e8" font-weight="700" text-anchor="middle" xml:space="preserve">Sep 28</text>
+<text x="820" y="166" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">17:30 nameservers</text>
+<text x="820" y="187" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">20:09 site flipped</text>
+<circle cx="1000" cy="250" r="11" fill="#ff7a66" stroke="#0b1522" stroke-width="3"/>
+<line x1="1000" y1="250" x2="1000" y2="288" stroke="#ff7a66" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="1000" y="310" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">Sep 28</text>
+<text x="1000" y="336" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">20:58 crawler loop cut</text>
+<text x="1000" y="357" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">22:34 WAF rule</text>
+<circle cx="1170" cy="250" r="11" fill="#4aa8e8" stroke="#0b1522" stroke-width="3"/>
+<line x1="1170" y1="250" x2="1170" y2="210" stroke="#4aa8e8" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="1170" y="140" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#4aa8e8" font-weight="700" text-anchor="middle" xml:space="preserve">Sep 29</text>
+<text x="1170" y="166" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">parity probe vs master;</text>
+<text x="1170" y="187" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">fixes same day</text>
+<circle cx="1360" cy="250" r="11" fill="#a9b8ca" stroke="#0b1522" stroke-width="3"/>
+<line x1="1360" y1="250" x2="1360" y2="288" stroke="#a9b8ca" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="1360" y="310" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="20" fill="#a9b8ca" font-weight="700" text-anchor="middle" xml:space="preserve">Oct 5 / 12</text>
+<text x="1360" y="336" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">monitoring week ends;</text>
+<text x="1360" y="357" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#e8eef6" font-weight="400" text-anchor="middle" xml:space="preserve">Route53 freeze ends</text>
+<rect x="770" y="224" width="280" height="52" rx="10" fill="#4aa8e814" stroke="#4aa8e8" stroke-dasharray="4 5"/>
+</svg>

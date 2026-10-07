@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" width="1400" height="520" role="img" aria-label="Crawler request rate on cutover evening: about 8,300 a minute, about 3,400 to 3,700 after the /talks redirect loop was removed, and 0 to 15 after a narrow WAF rule.">
+<title>Crawler request rate on cutover evening: about 8,300 a minute, about 3,400 to 3,700 after the /talks redirect loop was removed, and 0 to 15 after a narrow WAF rule.</title>
+<defs><marker id="ah-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a9b8ca"/></marker><marker id="ah-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4aa8e8"/></marker><marker id="ah-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9fd05a"/></marker><marker id="ah-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f2b441"/></marker><marker id="ah-coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ff7a66"/></marker><marker id="ah-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b49cff"/></marker><marker id="ah-text" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8eef6"/></marker></defs>
+<line x1="120" y1="440.0" x2="1320" y2="440.0" stroke="#2b3d52" stroke-width="1"/>
+<text x="108" y="445.0" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="end" xml:space="preserve">0</text>
+<line x1="120" y1="313.33333333333337" x2="1320" y2="313.33333333333337" stroke="#2b3d52" stroke-width="1"/>
+<text x="108" y="318.33333333333337" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="end" xml:space="preserve">3,000</text>
+<line x1="120" y1="186.66666666666669" x2="1320" y2="186.66666666666669" stroke="#2b3d52" stroke-width="1"/>
+<text x="108" y="191.66666666666669" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="end" xml:space="preserve">6,000</text>
+<line x1="120" y1="60.0" x2="1320" y2="60.0" stroke="#2b3d52" stroke-width="1"/>
+<text x="108" y="65.0" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="end" xml:space="preserve">9,000</text>
+<text x="30" y="40" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">crawler requests / minute</text>
+<rect x="123.0" y="89.55555555555554" width="338.4" height="350.44444444444446" fill="#ff7a66" opacity="0.85"/>
+<text x="292.2" y="77.55555555555554" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#e8eef6" font-weight="600" text-anchor="middle" xml:space="preserve">~8,300</text>
+<rect x="467.4" y="296.44444444444446" width="50.39999999999998" height="143.55555555555554" fill="#ff7a66" opacity="0.85"/>
+<text x="492.59999999999997" y="284.44444444444446" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#e8eef6" font-weight="600" text-anchor="middle" xml:space="preserve">~3,400</text>
+<rect x="523.8" y="283.77777777777777" width="610.8" height="156.22222222222223" fill="#ff7a66" opacity="0.85"/>
+<text x="829.1999999999999" y="271.77777777777777" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#e8eef6" font-weight="600" text-anchor="middle" xml:space="preserve">~3,700: queued URLs, now 404s</text>
+<rect x="1140.6" y="439.3666666666667" width="176.4000000000001" height="0.6333333333333258" fill="#ff7a66" opacity="1"/>
+<text x="1228.8" y="427.3666666666667" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#e8eef6" font-weight="600" text-anchor="middle" xml:space="preserve">0–15</text>
+<line x1="120.0" y1="55" x2="120.0" y2="450" stroke="#4aa8e8" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="126.0" y="474" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#4aa8e8" font-weight="700" text-anchor="start" xml:space="preserve">20:09</text>
+<text x="126.0" y="496" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">flip</text>
+<line x1="464.4" y1="55" x2="464.4" y2="450" stroke="#9fd05a" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="470.4" y="474" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#9fd05a" font-weight="700" text-anchor="start" xml:space="preserve">20:58</text>
+<text x="470.4" y="496" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">redirect loop removed</text>
+<line x1="1137.6" y1="55" x2="1137.6" y2="450" stroke="#9fd05a" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="1143.6" y="474" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#9fd05a" font-weight="700" text-anchor="start" xml:space="preserve">22:34</text>
+<text x="1143.6" y="496" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">WAF rule</text>
+<text x="1320" y="40" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="end" xml:space="preserve">2026-09-28 UTC · time to scale · rates approximate</text>
+</svg>
