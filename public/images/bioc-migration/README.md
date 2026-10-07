@@ -14,4 +14,4 @@ and re-copy rather than editing the SVGs here.
 | `crawler.svg` | Day one: three quarters of the traffic was one crawler | bioc-edge#32; rates approximate, from minutes of logs |
 | `traffic-day.svg` | One day on bioconductor.org | bioc-infrastructure `traffic-2026-09-30.qmd` (bioc-traffic v0 classification) |
 
-Used by `src/content/blog/2026-10-08-bioconductor-org-moved.md`.
+Used by `src/content/blog/bioconductor-org-moved.md`.
