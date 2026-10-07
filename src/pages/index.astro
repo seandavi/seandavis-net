@@ -88,7 +88,7 @@ const others = onHome.filter((p) => p.data.group !== 'flagship');
         {others.map((p) => (
           <a class="card" href={p.data.url}>
             <h4>
-              {p.data.name}
+              <span class="n">{p.data.name}</span>
               {p.data.stars !== undefined && <span class="s"> {p.data.stars}★</span>}
             </h4>
             <p>{p.data.description}</p>

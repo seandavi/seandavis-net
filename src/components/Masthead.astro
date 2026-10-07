@@ -21,11 +21,21 @@ const { only } = Astro.props;
 const links = (Object.keys(LINKS) as Key[])
   .filter((k) => !only || only.includes(k))
   .map((k) => LINKS[k]);
+
+// Mark the link for the page being viewed. Only real routes can match: hash
+// links (/#work) and external ones never do. A parent section (the Notes link
+// on a post) gets aria-current="true" rather than "page".
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const current = (href: string) => {
+  if (!href.startsWith('/') || href.includes('#')) return undefined;
+  if (path === href) return 'page';
+  return path.startsWith(href + '/') ? 'true' : undefined;
+};
 ---
 
 <header class="masthead">
   <a class="mark" href="/">Sean Davis</a>
   <nav>
-    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    {links.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
   </nav>
 </header>

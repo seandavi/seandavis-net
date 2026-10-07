@@ -47,6 +47,7 @@ a:hover { color: var(--accent-deep); }
 .masthead nav { display: flex; gap: 1.5rem; font-family: var(--sans); font-size: 0.86rem; }
 .masthead nav a { color: var(--muted); text-decoration: none; }
 .masthead nav a:hover { color: var(--accent); }
+.masthead nav a[aria-current] { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 0.4em; }
 
 /* Hero */
 .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; align-items: start; padding: clamp(2.75rem, 7vw, 4.75rem) 0 clamp(2.25rem, 5vw, 3.5rem); border-bottom: 1px solid var(--rule); }
@@ -86,9 +87,14 @@ section { padding: clamp(2.5rem, 5.5vw, 3.75rem) 0; border-bottom: 1px solid var
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1.35rem 2.25rem; }
 .card { display: block; text-decoration: none; color: inherit; }
 .card h4 { font-size: 1.04rem; font-weight: 600; margin: 0 0 0.25rem; }
+/* Persistent link cue (no hover needed): underlined name plus an arrow. */
+.card h4 .n { text-decoration: underline; text-decoration-color: var(--rule-strong); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.card h4::after { content: " \2192"; color: var(--faint); font-weight: 400; }
 .card h4 .s { font-family: var(--sans); font-size: 0.76rem; color: var(--faint); font-weight: 400; }
 .card p { margin: 0; font-size: 0.94rem; color: var(--muted); }
-.card:hover h4 { color: var(--accent); }
+.card:hover h4, .card:active h4 { color: var(--accent); }
+.card:hover h4 .n, .card:active h4 .n { text-decoration-color: currentColor; }
+.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
 
 /* Publications and funding lists (/publications) */
 .publist { list-style: none; padding: 0; margin: 0; max-width: var(--readw); }
