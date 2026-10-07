@@ -23,8 +23,8 @@ const blog = defineCollection({
 });
 
 // Projects — the single source of truth for the project directory. `/projects`
-// renders every live entry; the homepage renders `featured: true` from the same
-// data, so the two can't drift. Adding a project means adding one YAML file.
+// renders every live entry; the homepage renders the entries that carry a `homepage`
+// rank, in that order, from the same data, so the two can't drift. Adding a project means adding one YAML file.
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/projects' }),
   schema: z.object({
@@ -56,7 +56,10 @@ const projects = defineCollection({
     // The paper to cite, with a DOI link.
     paper: z.object({ title: z.string(), url: z.string().url() }).optional(),
     group: z.enum(['flagship', 'apps', 'ai', 'bioc']),
-    featured: z.boolean().default(false),
+    // Homepage selection and order, the one place it is decided: present means
+    // "show on the homepage", lower sorts first. Flagship entries render as the
+    // Selected work list, the rest as a short card grid. /projects ignores it.
+    homepage: z.number().optional(),
     // Lower sorts first; ties fall back to name.
     order: z.number().default(100),
     // `offline` entries are kept for the record but rendered nowhere. Flip back

@@ -13,5 +13,5 @@ paper:
   title: Accessible, curated metagenomic data through ExperimentHub
   url: https://doi.org/10.1038/nmeth.4468
 group: flagship
-featured: true
+homepage: 50
 order: 50

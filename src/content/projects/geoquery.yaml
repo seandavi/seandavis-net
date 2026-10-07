@@ -14,5 +14,5 @@ paper:
   title: 'GEOquery: a bridge between the Gene Expression Omnibus (GEO) and BioConductor'
   url: https://doi.org/10.1093/bioinformatics/btm254
 group: flagship
-featured: true
+homepage: 10
 order: 10

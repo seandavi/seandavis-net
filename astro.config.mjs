@@ -3,11 +3,13 @@ import { unified } from '@astrojs/markdown-remark';
 import rehypeCitation from 'rehype-citation';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkFigures from './src/plugins/remark-figures.mjs';
 
 // Astro 7 ships the Rust "Sätteri" Markdown engine by default-eligible, which
 // does NOT run remark/rehype plugins. We pin the classic unified() processor so
 // our academic plugins work: rehype-citation (Pandoc-style [@key] + bibliography)
-// and remark-math/rehype-katex (equations). See README for the rationale.
+// remark-math/rehype-katex (equations), and src/plugins/remark-figures.mjs
+// (document-local figure/table captions and references). See README for the rationale.
 export default defineConfig({
   site: 'https://seandavis.net',
   env: {
@@ -27,7 +29,7 @@ export default defineConfig({
     // sits on the paper palette; global.css swaps its background for --paper-2.
     shikiConfig: { theme: 'github-light' },
     processor: unified({
-      remarkPlugins: [remarkMath],
+      remarkPlugins: [remarkMath, remarkFigures],
       rehypePlugins: [
         rehypeKatex,
         [
