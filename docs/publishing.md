@@ -21,7 +21,25 @@ The Markdown pipeline is pinned to Unified in `astro.config.mjs`. It currently p
 
 This is enough for prose, static code examples, equations, citations, ordinary tables, and figures whose outputs can be committed as assets. Keeping these posts Astro-native preserves the site's layout, draft handling, RSS, lightbox, fast Node-only build, and single content model.
 
-Captions and basic figure/table cross-references are feasible as another Unified transform. Add them only when a real post needs them, and protect the syntax with rendering fixtures. A small plugin is appropriate for document-local figures and tables; it should not grow into a local reimplementation of Pandoc's cross-reference system.
+Captions and basic figure/table cross-references are handled by a small repository-owned transform, `src/plugins/remark-figures.mjs`, covered by `npm test` and by the draft fixture `src/content/blog/layout-and-figures-fixture`. No maintained remark plugin combined separate alt/caption text, per-document numbering, and build-failing label checks, so the plugin stays deliberately small; it must not grow into a local reimplementation of Pandoc's cross-reference system.
+
+Authoring contract:
+
+```markdown
+![Alt text describing the image](./plot.png)
+
+Figure: Visible caption, with *Markdown*. {#fig-coverage}
+
+Table: Caption placed directly after a table. {#tbl-counts}
+
+See [](#fig-coverage) and [](#tbl-counts).
+```
+
+- A `Figure:` or `Table:` paragraph ending in a `{#fig-…}` or `{#tbl-…}` label captions the image paragraph or table directly above it, and emits `<figure id>` with `<figcaption>`. Tables put the caption on top.
+- Figures and tables are numbered separately, in document order. A link to `#fig-…` or `#tbl-…` with empty text becomes "Figure N" or "Table N".
+- Duplicate labels, unresolved references, and captions with nothing to caption fail the build. Images and tables with no caption paragraph render as before.
+
+Article layout: prose keeps the `--readw` measure, while figures and code blocks use an intermediate measure. Wrap a figure, table, or code block in `<div class="wide">` to span the page. A table-of-contents list appears only when a note has four or more `h2` sections, and a post's `description` renders as its dek, so don't repeat it as the first paragraph.
 
 ## What Quarto owns
 
