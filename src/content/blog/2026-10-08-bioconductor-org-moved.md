@@ -13,9 +13,15 @@ Every number here has a dated source on the project's documentation site, [seand
 
 The simplest way to describe bioconductor.org is that it is a package repository with a website attached. Every `BiocManager::install()` reads `config.yaml`, `PACKAGES` and `VIEWS` from it. Mirror operators rsync the whole tree. Package maintainers read build reports under `checkResults/`. `renv` and `install_version()` read `Archive/`. The pages a person reads in a browser are the smallest share of the load.
 
-Here is how it was put together when I did a read-only survey of the two servers on 2026-08-03.
+[](#fig-legacy) shows how it was put together when I did a read-only survey of the two servers on 2026-08-03.
+
+<div class="wide">
 
 ![The legacy estate: git.bioconductor.org feeds staging, which rebuilds the site hourly with Nanoc and rsyncs it to master, one EC2 VM running Apache on an EBS volume with Solr and checkResults. BBS build machines push reports directly to master. CloudFront sits in front.](/images/bioc-migration/legacy.svg)
+
+Figure: The legacy estate, as surveyed read-only on 2026-08-03. {#fig-legacy}
+
+</div>
 
 Two machines did everything a visitor saw. *Staging* was a build box. Every hour, a cron job pulled the website repository, did a full clean rebuild of a Ruby static-site generator (Nanoc, no incremental step), and rsynced the output over SSH to the other machine. About twenty other cron jobs on the same box generated landing-page JSON, badge images, build-result feeds and the search index. The results-tracking app for the single package builder ran there too, as three Python daemons started from `@reboot` cron with `nohup`. If one crashed, nothing restarted it. Its logs had been growing unbounded since about 2024, and the operating system was past end of standard support.
 
@@ -29,9 +35,15 @@ None of this was wrong when it was built. A static-file server behind a CDN is a
 
 ## The incidents
 
-What forced the issue was crawlers. The origin ran off an EBS volume, and crawlers exhausted its IOPS.
+What forced the issue was crawlers. The origin ran off an EBS volume, and crawlers exhausted its IOPS. [](#fig-crisis) shows the path.
+
+<div class="wide">
 
 ![Crawlers requesting unique URLs and large files miss the CloudFront cache and reach one VM whose EBS volume runs out of IOPS. That one disk sits behind pages, installs and build reports. The course-materials directory holds 711 MB of video against 2 MB of HTML, about 400 to 1.](/images/bioc-migration/crisis.svg)
+
+Figure: How crawler traffic reached a single disk. {#fig-crisis}
+
+</div>
 
 The requests that hurt were not page views. They were bots pulling hundred-megabyte lecture videos from `/help/course-materials/`, where two years of materials are 711 MB of `.mp4` against 2 MB of HTML, and bots walking unique URLs that no CDN could ever have cached. All of that went to origin. Because one disk sat behind everything, a crawler pulling videos slowed `BiocManager::install()` for everyone.
 
@@ -43,9 +55,15 @@ The stopgap was to buy more IOPS, which cost more every time and fixed nothing s
 
 The decision was to move serving to object storage plus edge compute, and to replace the legacy pieces one at a time behind the live site, with every choice written up as an architecture decision record. The pattern is sometimes called a strangler migration: the new system sits in front, answers what it can, and falls back to the old one for everything else, until there is nothing left to fall back to.
 
+<div class="wide">
+
 ![Clients reach Cloudflare's WAF and edge cache, then the Worker, which applies the route table, symlink map, redirects and 404 caching and logs every request. It reads R2: the immutable site build first, then the mirror of master. Only /packages/stats is passed through to master. Logpush writes every request to Google Cloud Storage. Daily probes check health and parity with master.](/images/bioc-migration/new-arch.svg)
 
-A request now goes through Cloudflare's firewall and edge cache, then to a Worker, a small TypeScript program that runs in Cloudflare's data centres. The Worker looks up the path first in the latest build of the website and then in a mirror of master's files, both stored in an R2 bucket of about 5.1 TB (1.65 million objects, including 4.66 TB of old releases). Object storage has no symlinks, so the 145 symlinks in the old docroot (`packages/release` pointing at `3.23`, for instance) are a JSON file the Worker reads. The hundreds of `.htaccess` rules became a generated redirect table. A release roll is a data change, not a deploy.
+Figure: How a request is answered now. {#fig-new-arch}
+
+</div>
+
+As [](#fig-new-arch) shows, a request now goes through Cloudflare's firewall and edge cache, then to a Worker, a small TypeScript program that runs in Cloudflare's data centres. The Worker looks up the path first in the latest build of the website and then in a mirror of master's files, both stored in an R2 bucket of about 5.1 TB (1.65 million objects, including 4.66 TB of old releases). Object storage has no symlinks, so the 145 symlinks in the old docroot (`packages/release` pointing at `3.23`, for instance) are a JSON file the Worker reads. The hundreds of `.htaccess` rules became a generated redirect table. A release roll is a data change, not a deploy.
 
 Packages still come from where they always did. The Bioconductor Build System builds the source tarballs, r-universe builds most of the Windows and macOS binaries, and the core team's propagation puts them on master. An hourly job copies master into R2 and purges exactly the URLs that changed. The website is built separately, by Astro, on every merge to the website repository, into an immutable folder named by commit. Rolling back a site change is writing an older commit id into one pointer. Every pull request gets a preview on the real worker, and the response carries a header saying which build answered it. Packages and the website meet only in storage; neither waits on the other.
 
@@ -55,25 +73,43 @@ I should say plainly that I could not have done this in two months without agent
 
 ## The cutover
 
-The migration ran for about two months before DNS moved, and the mirror was live and checked long before anyone depended on it.
+The migration ran for about two months before DNS moved, and the mirror was live and checked long before anyone depended on it. [](#fig-timeline) gives the dates.
+
+<div class="wide">
 
 ![Timeline: July 2026 audits; August 3 recon of both boxes and R2 loaded with 5.1 TB; August 13 hourly sync, weekly reconcile and request logging running; September 4 one propagation gate; September 28 nameservers moved at 17:30 and the site flipped at 20:09 UTC, the crawler loop cut at 20:58 and a firewall rule added at 22:34; September 29 parity probe against master with fixes the same day; October 5 the monitoring week ends; October 12 the Route53 freeze ends.](/images/bioc-migration/timeline.svg)
+
+Figure: The cutover, July to October 2026. {#fig-timeline}
+
+</div>
 
 R2 was loaded on 2026-08-03 and verified against the archive with zero differences. By 2026-08-13 the hourly sync, a weekly checksum reconcile and request logging were running with alerts. On 2026-09-28 the nameservers moved to Cloudflare at 17:30 UTC and the site flipped at about 20:09. The `BiocManager::install()` acceptance checks, eight of them, passed on release 3.23 and devel 3.24 after the flip. The old DNS zone is kept, frozen, as the rollback until 2026-10-12. The next day a probe compared 13,271 paths from real traffic against master, and the differences it found (a nine-byte 404 body, package files skipping the edge cache, double-slash links, landing pages missing their Windows and macOS download links) were fixed the same day.
 
 On cost, two numbers that are not estimates of the same thing. The AWS estate being retired is about $5,000 a month, for CloudFront, S3 and the two servers, not counting the builder hardware or anyone's time. The new stack, at Cloudflare's list prices applied to measured traffic, is roughly $240 to $500 a month, of which storage is about $77. That is a projection, not a bill, and until the AWS side is switched off the project pays for both. The difference is mostly egress, which R2 does not charge for.
 
-We also read the request logs within the hour of the flip, which the old setup had never let anyone do. In the first nineteen minutes, 75% of all requests were one crawler: 1,130 addresses on two cloud networks in Singapore, rotating three Mac Chrome user agents. It was stuck in a loop we were feeding it. The old site redirected anything under `/talks` to the course-materials index, we had copied that rule, and the index has 392 relative links that the crawler resolved against the URL it had asked for. Every redirect minted 392 new URLs that redirected back. No human had ever used that redirect. We removed it at 20:58, and when the crawler kept working through its queue at 3,700 requests a minute, added one firewall rule at 22:34 scoped to those two networks and that one path prefix.
+We also read the request logs within the hour of the flip, which the old setup had never let anyone do. In the first nineteen minutes, 75% of all requests were one crawler: 1,130 addresses on two cloud networks in Singapore, rotating three Mac Chrome user agents. It was stuck in a loop we were feeding it. The old site redirected anything under `/talks` to the course-materials index, we had copied that rule, and the index has 392 relative links that the crawler resolved against the URL it had asked for. Every redirect minted 392 new URLs that redirected back. No human had ever used that redirect. We removed it at 20:58, and when the crawler kept working through its queue at 3,700 requests a minute, added one firewall rule at 22:34 scoped to those two networks and that one path prefix ([](#fig-crawler)).
+
+<div class="wide">
 
 ![Crawler requests per minute on 2026-09-28 UTC: about 8,300 after the flip, about 3,400 to 3,700 after the redirect loop was removed, and 0 to 15 after a narrow firewall rule. Rates approximate.](/images/bioc-migration/crawler.svg)
+
+Figure: The crawler's request rate on 2026-09-28 UTC, before and after each fix. Rates are approximate, from minutes of logs. {#fig-crawler}
+
+</div>
 
 The old site almost certainly had the same crawler. Production had the identical rule. Nobody could see it.
 
 ## What bioconductor.org is for
 
-Two days after the cutover, 2026-09-30, was the first full UTC day with clean logs. Here is what it looked like.
+Two days after the cutover, 2026-09-30, was the first full UTC day with clean logs. [](#fig-traffic-day) shows what it looked like.
+
+<div class="wide">
 
 ![One day of bioconductor.org traffic, 2026-09-30 UTC: 5.8 million requests, 8.1 TB served, 215 countries, about 21,000 R installations. Requests by client type: R and package clients 33%, other automation 33%, browser-like 21%, search and AI crawlers 8%, mirrors 3%, CI and other 3%. Requests per hour peak at 09:00 UTC. R installations by operating system: Linux 12,347, Windows 6,303, macOS 2,650.](/images/bioc-migration/traffic-day.svg)
+
+Figure: One full day of bioconductor.org traffic, 2026-09-30 UTC, classified by bioc-traffic v0. {#fig-traffic-day}
+
+</div>
 
 5.8 million requests, 8.1 TB sent, from 215 countries, with the busiest hour at 09:00 UTC when Europe is at work and Asia's afternoon overlaps. About 21,000 distinct addresses sent R's own user agent that day. Addresses are not people (one university behind NAT counts once, one laptop on three networks counts three times), but it is the first time the project has had a number like that measured directly rather than inferred from tarball downloads.
 
