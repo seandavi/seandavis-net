@@ -79,7 +79,7 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   - `draft` (default `false`): drafts render under `npm run dev` and in PR previews (built with
     `SHOW_DRAFTS=1`) with a banner and `noindex`; production builds give them no URL.
   - `archived` (default `false`): listed under "Archive" with a "written in <year>" note.
-  - `aliases` (default `[]`): old URL paths (e.g. on `seandavi.github.io`), kept for future redirects.
+  - `aliases` (default `[]`): old URL paths (the former Hugo paths, or a slug before a rename). Each becomes a static redirect page to the post; duplicates fail the build.
   - `aiAssistance` (optional): rendered only as `<meta name="ai-assistance">`, never in the prose.
 
   Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering
