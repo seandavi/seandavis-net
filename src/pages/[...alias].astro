@@ -1,0 +1,45 @@
+---
+// Old URLs for posts, from each post's `aliases` frontmatter (the former Hugo
+// paths, or a slug before it was renamed). Each emits a static page that
+// redirects to the canonical post: an instant meta refresh plus a canonical
+// link, which search engines treat as a permanent move. A duplicate alias, or
+// one that shadows a real post, fails the build.
+import { getVisiblePosts } from '../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getVisiblePosts();
+  const canonical = new Set(posts.map((p) => `blog/${p.id}`));
+  const seen = new Map<string, string>();
+  const paths = [];
+  for (const post of posts) {
+    for (const alias of post.data.aliases) {
+      const path = alias.replace(/^\/+|\/+$/g, '');
+      if (canonical.has(path)) {
+        throw new Error(`Alias /${path}/ on "${post.id}" is already a real post URL`);
+      }
+      if (seen.has(path)) {
+        throw new Error(`Alias /${path}/ is claimed by both "${seen.get(path)}" and "${post.id}"`);
+      }
+      seen.set(path, post.id);
+      paths.push({ params: { alias: path }, props: { target: `/blog/${post.id}/` } });
+    }
+  }
+  return paths;
+}
+
+const { target } = Astro.props as { target: string };
+const url = new URL(target, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <link rel="canonical" href={url} />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+  </head>
+  <body>
+    <p>This page has moved to <a href={target}>{url}</a>.</p>
+  </body>
+</html>

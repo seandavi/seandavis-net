@@ -74,12 +74,17 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
   talks Worker); this site just links there. The old native listing (`src/data/talks.json` +
   `/talks` page) was removed 2026-07-24 — it pointed at stale `seandavi.github.io/talks/` URLs.
 - **Blog / notes:** `src/content/blog/<slug>.md`, or `<slug>/index.md` with co-located images
-  referenced relatively; both publish at `/blog/<slug>/`. Frontmatter: `title`, `date` (original
+  referenced relatively; both publish at `/blog/<slug>/`.
+  Slugs are lowercase kebab-case, short and descriptive, with no date prefix: the date lives in
+  frontmatter and can move while a post is a draft, but a URL shouldn't. Posts migrated from the old
+  Hugo blog keep their original (sometimes dated) slugs so their URLs survive; don't rename them. Frontmatter: `title`, `date` (original
   publication date), optional `description`, and:
   - `draft` (default `false`): drafts render under `npm run dev` and in PR previews (built with
     `SHOW_DRAFTS=1`) with a banner and `noindex`; production builds give them no URL.
   - `archived` (default `false`): listed under "Archive" with a "written in <year>" note.
-  - `aliases` (default `[]`): old URL paths (e.g. on `seandavi.github.io`), kept for future redirects.
+  - Dollar signs: `remark-math` treats `$…$` as inline math, so write currency as `\$5,000`
+    (also in image alt text). Code spans and fenced code are unaffected.
+  - `aliases` (default `[]`): old URL paths (the former Hugo paths, or a slug before a rename). Each becomes a static redirect page to the post; duplicates fail the build.
   - `aiAssistance`: rendered only as `<meta name="ai-assistance">`, never in the prose. **Required**
     on non-archived posts dated 2026-10-08 or later: a sentence describing the AI use, or `none`.
     The build fails without it. Older posts may omit it.

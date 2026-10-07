@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 670" width="1500" height="670" role="img" aria-label="The legacy estate: staging rebuilds the site hourly and pushes it to one EC2 VM, master, whose EBS volume serves everything behind CloudFront.">
+<title>The legacy estate: staging rebuilds the site hourly and pushes it to one EC2 VM, master, whose EBS volume serves everything behind CloudFront.</title>
+<defs><marker id="ah-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a9b8ca"/></marker><marker id="ah-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4aa8e8"/></marker><marker id="ah-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9fd05a"/></marker><marker id="ah-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f2b441"/></marker><marker id="ah-coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ff7a66"/></marker><marker id="ah-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b49cff"/></marker><marker id="ah-text" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8eef6"/></marker></defs>
+<rect x="30" y="70" width="250" height="110" rx="12" fill="#a9b8ca1f" stroke="#a9b8ca" stroke-width="2"/>
+<text x="48" y="102" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">git.bioconductor.org</text>
+<text x="48" y="137" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">site content repo</text>
+<rect x="330" y="50" width="330" height="270" rx="16" fill="none" stroke="#f2b441" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
+<text x="346" y="40" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#f2b441" font-weight="700" text-anchor="start" xml:space="preserve">STAGING · BUILD BOX</text>
+<rect x="350" y="70" width="290" height="130" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="368" y="102" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">Nanoc + Rake</text>
+<text x="368" y="137" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">hourly full rebuild</text>
+<text x="368" y="160" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">no incremental step</text>
+<text x="368" y="183" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">~20 more cron jobs</text>
+<rect x="350" y="215" width="290" height="90" rx="12" fill="#ff7a661f" stroke="#ff7a66" stroke-width="2"/>
+<text x="368" y="247" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">OS out of support</text>
+<text x="368" y="282" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">SPB daemons, no restarts</text>
+<path d="M280,150 L345,150" fill="none" stroke="#a9b8ca" stroke-width="2.5" marker-end="url(#ah-muted)"/>
+<rect x="730" y="50" width="400" height="440" rx="16" fill="none" stroke="#f2b441" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
+<text x="746" y="40" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#f2b441" font-weight="700" text-anchor="start" xml:space="preserve">MASTER.BIOCONDUCTOR.ORG · ONE EC2 VM</text>
+<rect x="750" y="70" width="360" height="100" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="768" y="102" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">Apache, static files</text>
+<text x="768" y="137" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">the whole site and every repo</text>
+<rect x="750" y="185" width="360" height="120" rx="12" fill="#ff7a661f" stroke="#ff7a66" stroke-width="2"/>
+<text x="768" y="217" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">EBS volume</text>
+<text x="768" y="252" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">1.35M files · 447 GB</text>
+<text x="768" y="275" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">IOPS-bound</text>
+<rect x="750" y="320" width="170" height="80" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="768" y="352" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="19" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">checkResults</text>
+<text x="768" y="387" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">build reports</text>
+<rect x="940" y="320" width="170" height="80" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="958" y="352" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="19" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">Solr</text>
+<text x="958" y="387" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">site search</text>
+<text x="750" y="440" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">/packages/stats: separate webstats host</text>
+<text x="750" y="465" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">old releases: redirected to OSN archive</text>
+<path d="M660,135 L745,135" fill="none" stroke="#f2b441" stroke-width="2.5" marker-end="url(#ah-amber)"/>
+<rect x="672.3" y="98.5" width="59.4" height="27" rx="6" fill="#0b1522" opacity="0.92"/>
+<text x="702" y="117.5" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#f2b441" font-weight="500" text-anchor="middle" xml:space="preserve">rsync</text>
+<rect x="30" y="400" width="630" height="250" rx="16" fill="none" stroke="#9fd05a" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
+<text x="46" y="390" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#9fd05a" font-weight="700" text-anchor="start" xml:space="preserve">PACKAGE BUILDS</text>
+<rect x="50" y="420" width="280" height="110" rx="12" fill="#9fd05a1f" stroke="#9fd05a" stroke-width="2"/>
+<text x="68" y="452" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">BBS build machines</text>
+<text x="68" y="487" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">nebbiolo1/2 (Linux)</text>
+<text x="68" y="510" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">macOS builders</text>
+<rect x="360" y="420" width="280" height="110" rx="12" fill="#9fd05a1f" stroke="#9fd05a" stroke-width="2"/>
+<text x="378" y="452" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">r-universe</text>
+<text x="378" y="487" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">Windows + macOS binaries</text>
+<rect x="50" y="550" width="590" height="80" rx="12" fill="#9fd05a1f" stroke="#9fd05a" stroke-width="2"/>
+<text x="68" y="582" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="19" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">core team propagation</text>
+<text x="68" y="617" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">publishes an r-universe binary only if it matches BBS</text>
+<path d="M500,530 L500,548" fill="none" stroke="#9fd05a" stroke-width="2.5" marker-end="url(#ah-green)"/>
+<path d="M190,530 L190,548" fill="none" stroke="#9fd05a" stroke-width="2.5" marker-end="url(#ah-green)"/>
+<path d="M640,590 L700,590 L700,260 L745,260" fill="none" stroke="#9fd05a" stroke-width="2.5" marker-end="url(#ah-green)"/>
+<rect x="652.94" y="497.0" width="94.12" height="46" rx="6" fill="#0b1522" opacity="0.92"/>
+<text x="700" y="516.0" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#9fd05a" font-weight="500" text-anchor="middle" xml:space="preserve">tarballs,</text>
+<text x="700" y="535.0" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#9fd05a" font-weight="500" text-anchor="middle" xml:space="preserve">binaries</text>
+<path d="M240,420 L240,360 L745,360" fill="none" stroke="#9fd05a" stroke-width="2.5" marker-end="url(#ah-green)"/>
+<rect x="336.14" y="346.5" width="267.72" height="27" rx="6" fill="#0b1522" opacity="0.92"/>
+<text x="470" y="365.5" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#9fd05a" font-weight="500" text-anchor="middle" xml:space="preserve">build reports pushed directly</text>
+<rect x="1200" y="70" width="270" height="110" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="1218" y="102" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">CloudFront</text>
+<text x="1218" y="137" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">CDN in front of master</text>
+<text x="1218" y="160" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">misses go to the VM</text>
+<path d="M1110,120 L1195,120" fill="none" stroke="#f2b441" stroke-width="2.5" marker-end="url(#ah-amber)"/>
+<rect x="1200" y="260" width="270" height="170" rx="12" fill="#a9b8ca1f" stroke="#a9b8ca" stroke-width="2"/>
+<text x="1218" y="292" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">Clients</text>
+<text x="1218" y="327" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">browsers</text>
+<text x="1218" y="350" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">R / BiocManager</text>
+<text x="1218" y="373" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">rsync mirrors</text>
+<text x="1218" y="396" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">crawlers</text>
+<path d="M1335,180 L1335,255" fill="none" stroke="#f2b441" stroke-width="2.5" marker-end="url(#ah-amber)"/>
+<text x="1190" y="520" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="23" fill="#f2b441" font-weight="700" text-anchor="start" xml:space="preserve">≈ $5,000/month AWS</text>
+<text x="1190" y="548" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">before builders and staff time</text>
+</svg>

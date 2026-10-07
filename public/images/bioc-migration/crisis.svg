@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 590" width="1500" height="590" role="img" aria-label="Crawlers requesting unique URLs and large video files miss the CDN cache and land on one VM, whose EBS volume runs out of IOPS; course materials are about 400 parts video to 1 part HTML.">
+<title>Crawlers requesting unique URLs and large video files miss the CDN cache and land on one VM, whose EBS volume runs out of IOPS; course materials are about 400 parts video to 1 part HTML.</title>
+<defs><marker id="ah-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a9b8ca"/></marker><marker id="ah-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4aa8e8"/></marker><marker id="ah-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9fd05a"/></marker><marker id="ah-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f2b441"/></marker><marker id="ah-coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ff7a66"/></marker><marker id="ah-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b49cff"/></marker><marker id="ah-text" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8eef6"/></marker></defs>
+<circle cx="90" cy="90" r="22" fill="#ff7a6626" stroke="#ff7a66" stroke-width="2"/>
+<text x="90" y="96" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">bot</text>
+<path d="M116,90 L300,195.0" fill="none" stroke="#ff7a66" stroke-width="1.6" marker-end="url(#ah-coral)"/>
+<circle cx="90" cy="160" r="22" fill="#ff7a6626" stroke="#ff7a66" stroke-width="2"/>
+<text x="90" y="166" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">bot</text>
+<path d="M116,160 L300,217.0" fill="none" stroke="#ff7a66" stroke-width="1.6" marker-end="url(#ah-coral)"/>
+<circle cx="90" cy="230" r="22" fill="#ff7a6626" stroke="#ff7a66" stroke-width="2"/>
+<text x="90" y="236" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">bot</text>
+<path d="M116,230 L300,239.0" fill="none" stroke="#ff7a66" stroke-width="1.6" marker-end="url(#ah-coral)"/>
+<circle cx="90" cy="300" r="22" fill="#ff7a6626" stroke="#ff7a66" stroke-width="2"/>
+<text x="90" y="306" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">bot</text>
+<path d="M116,300 L300,261.0" fill="none" stroke="#ff7a66" stroke-width="1.6" marker-end="url(#ah-coral)"/>
+<circle cx="90" cy="370" r="22" fill="#ff7a6626" stroke="#ff7a66" stroke-width="2"/>
+<text x="90" y="376" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">bot</text>
+<path d="M116,370 L300,283.0" fill="none" stroke="#ff7a66" stroke-width="1.6" marker-end="url(#ah-coral)"/>
+<circle cx="90" cy="440" r="22" fill="#ff7a6626" stroke="#ff7a66" stroke-width="2"/>
+<text x="90" y="446" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">bot</text>
+<path d="M116,440 L300,305.0" fill="none" stroke="#ff7a66" stroke-width="1.6" marker-end="url(#ah-coral)"/>
+<text x="90" y="540" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">crawlers</text>
+<text x="90" y="562" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#a9b8ca" font-weight="400" text-anchor="middle" xml:space="preserve">unique URLs</text>
+<rect x="305" y="170" width="250" height="150" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="323" y="202" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">CloudFront</text>
+<text x="323" y="237" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">unique URLs, big files:</text>
+<text x="323" y="260" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">misses go to origin</text>
+<path d="M555,245 L655,245" fill="none" stroke="#ff7a66" stroke-width="4" marker-end="url(#ah-coral)"/>
+<rect x="579.64" y="208.5" width="50.72" height="27" rx="6" fill="#0b1522" opacity="0.92"/>
+<text x="605" y="227.5" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#ff7a66" font-weight="500" text-anchor="middle" xml:space="preserve">miss</text>
+<rect x="660" y="60" width="470" height="460" rx="16" fill="none" stroke="#f2b441" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
+<text x="676" y="50" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#f2b441" font-weight="700" text-anchor="start" xml:space="preserve">ONE VM</text>
+<rect x="685" y="90" width="420" height="90" rx="12" fill="#f2b4411f" stroke="#f2b441" stroke-width="2"/>
+<text x="703" y="122" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">Apache</text>
+<text x="703" y="157" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">site pages, package repos, reports</text>
+<rect x="685" y="200" width="420" height="190" rx="12" fill="#ff7a661f" stroke="#ff7a66" stroke-width="2"/>
+<text x="703" y="232" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="21" fill="#e8eef6" font-weight="650" text-anchor="start" xml:space="preserve">EBS volume</text>
+<rect x="705" y="265" width="380" height="34" rx="8" fill="#2b3d52"/>
+<rect x="705" y="265" width="380" height="34" rx="8" fill="#ff7a66"/>
+<text x="895" y="289" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="18" fill="#0b1522" font-weight="800" text-anchor="middle" xml:space="preserve">IOPS exhausted</text>
+<text x="705" y="335" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">raising IOPS is the stopgap</text>
+<text x="705" y="360" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="15" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">not the fix</text>
+<text x="685" y="440" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" fill="#e8eef6" font-weight="500" text-anchor="start" xml:space="preserve">one disk behind pages,</text>
+<text x="685" y="466" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" fill="#e8eef6" font-weight="500" text-anchor="start" xml:space="preserve">installs and build reports</text>
+<text x="1190" y="90" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#a9b8ca" font-weight="600" text-anchor="start" xml:space="preserve">/help/course-materials/</text>
+<text x="1190" y="116" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#a9b8ca" font-weight="400" text-anchor="start" xml:space="preserve">two years of materials</text>
+<rect x="1190" y="140" width="80" height="360" rx="6" fill="#ff7a66"/>
+<rect x="1300" y="499" width="80" height="1.5" fill="#4aa8e8"/>
+<text x="1230" y="530" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#ff7a66" font-weight="700" text-anchor="middle" xml:space="preserve">711 MB</text>
+<text x="1230" y="552" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#a9b8ca" font-weight="400" text-anchor="middle" xml:space="preserve">.mp4</text>
+<text x="1340" y="530" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#4aa8e8" font-weight="700" text-anchor="middle" xml:space="preserve">2 MB</text>
+<text x="1340" y="552" font-family="'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#a9b8ca" font-weight="400" text-anchor="middle" xml:space="preserve">HTML</text>
+<text x="1340" y="440" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="30" fill="#e8eef6" font-weight="800" text-anchor="middle" xml:space="preserve">≈400:1</text>
+</svg>
