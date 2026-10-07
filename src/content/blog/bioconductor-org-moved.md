@@ -1,14 +1,11 @@
 ---
 title: "bioconductor.org moved, and the machines are gone"
-date: 2026-10-08
-draft: true
+date: 2026-10-07
 description: "What bioconductor.org was running on, the incidents that forced a change, the stack that replaced it on 2026-09-28, and what one day of request logs says the site is for."
 aiAssistance: "Drafted with Claude Code from Sean's notes, the TAB deck, and the bioc-infrastructure docs; reviewed and edited by Sean."
 ---
 
-
 Bioconductor is many things to many people, but it is perhaps most recognizable by its website, bioconductor.org. In this first of a series of posts, I'm going to outline changes to the site and several other related pieces of infrastructure that were tied to the site. bioconductor.org is no longer served by a virtual machine in AWS. Since about 20:09 UTC on 2026-09-28 it has been served by a Cloudflare Worker reading from object storage, and `BiocManager::install()` kept working through the switch. In this post I describe what the old site was, why it had become hard to keep running, what replaced it, and what the first days of request logs say about what bioconductor.org is for. Later posts will take the pieces one at a time.
-
 
 The numbers here come from the project's documentation site, [seandavi.github.io/bioc-infrastructure](https://seandavi.github.io/bioc-infrastructure/), and where one is an estimate I say so. I'm adjacent to the Bioconductor core team and have done this work with their cooperation. The content of the site still belongs to Bioconductor, and decisions about it are theirs.
 
@@ -34,8 +31,6 @@ Behind those two were the build machines themselves, named hosts (`nebbiolo1`, `
 
 The site's repository still carries traces of its earlier lives. A `migration/` directory documents the previous move, from Plone to Nanoc, wget script and all. A file of 331 more rewrite rules has redirects for a 2002 workshop in Heidelberg among its oldest entries, though no build step refers to it. And the statistics crontab still has the Squid logs from the old Fred Hutch proxies in it, commented out rather than deleted.
 
-<!-- Sean: I wrote the paragraph above from the audit notes (bioc-infrastructure audit/review/architecture.md) and ADR 0003, not from your memory, so swap in better ones. I don't have dates for the Fred Hutch to AWS move; if you remember the year or who did it, one sentence would be worth more than all three. A spare: the repo vendors a PHP/Python CAPTCHA (Securimage) that includes a Flash file, in a Ruby site that never builds it. -->
-
 A static-file server behind a CDN is a sound design for a package repository, and this system served the community reliably for a long time. What it had become by accretion was harder to run: three operating systems to patch, a build box whose daemons nobody supervised, a hardware refresh cycle for the builders, hundreds of rewrite rules nobody could safely edit, and essentially no written description of how any of it fit together. Each piece was bespoke, each lived on a particular machine, and the knowledge of how to operate it lived in a small number of people's heads. That made it hard to migrate, because you couldn't move a piece without first finding out what it did.
 
 ## The incidents
@@ -51,8 +46,6 @@ Figure: How crawler traffic reached a single disk. {#fig-crisis}
 </div>
 
 The requests that hurt were not page views. They were bots pulling hundred-megabyte lecture videos from `/help/course-materials/`, where two years of materials are 711 MB of `.mp4` against 2 MB of HTML (the panel on the right of [](#fig-crisis)), and bots walking unique URLs that no CDN could ever have cached. That one directory was taking more than 500,000 requests a day, and when we looked on 2026-07-27 CloudFront was answering `/help/course-materials/` with `X-Cache: Miss`, so all of it went to origin. Because one disk sat behind everything, a crawler pulling videos slowed `BiocManager::install()` for everyone. This came to a head over the four days up to 2026-07-27, the day of the first commit in `bioc-edge`, the repository for the Worker described below. During those days the site was often unresponsive or took a very long time to load, and several people noticed. The core team spent four days working with AWS staff to try to stop the bot traffic.
-
-<!-- Sean: sources for the paragraph above: the 2026-07-24 to 2026-07-27 window and the four days with AWS staff are from you; the 500,000 requests a day and the CloudFront cache-miss observation are from bioc-edge MIGRATION.md (measured 2026-07-27). -->
 
 The stopgap was to buy more IOPS, which cost more every time and fixed nothing structural. The reasonable question was whether a bigger VM would do. I don't think it would have, for reasons that have little to do with the disk. Pages, installs, mirrors and build reports shared one failure domain. Nobody could see the traffic: the request logs fed statistics jobs, and nobody read them request by request. The download statistics have never filtered bots; the code that would do it has been commented out for years. Most of the roughly \$5,000 a month in AWS was egress, which is hard to avoid when the job is sending tarballs to the world. And nothing was written down where a newcomer could find it.
 
@@ -72,7 +65,6 @@ As [](#fig-new-arch) shows, a request now goes through Cloudflare's firewall and
 
 Packages still come from where they always did. The Bioconductor Build System builds the source tarballs, r-universe builds most of the Windows and macOS binaries, and the core team's propagation puts them on master. An hourly job copies master into R2 and purges exactly the URLs that changed. The website is built separately, by Astro, on every merge to the website repository, into an immutable folder named by commit. Rolling back a site change is writing an older commit id into one pointer. Every pull request gets a preview on the real worker, and the response carries a header saying which build answered it. Packages and the website meet only in storage; neither waits on the other.
 
-
 ## The cutover
 
 The migration ran for about two months before DNS moved, and the mirror was live and checked long before anyone depended on it. [](#fig-timeline) gives the dates.
@@ -85,7 +77,7 @@ Figure: The cutover, July to October 2026. {#fig-timeline}
 
 </div>
 
-R2 was loaded on 2026-08-03 and verified against the archive with zero differences. By 2026-08-13 the hourly sync, a weekly checksum reconcile and request logging were running with alerts. On 2026-09-28 the nameservers moved to Cloudflare at 17:30 UTC and the site flipped at about 20:09. The `BiocManager::install()` acceptance checks, eight of them, passed on release 3.23 and devel 3.24 after the flip. The old DNS zone is kept, frozen, as the rollback until 2026-10-12. The next day a probe compared 13,271 paths from real traffic against master, and the differences it found (a nine-byte 404 body, package files skipping the edge cache, double-slash links, landing pages missing their Windows and macOS download links) were fixed the same day.
+R2 was loaded on 2026-08-03 and verified against the archive with zero differences. By 2026-08-13 the hourly sync, a weekly checksum reconcile and request logging were running with alerts. On 2026-09-28 the nameservers moved to Cloudflare at 17:30 UTC and the site flipped at about 20:09. The `BiocManager::install()` acceptance checks, eight of them, passed on release 3.23 and devel 3.24 after the flip. As of this writing the old DNS zone is kept, frozen, as the rollback until 2026-10-12. The next day a probe compared 13,271 paths from real traffic against master, and the differences it found (a nine-byte 404 body, package files skipping the edge cache, double-slash links, landing pages missing their Windows and macOS download links) were fixed the same day.
 
 On cost, two numbers that are not estimates of the same thing. The AWS estate being retired is about \$5,000 a month, for CloudFront, S3 and the two servers, not counting the builder hardware or anyone's time. The new stack, at Cloudflare's list prices applied to measured traffic, is roughly \$240 to \$500 a month, of which storage is about \$77. That is a projection, not a bill, and until the AWS side is switched off the project pays for both. The difference is mostly egress, which R2 does not charge for.
 
