@@ -15,7 +15,7 @@ Everything is public. The package metadata come from the `VIEWS` files that bioc
 
 The joining is done once a month by a small Python pipeline into a single DuckDB file. The site itself has no server. It's a static page that loads a handful of Parquet files and runs SQL in the browser with DuckDB-WASM, so every chart is computed from the same tables you can download. I'll come back to that at the end, because it turns out to be the most useful property of the whole thing.
 
-![How the site is built: Bioconductor.org and the cdsci-lake feed a monthly Python pipeline into one DuckDB file; Parquet marts on GitHub Pages serve the dashboard, R and Python clients, and static JSON.](/images/bioc-impact/data-flow.svg)
+![How the site is built: Bioconductor.org and the cdsci-lake feed a monthly Python pipeline into one DuckDB file. Parquet marts on GitHub Pages serve the dashboard, R and Python clients, and static JSON.](/images/bioc-impact/data-flow.svg)
 
 The snapshot refreshes monthly, so the figures below will drift.
 
@@ -35,7 +35,7 @@ Usage is concentrated. Of the 2,418 software packages, 68 account for half of th
 
 A quarter sounds low, and it's lower than the real publication rate, for a reason that took me a while to see. A `CITATION` file reflects what the authors want cited *now*. When edgeR's authors published the v4 paper in 2025, the file was updated to point at it, and the 2010 *Bioinformatics* paper that most of the field cites disappeared from view. Because bioconductor.org keeps the rendered citation page for every past release, the pipeline now reads all of them and keeps the union. That single change took edgeR from one linked paper to five and added 167 papers across 143 packages. Packages that never shipped a DOI are still invisible to this method, on purpose: I tried matching package names against paper titles and it produced about 1,500 matches, most of them *wrong*, because `muscle`, `gage`, and `tuberculosis` are also English words.
 
-The method also has a second edge. Some packages ask you to cite the method or the data rather than the software. The `muscle` package cites Edgar's 2004 alignment paper; the two AlphaMissense annotation packages cite the DeepMind paper in *Science*. That's the right thing for those packages to do, and the site reports it faithfully, but it means a leaderboard sorted by citation ratio puts a wrapper package next to a landmark paper. The site now defaults to the authors' own DOI and `CITATION` links, marks papers shared by several packages, and lets you opt in to the lower-confidence links found in package descriptions. I'd rather leave that choice to you than make it quietly.
+The method also has a second edge. Some packages ask you to cite the method or the data rather than the software. The `muscle` package cites Edgar's 2004 alignment paper, and the two AlphaMissense annotation packages cite the DeepMind paper in *Science*. That's the right thing for those packages to do, and the site reports it faithfully, but it means a leaderboard sorted by citation ratio puts a wrapper package next to a landmark paper. The site now defaults to the authors' own DOI and `CITATION` links, marks papers shared by several packages, and lets you opt in to the lower-confidence links found in package descriptions. I'd rather leave that choice to you than make it quietly.
 
 ## Funding and geography
 
