@@ -70,6 +70,21 @@ a:hover { color: var(--accent-deep); }
 .hero .actions a { text-decoration: none; }
 .hero .actions a::after { content: " \2192"; color: var(--faint); }
 
+/* Latest notes strip (homepage), fed from the newest posts */
+.now { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) auto; gap: 0.5rem 1.5rem; align-items: baseline; padding: 1.4rem 0; border-bottom: 1px solid var(--rule); font-family: var(--sans); font-size: 0.9rem; }
+.now-title { font-size: 0.84rem; font-weight: 600; color: var(--muted); margin: 0; }
+.now ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.now li { display: flex; gap: 1rem; align-items: baseline; }
+.now time { flex: none; width: 6.5rem; font-size: 0.8rem; color: var(--faint); }
+.now li a { font-family: var(--serif); font-size: 1rem; text-decoration: none; }
+.now li a:hover { text-decoration: underline; }
+.now-all::after { content: " \2192"; color: var(--faint); }
+.now-all { text-decoration: none; white-space: nowrap; }
+@media (max-width: 40rem) {
+  .now { grid-template-columns: 1fr; }
+  .now li { flex-direction: column; gap: 0; }
+}
+
 /* Sections */
 section { padding: clamp(2.5rem, 5.5vw, 3.75rem) 0; border-bottom: 1px solid var(--rule); }
 .sec-head { margin-bottom: 1.75rem; }

@@ -6,6 +6,7 @@ import Masthead from '../components/Masthead.astro';
 import headshot from '../assets/sean-davis-hero.jpg';
 import { cvDate, grants, ORCID_URL } from '../lib/cv';
 import { liveProjects, homepageProjects, metaLine } from '../lib/projects';
+import { getVisiblePosts, formatDate } from '../lib/blog';
 
 // Same data the /projects directory renders; the homepage shows only the
 // entries that carry a `homepage` rank, flagship ones as the list and the rest
@@ -13,6 +14,12 @@ import { liveProjects, homepageProjects, metaLine } from '../lib/projects';
 const onHome = homepageProjects(await liveProjects());
 const featured = onHome.filter((p) => p.data.group === 'flagship');
 const others = onHome.filter((p) => p.data.group !== 'flagship');
+
+// The "Latest notes" strip is fed from the newest published, non-archived
+// notes, so it can't go stale the way a hand-edited news list does.
+const latest = (await getVisiblePosts())
+  .filter((p) => !p.data.draft && !p.data.archived)
+  .slice(0, 3);
 ---
 
 <Base title="Sean Davis — Cancer Data Science">
@@ -44,6 +51,21 @@ const others = onHome.filter((p) => p.data.group !== 'flagship');
       </div>
       <Image class="headshot" src={headshot} alt="Sean Davis" widths={[200, 400]} sizes="200px" loading="eager" />
     </div>
+
+    {latest.length > 0 && (
+      <aside class="now" aria-label="Latest notes">
+        <h2 class="now-title">Latest notes</h2>
+        <ul>
+          {latest.map((p) => (
+            <li>
+              <time datetime={p.data.date.toISOString().slice(0, 10)}>{formatDate(p.data.date)}</time>
+              <a href={`/blog/${p.id}/`}>{p.data.title}</a>
+            </li>
+          ))}
+        </ul>
+        <a class="now-all" href="/blog">All notes</a>
+      </aside>
+    )}
 
     <section id="work">
       <div class="sec-head">

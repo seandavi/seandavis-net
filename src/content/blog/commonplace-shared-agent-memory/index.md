@@ -90,7 +90,7 @@ one project can still turn up something another project learned.
 
 <div class="wide">
 
-![commonplace architecture: Claude Code and Codex call the server's MCP tools over HTTP and load the index through a SessionStart hook; pi and omp use the bundled extension, which runs the commonplace CLI; the CLI and other MCP clients reach the server over HTTP; the server keeps memories in SQLite with FTS5 on the store host, where export and stats read the database directly.](./architecture.png)
+![Architecture diagram of commonplace in two dashed regions. In the client-machines region on the left are Claude Code and Codex (MCP plus a SessionStart hook), pi and omp (a bundled extension), the commonplace CLI (a built-in MCP client configured by config.toml), and other MCP clients over streamable HTTP. The SessionStart hook calls the CLI's index command. pi and omp reach the CLI through memory tools. Claude Code, Codex and other MCP clients, and the CLI itself, all connect over MCP on HTTP to commonplace serve, a FastMCP server on port 9322 with write guards, in the store-host region on the right, which can be any address the clients can reach, often a tailnet. The server reads and writes memories through aiosqlite in a SQLite database with FTS5 holding versioned memories. The export and stats CLI, also on the store host, read that database directly.](./architecture.png)
 
 Figure: commonplace architecture. [MCP](https://modelcontextprotocol.io)
 is the protocol Claude Code and Codex use to call tools. {#fig-architecture}
