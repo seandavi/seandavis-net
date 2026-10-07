@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420" font-family="ui-sans-serif,system-ui,Helvetica,Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440" font-family="ui-sans-serif,system-ui,Helvetica,Arial,sans-serif">
 <defs><marker id="a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#5d657c"/></marker></defs>
-<rect width="960" height="420" fill="white"/>
+<rect width="960" height="440" fill="white"/>
 <text x="20" y="28" font-size="16" font-weight="700" fill="#070707">How impact.bioconductor.org is built</text>
 <rect x="20" y="60" width="200" height="110" rx="10" fill="#f3fae9" stroke="#18a603" stroke-width="2"/><text x="120.0" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#070707">Bioconductor.org</text><text x="120.0" y="104" text-anchor="middle" font-size="11.5" fill="#070707">VIEWS per release (2002→)</text><text x="120.0" y="119" text-anchor="middle" font-size="11.5" fill="#070707">download stats (2009→)</text><text x="120.0" y="134" text-anchor="middle" font-size="11.5" fill="#070707">CITATION files</text>
 <rect x="20" y="190" width="200" height="125" rx="10" fill="#ebf4f7" stroke="#0087af" stroke-width="2"/><text x="120.0" y="214" text-anchor="middle" font-size="14" font-weight="700" fill="#070707">cdsci-lake (read-only)</text><text x="120.0" y="234" text-anchor="middle" font-size="11.5" fill="#070707">OpenAlex works, refs,</text><text x="120.0" y="249" text-anchor="middle" font-size="11.5" fill="#070707">authorships · NIH iCite</text><text x="120.0" y="264" text-anchor="middle" font-size="11.5" fill="#070707">NIH RePORTER · patents</text>
@@ -18,9 +18,9 @@
 <text x="640" y="275" text-anchor="middle" font-size="11" fill="#5d657c">static files on GitHub Pages</text>
 <text x="640" y="290" text-anchor="middle" font-size="11" fill="#5d657c">no server</text>
 <text x="20" y="345" font-size="12" font-weight="700" fill="#070707">Legend</text>
-<rect x="20" y="357" width="16" height="16" rx="3" fill="#f3fae9" stroke="#18a603" stroke-width="2"/><text x="42" y="370" font-size="11" fill="#070707">Bioconductor-native sources and usage</text>
+<rect x="20" y="357" width="16" height="16" rx="3" fill="#f3fae9" stroke="#18a603" stroke-width="2"/><text x="42" y="370" font-size="11" fill="#070707">Bioconductor-native sources and usage</text><rect x="490" y="357" width="16" height="16" rx="3" fill="#ebf4f7" stroke="#0087af" stroke-width="2"/><text x="512" y="370" font-size="11" fill="#070707">bibliometric enrichment and publications</text><rect x="20" y="377" width="16" height="16" rx="3" fill="#fef9eb" stroke="#f1c736" stroke-width="2"/><text x="42" y="390" font-size="11" fill="#070707">grants, funding, static exports</text><rect x="490" y="377" width="16" height="16" rx="3" fill="#f9f9f9" stroke="#5d657c" stroke-width="2"/><text x="512" y="390" font-size="11" fill="#070707">published artifacts</text>
 <rect x="255" y="357" width="16" height="16" rx="3" fill="#ebf4f7" stroke="#0087af" stroke-width="2"/><text x="277" y="370" font-size="11" fill="#070707">bibliometric enrichment and publications</text>
 <rect x="490" y="357" width="16" height="16" rx="3" fill="#fef9eb" stroke="#f1c736" stroke-width="2"/><text x="512" y="370" font-size="11" fill="#070707">grants, funding, static exports</text>
 <rect x="725" y="357" width="16" height="16" rx="3" fill="#f9f9f9" stroke="#5d657c" stroke-width="2"/><text x="747" y="370" font-size="11" fill="#070707">published artifacts</text>
-<text x="20" y="408" font-size="10.5" fill="#5d657c">Arrows show the direction of data flow. The pipeline runs monthly on one machine; everything to the right of it is a static file.</text>
+<text x="20" y="428" font-size="10.5" fill="#5d657c">Arrows show the direction of data flow. The pipeline runs monthly on one machine; everything to the right of it is a static file.</text>
 </svg>

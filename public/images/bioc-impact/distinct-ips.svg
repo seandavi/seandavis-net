@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440" font-family="ui-sans-serif,system-ui,Helvetica,Arial,sans-serif">
 <rect width="960" height="440" fill="white"/>
 <text x="20" y="28" font-size="16" font-weight="700" fill="#070707">Bioconductor software packages: distinct downloading IP addresses per year</text>
-<text x="20" y="46" font-size="12" fill="#5d657c">Sum of monthly distinct IPs, 2009–2025. Source: bioconductor.org download statistics via impact.bioconductor.org (snapshot 2026-10-07).</text>
+<text x="20" y="46" font-size="12" fill="#5d657c">Distinct IPs per year (sum of monthly distinct IPs), 2009–2025. Source: bioconductor.org download statistics via impact.bioconductor.org (snapshot 2026-10-07).</text>
 <rect x="80.0" y="60" width="358.59375" height="310" fill="#e7e8ea" opacity="0.6"/>
 <text x="88.0" y="76" font-size="11" fill="#5d657c">older collection method (before Oct 2015): not directly comparable</text>
 <line x1="80" y1="370.0" x2="930" y2="370.0" stroke="#e7e8ea"/><text x="72" y="374.0" text-anchor="end" font-size="11" fill="#5d657c">0M</text>
@@ -40,7 +40,7 @@
 <text x="398.75" y="314.33023425" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">5.9M</text>
 <text x="664.375" y="243.81340275000002" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">15.0M</text>
 <text x="930.0" y="80.777513" text-anchor="middle" font-size="11.5" font-weight="700" fill="#547b17">36.0M</text>
-<text x="72" y="52" text-anchor="end" font-size="11" fill="#5d657c">distinct IPs / year</text>
+<text x="80" y="52" text-anchor="start" font-size="11" fill="#5d657c"></text>
 <text x="20" y="408" font-size="12" font-weight="700" fill="#070707">Legend</text>
 <line x1="80" y1="403" x2="110" y2="403" stroke="#18a603" stroke-width="3"/><text x="116" y="407" font-size="11" fill="#070707">distinct IPs per year, software repository (2,418 packages in 3.23)</text>
 <rect x="520" y="395" width="16" height="12" fill="#e7e8ea"/><text x="542" y="407" font-size="11" fill="#070707">pre-October-2015 methodology era</text>
