@@ -1,5 +1,6 @@
 ---
 title: "Measuring Bioconductor: usage, publications, funding, and what they say about sustainability"
+aiAssistance: "Drafted with Claude Code from Sean's data and notes; reviewed and edited by Sean."
 date: 2026-10-07
 description: "A dashboard for Bioconductor's impact, built from public data, and what 17 years of download logs, a thousand linked papers and 668 NIH awards say about where the project stands."
 ---

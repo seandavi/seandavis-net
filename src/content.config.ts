@@ -4,9 +4,14 @@ import { glob } from 'astro/loaders';
 // Blog / notes. A post is `<slug>.md`, or `<slug>/index.md` with co-located
 // images referenced relatively; both route to /blog/<slug>/. Visibility
 // (drafts) and ordering live in src/lib/blog.ts.
+// Posts dated on or after this day must declare AI use (see `aiAssistance`).
+// Earlier posts are exempt so the backlog needn't be audited retroactively.
+const AI_DISCLOSURE_FROM = new Date('2026-10-08T00:00:00Z');
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-  schema: z.object({
+  schema: z
+    .object({
     title: z.string(),
     // Original publication (or draft) date.
     date: z.coerce.date(),
@@ -18,8 +23,20 @@ const blog = defineCollection({
     // Former URL paths (e.g. on seandavi.github.io); data for future redirects.
     aliases: z.array(z.string()).default([]),
     // Disclosure rendered only as <meta name="ai-assistance">, never in the prose.
+    // Required from AI_DISCLOSURE_FROM on (archived posts excepted): a sentence
+    // describing the AI use, or the literal string "none" when there was none.
     aiAssistance: z.string().optional(),
-  }),
+  })
+    .superRefine((post, ctx) => {
+      if (!post.archived && post.date >= AI_DISCLOSURE_FROM && !post.aiAssistance?.trim()) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['aiAssistance'],
+          message:
+            'Posts dated 2026-10-08 or later must set aiAssistance: a short description of the AI use, or "none".',
+        });
+      }
+    }),
 });
 
 // Projects — the single source of truth for the project directory. `/projects`

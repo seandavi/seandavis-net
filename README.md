@@ -80,7 +80,9 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
     `SHOW_DRAFTS=1`) with a banner and `noindex`; production builds give them no URL.
   - `archived` (default `false`): listed under "Archive" with a "written in <year>" note.
   - `aliases` (default `[]`): old URL paths (e.g. on `seandavi.github.io`), kept for future redirects.
-  - `aiAssistance` (optional): rendered only as `<meta name="ai-assistance">`, never in the prose.
+  - `aiAssistance`: rendered only as `<meta name="ai-assistance">`, never in the prose. **Required**
+    on non-archived posts dated 2026-10-08 or later: a sentence describing the AI use, or `none`.
+    The build fails without it. Older posts may omit it.
 
   Citations and math render natively; `rendering-citations-in-astro.md` is the (draft) rendering
   fixture. Fenced code is highlighted by Shiki.

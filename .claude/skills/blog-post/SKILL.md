@@ -49,7 +49,9 @@ Propose an outline as an issue comment: section headings, one line each on what 
    ---
    ```
 
-   Other fields (`archived`, `aliases`, `aiAssistance`) are in `src/content.config.ts`; new posts normally don't set them.
+   `aiAssistance` is required (see below). Other fields (`archived`, `aliases`) are in `src/content.config.ts`; new posts normally don't set them.
+
+   Set `aiAssistance` when you create the file, not at the end: a short sentence on what the AI did (for example `aiAssistance: "Drafted with Claude Code from Sean's notes and outline; reviewed and edited by Sean."`), or `aiAssistance: none` if there was none. An agent-drafted post says so. The build fails for non-archived posts dated 2026-10-08 or later without it.
 3. Write in Sean's voice per `docs/voice.md`. His own material and wording come first; prefer quoting or adapting what he wrote over paraphrasing it. Give fenced code a language (```` ```r ````, ```` ```bash ````) so it highlights. Citations use `[@key]` against `src/content/references.bib`.
 4. Mark anything that needs his confirmation inline: `[confirm: is this the 2024 or 2025 release?]`. Don't guess past a gap.
 5. Commit and push, then open a draft PR that closes the issue:
@@ -79,6 +81,6 @@ Iterate on the PR until Sean is happy. Then:
 
 1. No `[confirm:` markers remain (`grep -rn '\[confirm:' src/content/blog/<slug>*`).
 2. Set `date` to the publish date and remove `draft: true`.
-3. Ask Sean whether to set `aiAssistance` (for example `aiAssistance: "Drafted with Claude from Sean's notes and outline"`). It renders only as `<meta name="ai-assistance">`; the prose never mentions it.
+3. Confirm the `aiAssistance` wording with Sean. It renders only as `<meta name="ai-assistance">`; the prose never mentions it.
 4. Mark the PR ready (`gh pr ready <PR>`), wait for green (`gh pr checks <PR> --watch`), and merge when Sean says so: `gh pr merge <PR> --squash --delete-branch`. Merging deploys to production and closes the issue.
 5. Remove the worktree.
