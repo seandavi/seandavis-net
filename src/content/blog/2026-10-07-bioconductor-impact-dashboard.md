@@ -1,7 +1,6 @@
 ---
 title: "Measuring Bioconductor: usage, publications, funding, and what they say about sustainability"
 date: 2026-10-07
-draft: true
 description: "A dashboard for Bioconductor's impact, built from public data, and what 17 years of download logs, a thousand linked papers and 668 NIH awards say about where the project stands."
 ---
 
