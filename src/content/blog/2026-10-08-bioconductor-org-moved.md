@@ -1,7 +1,6 @@
 ---
 title: "bioconductor.org moved, and the machines are gone"
 date: 2026-10-08
-draft: true
 description: "What bioconductor.org was running on, the incidents that forced a change, the stack that replaced it on 2026-09-28, and what one day of request logs says the site is for."
 ---
 
@@ -23,8 +22,6 @@ Two machines did everything a visitor saw. *Staging* was a build box. Every hour
 
 Behind those two were the build machines themselves, named hosts (`nebbiolo1`, `nebbiolo2`, a few Macs) that run `R CMD check` across the whole repository every night and have done so for as long as the project has existed, with older names (`moscato`, `zin`, `morelia`, `oaxaca`) still in the configuration from earlier generations of hardware.
 
-<!-- Sean: a paragraph of history here would help. How did the site get from the FHCRC machines to AWS, roughly when, and who kept it going? ADR 0003 mentions the Squid logs from the old FHCRC proxies still commented out in the stats crontab, which is a nice detail if you want it. I don't have the dates. -->
-
 None of this was wrong when it was built. A static-file server behind a CDN is a sound design for a package repository, and the system served the community reliably for a long time. The trouble was what it had become by accretion: three operating systems to patch, a build box whose daemons nobody supervised, a hardware refresh cycle for the builders, hundreds of rewrite rules nobody could safely edit, and essentially no written description of how any of it fit together. Each piece was bespoke, each lived on a particular machine, and the knowledge of how to operate it lived in a small number of people's heads. That is what made it hard to migrate. You could not move a piece without first discovering what it did.
 
 ## The incidents
@@ -34,8 +31,6 @@ What forced the issue was crawlers. The origin ran off an EBS volume, and crawle
 ![Crawlers requesting unique URLs and large files miss the CloudFront cache and reach one VM whose EBS volume runs out of IOPS. That one disk sits behind pages, installs and build reports. The course-materials directory holds 711 MB of video against 2 MB of HTML, about 400 to 1.](/images/bioc-migration/crisis.svg)
 
 The requests that hurt were not page views. They were bots pulling hundred-megabyte lecture videos from `/help/course-materials/`, where two years of materials are 711 MB of `.mp4` against 2 MB of HTML, and bots walking unique URLs that no CDN could ever have cached. All of that went to origin. Because one disk sat behind everything, a crawler pulling videos slowed `BiocManager::install()` for everyone.
-
-<!-- Sean: dates and user-visible symptoms of the specific incidents. The docs record the mechanism but not the incident dates. -->
 
 The stopgap was to buy more IOPS, which cost more every time and fixed nothing structural. The reasonable question was whether a bigger VM would do. I don't think it would have, for reasons that have little to do with the disk. Pages, installs, mirrors and build reports shared one failure domain. Nobody could see the traffic: the request logs fed statistics jobs, and nobody read them request by request. The download statistics have never filtered bots; the code that would do it has been commented out for years. Most of the roughly $5,000 a month in AWS was egress, and sending tarballs to the world is the whole job. And nothing was written down where a newcomer could find it. The disk was the symptom.
 
