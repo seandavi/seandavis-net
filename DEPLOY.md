@@ -4,8 +4,8 @@
 custom domains attached (apex canonical, www → 301 apex). GitHub secrets for CI
 set 2026-07-25; pushes to `main` deploy via `deploy.yml`, PRs get a
 `workers.dev` preview via `pr-preview.yml`. `cancerdatasci.org` + `www`
-(301 → `/projects`) deployed 2026-08-18; see item 2 below. Remaining:
-`seandavi.github.io` retirement.
+(301 → `/projects`) deployed 2026-08-18; see item 2 below. `seandavi.github.io`
+retired 2026-10-13 (redirect stubs; see item 2).
 Domain `seandavis.net` is registered on Cloudflare (DNS lives there);
 `talks.seandavis.net` is already live as a sibling Worker. This site deploys
 the **same way**: build in GitHub Actions, serve the static `dist/` from
@@ -58,10 +58,13 @@ The two **cross-origin** retirements (`seandavi.github.io`, `cancerdatasci.org`
 apex) can't be done from this file — they're different origins. Options, decide
 per origin:
 - **seandavi.github.io** → its Pages serving is in the `seandavi.github.io`
-  repo (currently `master`). Retire by replacing that repo's content with a
-  redirect stub (meta-refresh + canonical), OR point the GitHub Pages custom
-  domain elsewhere. The CV it used to host now lives here at `/files/CV.pdf`;
-  what remains is porting the old blog posts so their URLs can redirect.
+  repo (currently `master`). **Retired 2026-10-13:** that repo's `master`
+  now holds a meta-refresh + canonical stub for every URL in the old sitemap
+  (posts map to `/blog/` via each post's `aliases`; talks → `talks.seandavis.net`;
+  `/docs/*` and 2017–2021 talks deliberately not ported) plus a `404.html` that
+  forwards `/files/*` (the CV). GitHub Pages can't 301, and the old RSS
+  feeds are simply gone. Re-run the generator against the alias map if posts
+  gain new aliases (not needed for retired URLs).
 - **cancerdatasci.org apex** → **wired 2026-08-17, deployed 2026-08-18** (verified
   301 → `https://seandavis.net/projects/` on 2026-10-02). The zone
   had *no apex record at all* (checked against the exported zone file), so the
@@ -108,5 +111,5 @@ Identical to the talks `deploy` skill, reused token is fine:
 3. **Only then** the cross-origin 301s (item 2) — retiring github.io is the
    irreversible-feeling step; do it once the hub genuinely supersedes it.
 
-Resolved: apex canonical (www → 301 apex). Still open: `seandavi.github.io`
-retirement — waits on porting the old blog posts here so their URLs can redirect.
+Resolved: apex canonical (www → 301 apex). `seandavi.github.io`
+retired 2026-10-13.
