@@ -63,8 +63,7 @@ per origin:
   (posts map to `/blog/` via each post's `aliases`; talks → `talks.seandavis.net`;
   `/docs/*` and 2017–2021 talks deliberately not ported) plus a `404.html` that
   forwards `/files/*` (the CV). GitHub Pages can't 301, and the old RSS
-  feeds are simply gone. Re-run the generator against the alias map if posts
-  gain new aliases (not needed for retired URLs).
+  feeds are simply gone.
 - **cancerdatasci.org apex** → **wired 2026-08-17, deployed 2026-08-18** (verified
   301 → `https://seandavis.net/projects/` on 2026-10-02). The zone
   had *no apex record at all* (checked against the exported zone file), so the
