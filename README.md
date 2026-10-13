@@ -137,8 +137,12 @@ wrangler.jsonc           # Cloudflare Workers deploy config (see DEPLOY.md)
 - ~~Wire the Worker-with-assets deploy~~ **Done 2026-07-24** (wrangler; see DEPLOY.md).
 - ~~`cancerdatasci.org` apex 301~~ **Deployed 2026-08-18** (apex + www attached to this Worker,
   redirecting to `/projects`; verified 301 → `https://seandavis.net/projects/` 2026-10-02).
-- **Retire `seandavi.github.io`** — waits on porting the old blog posts here so their URLs can
-  redirect.
+- ~~Retire `seandavi.github.io`~~ **Done 2026-10-13** ([seandavi.github.io#5](https://github.com/seandavi/seandavi.github.io/pull/5)):
+  `master` is now one meta-refresh + canonical stub per URL in the old sitemap (posts → their
+  `/blog/` URLs, talks → `talks.seandavis.net`, publications/projects → their pages, the rest →
+  home) and a `404.html` that forwards `/files/*`. Not ported, by choice: `/docs/*` pages and the
+  2017–2021 talk pages. The old RSS (`/index.xml`) can't be redirected on Pages. The Hugo build
+  is in that repo's git history; the `source` branch is untouched.
 - ~~Self-host a display serif~~ **Done 2026-10-03:** Source Serif 4 via `@fontsource-variable/source-serif-4`.
 - **ORCID publications sync:** build-time fetch of `pub.orcid.org/v3.0/0000-0002-8991-6458/works`
   → generated publications page (keeps pubs current without hand-editing).
